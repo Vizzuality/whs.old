@@ -7,6 +7,19 @@ u.password = 'admin'
 u.password_confirmation = 'admin'
 u.save
 
+
+# Feature attributes
+attributes = <<-ATTRIBUTES
+endangered:integer
+country:string
+designation_date:text
+designation_criteria:string
+size:string
+external_links:string
+ATTRIBUTES
+
+RefinerySetting.set(:feature_attributes, attributes)
+
 # Refinery settings
 Dir[Rails.root.join('db', 'seeds','*.rb').to_s].each do |file|
   load(file)
