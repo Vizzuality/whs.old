@@ -1,0 +1,88 @@
+<div id='actions'>
+  <ul>
+    <li>
+      <%= render :partial => "/shared/admin/search",
+                  :locals => {
+                    :url => admin_events_url,
+                    :name_to_search => "events"
+                  } %>
+    </li>
+    <li class="last">
+      <%= link_to t('.create_new'), new_admin_event_url,
+                   :class => "add_icon" %>
+    </li>
+              <!-- To allow the reorder action -->
+              <% if false %>
+                <% if !searching? and Event.count > 1 %>
+                  <li>
+                    <%= link_to t('refinery.reorder', :what => "Events"),
+                                 admin_events_url,
+                                 :id => "reorder_action",
+                                 :class => "reorder_icon" %>
+
+                    <%= link_to t('refinery.reorder_done', :what => "Events"),
+                                 admin_events_url,
+                                 :id => "reorder_action_done",
+                                 :style => "display: none;",
+                                 :class => "reorder_icon" %>
+                  </li>
+                <% end %>
+              <% end %>
+  </ul>
+</div>
+<div id='records'>
+  <% if searching? %>
+
+    <% if @events.any? %>
+      <%= will_paginate @events, :previous_label => '&laquo;', :next_label => '&raquo;' %>
+      <ul>
+        <%= render :partial => "event",
+                    :collection => @events %>
+      </ul>
+      <%= will_paginate @events, :previous_label => '&laquo;', :next_label => '&raquo;' %>
+    <% else %>
+    
+      <div class="no_results">
+        <span class="top"></span>
+        <div class="repeat_content">
+          <h3>No events found for "<%= params[:search] %>" :-(</h3>
+          <p>Try repeating the query with other terms.</p>
+        </div>
+        <span class="bottom"></span>
+      </div>
+    
+      <!-- <h2><%#= t('shared.admin.search.results_for', :query => params[:search]) %></h2>
+      <p><%#= t('shared.admin.search.no_results') %></p> -->
+    <% end %>
+  <% else %>
+    <% if @events.any? %>
+      <div class="top events">
+          <h2>All events</h2>
+          <div class="date_box">
+            <a class="date">Date<span></span></a>
+          </div>
+          <p>Location</p>
+      </div>
+    
+      <%= will_paginate @events,
+                         :previous_label => '&laquo;',
+                         :next_label => '&raquo;' %>
+
+      <%= render :partial => "sortable_list" %>
+
+      <%= will_paginate @events,
+                         :previous_label => '&laquo;',
+                         :next_label => '&raquo;' %>
+    <% else %>
+      <p>
+        <strong>
+          <%= t('.no_items_yet') %>
+        </strong>
+      </p>
+    <% end %>
+  <% end %>
+</div>
+<%= render :partial => "/shared/admin/make_sortable",
+            :locals => {
+              :tree => false
+            } if !searching? and Event.count > 1 %>

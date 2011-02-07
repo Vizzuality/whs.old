@@ -1,0 +1,95 @@
+<div id='actions'>
+  <ul>
+    <li>
+      <%= render :partial => "/shared/admin/search",
+                  :locals => {
+                    :url => admin_features_url,
+                    :name_to_search => "features"                    
+                  } %>
+    </li>
+    <li class="last">
+      <%= link_to t('.create_new'), new_admin_feature_url,
+                   :class => ".submit_button" %>
+    </li>
+                  <!-- To allow the reorder action -->
+                  <% if false %>  
+                    <% if !searching? and Feature.count > 1 %>
+                      <li>
+                        <%= link_to t('refinery.reorder', :what => "Features"),
+                                     admin_features_url,
+                                     :id => "reorder_action",
+                                     :class => "reorder_icon" %>
+
+                        <%= link_to t('refinery.reorder_done', :what => "Features"),
+                                     admin_features_url,
+                                     :id => "reorder_action_done",
+                                     :style => "display: none;",
+                                     :class => "reorder_icon" %>
+                      </li>
+                  <%end%>
+  <% end %>
+  </ul>
+</div>
+<div id='records'>
+    
+      
+  <% if searching? %>  
+    
+    <% if @features.any? %>
+      <div class="top features">
+          <h2>All features</h2>
+          <p>Location</p>
+      </div>
+
+      <%= will_paginate @features, :previous_label => '&laquo;', :next_label => '&raquo;' %>
+      <ul>
+        <%= render :partial => "feature",
+                    :collection => @features %>
+      </ul>
+      <%= will_paginate @features, :previous_label => '&laquo;', :next_label => '&raquo;' %>
+    <% else %>
+    
+      <div class="no_results">
+        <span class="top"></span>
+        <div class="repeat_content">
+          <h3>No features found for "<%= params[:search] %>" :-(</h3>
+          <p>Try repeating the query with other terms.</p>
+        </div>
+        <span class="bottom"></span>
+      </div>
+      
+      <!-- <h2><%#= t('shared.admin.search.results_for', :query => params[:search]) %></h2>
+      <p><%#= t('shared.admin.search.no_results') %></p> -->
+      
+    <% end %>
+    
+  <% else %>
+    <% if @features.any? %>
+      <%= will_paginate @features,
+                         :previous_label => '&laquo;',
+                         :next_label => '&raquo;' %>
+
+      <%= render :partial => "sortable_list" %>
+
+      <%= will_paginate @features,
+                         :previous_label => '&laquo;',
+                         :next_label => '&raquo;' %>
+    <% else %>
+
+        <div class="no_results">
+          <span class="top"></span>
+          <div class="repeat_content">
+            <h3>This site has no features yet</h3>
+            <p>You can start <a href="<%= new_admin_feature_url %>">creating a new one</a></p>
+          </div>
+          <span class="bottom"></span>
+        </div>
+
+
+    <% end %>
+  <% end %>
+</div>
+<%= render :partial => "/shared/admin/make_sortable",
+            :locals => {
+              :tree => false
+            } if !searching? and Feature.count > 1 %>

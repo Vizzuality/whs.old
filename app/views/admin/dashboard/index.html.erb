@@ -1,0 +1,40 @@
+
+<div id='actions'>
+  <ul>
+    <% if Refinery::Plugins.active.names.include?("refinery_pages") %>
+      <li>
+        <%= link_to t('.add_a_new_page'),new_admin_page_url(:only_path => true),:class => "add_icon" %>
+      </li>
+      <li>
+        <%= link_to t('.update_a_page'),admin_pages_url(:only_path => true),:class => "edit_icon" %>
+      </li>
+    <% end %>
+    <% if Refinery::Plugins.active.names.include?("refinery_files") %>
+      <li>
+        <%= link_to t('.upload_a_file'),new_admin_resource_url(:dialog => true,:width => 600,:height => 300,:only_path => true),:class => "add_icon" %>
+      </li>
+    <% end %>
+    <% if Refinery::Plugins.active.names.include?("refinery_images") %>
+      <li class="last">
+        <%= link_to t('.upload_a_image'),new_admin_image_url(:dialog => true,:width => 600,:height => 300,:only_path => true),:class => "add_icon" %>
+      </li>
+    <% end %>
+    <!-- <li>
+      <%= link_to t('.see_home_page'), root_url,:class => "go_icon",:target => "_blank" %>
+    </li> -->
+  </ul>
+</div>
+
+
+
+<div class='clearfix'>
+  <div id='records' class='clearfix<%= ' one_list' if @recent_activity.empty? or @recent_inquiries.empty? %>'>
+    <%= render :partial => "recent_activity" if @recent_activity.any? %>
+    <%= render :partial => "recent_inquiries" if @recent_inquiries.any? %>
+  </div>
+  
+</div>
+<% if request.env["HTTP_USER_AGENT"] =~ /MSIE/ and
+        RefinerySetting.find_or_set(:show_internet_explorer_upgrade_message, true, :scoping => 'refinery') %>
+  <% flash.now[:message] = render(:partial => "/shared/ie6check")  %>
+<% end %>

@@ -1,0 +1,46 @@
+<%= render :partial => '/admin/blog/submenu' %>
+<div id='records'>
+  <% if searching? %>
+
+    <% if @blog_posts.any? %>
+      <%= render :partial => "blog_posts",
+                 :collection => @blog_posts %>
+    <% else %>
+      <div class="no_results">
+        <span class="top"></span>
+        <div class="repeat_content">
+          <h3>No blogs found for "<%= params[:search] %>" :-(</h3>
+          <p>Try repeating the query with other terms.</p>
+        </div>
+        <span class="bottom"></span>
+      </div>
+    
+      <!-- <h2><%#= t('shared.admin.search.results_for', :query => params[:search]) %></h2>
+      <p><%#= t('admin.search_no_results') %></p> -->
+    <% end %>
+  <% else %>
+    <% if @blog_posts.any? %>
+      <%= will_paginate @blog_posts,
+                        :previous_label => '&laquo;',
+                        :next_label => '&raquo;' %>
+
+      <%= render :partial => "sortable_list" %>
+
+      <%= will_paginate @blog_posts,
+                        :previous_label => '&laquo;',
+                        :next_label => '&raquo;' %>
+    <% else %>
+
+      <div class="no_results">
+        
+         <span class="top"></span>
+         <div class="repeat_content">
+           <h3>This site has no posts yet</h3>
+           <p>You can start <a href="<%= new_admin_blog_post_url %>">creating a new one</a></p>
+         </div>
+         <span class="bottom"></span>
+       </div>
+    
+    <% end %>
+  <% end %>
+</div>

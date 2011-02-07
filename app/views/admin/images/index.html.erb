@@ -1,0 +1,59 @@
+<div id='actions'>
+  <ul>
+    <li>
+      <%= render :partial => "/shared/admin/search",
+                 :locals => {
+                   :url => admin_images_url,
+                   :name_to_search => "images"                   
+                 } %>
+    </li>
+    <li class="last">
+      <%= link_to t('.create_new_image'), new_admin_image_url(:dialog => true, :width => 600, :height => 300),
+                  :class => "add_icon" %>
+    </li>
+    
+    <%if false%>
+      <% other_image_views.each do |image_view| %>
+        <li>
+          <%= link_to t('.view.switch_to', :view_name => t('.view.' + image_view.to_s)),
+                      admin_images_url(:view => image_view, :page => params[:page]),
+                      :class => "reorder_icon"  %>
+        </li>
+      <% end %>
+    <%end%>
+  </ul>
+</div>
+<div id='records'>
+  <% if searching? %>
+    <% if @images.any? %>
+      <%= render :partial => "#{current_image_view}_view" %>
+    <% else %>
+      <div class="no_results">
+        <span class="top"></span>
+        <div class="repeat_content">
+          <h3>No images found for "<%= params[:search] %>" :-(</h3>
+          <p>Try repeating the query with other terms.</p>
+        </div>
+        <span class="bottom"></span>
+      </div>
+      <!-- <h2><%#= t('shared.admin.search.results_for', :query => params[:search]) %></h2>
+      <p><%#= t('shared.admin.search.no_results') %></p> -->
+      
+    <% end %>
+  <% else %>
+    <% if @images.any? %>
+      <%= will_paginate @images, :previous_label => '&laquo;', :next_label => '&raquo;' %>
+      <%= render :partial => "#{current_image_view}_view" %>
+      <%= will_paginate @images, :previous_label => '&laquo;', :next_label => '&raquo;' %>
+    <% else %>
+       <div class="no_results">
+          <span class="top"></span>
+          <div class="repeat_content">
+            <h3>This site has no images yet</h3>
+            <p>You can start <a href="<%= new_admin_image_url %>">creating a new one</a></p>
+          </div>
+          <span class="bottom"></span>
+        </div>
+    <% end %>
+  <% end %>
+</div>

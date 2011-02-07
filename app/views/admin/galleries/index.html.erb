@@ -1,0 +1,85 @@
+<div id='actions'>
+  <ul>
+    <li>
+      <%= render :partial => "/shared/admin/search",
+                  :locals => {
+                    :url => admin_galleries_url,
+                    :name_to_search => "galleries"                    
+                  } %>
+    </li>
+    <li class="last">
+      <%= link_to t('.create_new'), new_admin_gallery_url,
+                   :class => "add_icon" %>
+    </li>
+  <% if !searching? and Gallery.count > 1 %>
+    <li>
+      <%= link_to t('refinery.reorder', :what => "Galleries"),
+                   admin_galleries_url,
+                   :id => "reorder_action",
+                   :class => "reorder_icon" %>
+
+      <%= link_to t('refinery.reorder_done', :what => "Galleries"),
+                   admin_galleries_url,
+                   :id => "reorder_action_done",
+                   :style => "display: none;",
+                   :class => "reorder_icon" %>
+    </li>
+  <% end %>
+  </ul>
+</div>
+<div id='records'>
+  <% if searching? %>
+    
+    <% if @galleries.any? %>
+      <%= will_paginate @galleries, :previous_label => '&laquo;', :next_label => '&raquo;' %>
+      <ul>
+        <%= render :partial => "gallery",
+                    :collection => @galleries %>
+      </ul>
+      <%= will_paginate @galleries, :previous_label => '&laquo;', :next_label => '&raquo;' %>
+    <% else %>
+    
+      <div class="no_results">
+        <span class="top"></span>
+        <div class="repeat_content">
+          <h3>No galleries found for "<%= params[:search] %>" :-(</h3>
+          <p>Try repeating the query with other terms.</p>
+        </div>
+        <span class="bottom"></span>
+      </div>
+    
+      <!-- <h2><%#= t('shared.admin.search.results_for', :query => params[:search]) %></h2>
+      <p><%#= t('shared.admin.search.no_results') %></p> -->
+    <% end %>
+  <% else %>
+    <% if @galleries.any? %>
+      <div class="top galleries">
+          <h2>All galleries</h2>
+      </div>
+      <%= will_paginate @galleries,
+                         :previous_label => '&laquo;',
+                         :next_label => '&raquo;' %>
+
+      <%= render :partial => "sortable_list" %>
+
+      <%= will_paginate @galleries,
+                         :previous_label => '&laquo;',
+                         :next_label => '&raquo;' %>
+    <% else %>
+    
+      <div class="no_results">
+        <span class="top"></span>
+        <div class="repeat_content">
+          <h3>This site has no galleries yet</h3>
+          <p>You can start <a href="<%= new_admin_gallery_url %>">creating a new one</a></p>
+        </div>
+        <span class="bottom"></span>
+      </div>
+
+    <% end %>
+  <% end %>
+</div>
+<%= render :partial => "/shared/admin/make_sortable",
+            :locals => {
+              :tree => false
+            } if !searching? and Gallery.count > 1 %>

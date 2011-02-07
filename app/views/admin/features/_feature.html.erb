@@ -1,0 +1,13 @@
+<li class='clearfix record <%= cycle("on", "on-hover") %>' id="<%= dom_id(feature) -%>">
+    <%= link_to feature.title, edit_admin_feature_path(feature) %>
+
+    <div class="icons">
+    <%= link_to 'View', feature_url(feature), :class=> 'view', :target => "_blank" %>
+    
+    <%= link_to 'Delete', admin_feature_path(feature), :class=> 'cancel confirm-delete delete', :title => t('.delete'),
+    :'data-confirm' => t('shared.admin.delete.message',
+        :title => feature.title
+      ),
+        :'data-method' => :delete %>
+    </div>
+</li>

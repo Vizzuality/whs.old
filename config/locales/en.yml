@@ -1,0 +1,21 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  hello: "Hello world"
+  admin:
+    dashboard:
+      recent_activity:
+        was: was
+        ago: ago
+      search:
+        blogs: search blogs
+        events: search events
+        features: search features
+        galleries: search galleries
+        images: search images
+        pages: search pages
+        resources: search resources
+  search: search
+  from: from
+  to: to
