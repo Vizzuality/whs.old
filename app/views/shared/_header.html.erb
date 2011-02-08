@@ -1,18 +1,20 @@
-<div id='header_content'>
-  <h1>RethinkWHS.org</h1>
+<div id="header_content">
+  <div id="header_constraint">
+    <div class="logo">
+      <h3>RethinkWHS.org</h3>
+    </div>
 
-  <ul>
-	<li><a href="<%=features_path%>">Explore</a></li>
-	<li><a href="/about">About</a></li>
-	<li><form><inpout type="text" size="20" value="Search"/></li>
-  </ul>
-
+    <div class="menu">
+      <ul>
+        <li><a href="<%=features_path%>">Explore</a></li>
+        <li><a href="/about">About</a></li>
+        <li class="form"><div class="input"><div class="input_left"></div><div class="input_center"><form><input id="searchText" type="text" size="20" value="Search..."/><input class="hidden" type="submit"/></form></div><div class="input_right"></div></div></li>
+      </ul>
+    </div>
+  </div>
+  
 <!-- <%= link_to RefinerySetting[:site_name], root_url(:only_path => true) %> -->
 
+<!--  <%= render :partial => "/shared/menu", :locals => { :dom_id => 'menu', :css => 'menu' } -%>-->
 
-<!--  <%= render :partial => "/shared/menu",
-             :locals => {
-               :dom_id => 'menu',
-               :css => 'menu'
-             } -%>-->
 </div>
