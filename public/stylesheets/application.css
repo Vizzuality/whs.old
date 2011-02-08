@@ -3,3 +3,8 @@
   Override default refinery application CSS below. 
   Formatting applies to all frontend.
 */
+
+@font-face { font-family: 'PT Sans'; src: url('/fonts/regular-webfont.eot'); src: local('☺'), url('/fonts/regular-webfont.woff') format('woff'), url('/fonts/regular-webfont.ttf') format('truetype'), url('/fonts/regular-webfont.svg#webfontOmy4YPRL') format('svg'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'PT Sans Bold'; src: url('/fonts/bold-webfont.eot'); src: local('☺'), url('/fonts/bold-webfont.woff') format('woff'), url('/fonts/bold-webfont.ttf') format('truetype'), url('/fonts/bold-webfont.svg#webfontsAYHMuxi') format('svg'); font-weight: normal; font-style: normal; }
+
+div#page {width:100%; padding:0;}
