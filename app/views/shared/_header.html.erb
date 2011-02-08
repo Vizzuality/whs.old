@@ -1,8 +1,18 @@
 <div id='header_content'>
-  <h1><%= link_to RefinerySetting[:site_name], root_url(:only_path => true) %></h1>
-  <%= render :partial => "/shared/menu",
+  <h1>RethinkWHS.org</h1>
+
+  <ul>
+	<li><a href="">Explore</a></li>
+	<li><a href="">About</a></li>
+	<li><form><inpout type="text" size="20" value="Search"/></li>
+  </ul>
+
+<!-- <%= link_to RefinerySetting[:site_name], root_url(:only_path => true) %> -->
+
+
+<!--  <%= render :partial => "/shared/menu",
              :locals => {
                :dom_id => 'menu',
                :css => 'menu'
-             } -%>
+             } -%>-->
 </div>

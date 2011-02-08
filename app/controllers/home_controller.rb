@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   def show
-    layout "home_layout"
+    render :action=>"show",:layout=>"home_layout"
+    #layout "home_layout"
     #sql="SELECT id from features"
     
   end

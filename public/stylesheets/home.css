@@ -3,3 +3,5 @@
   Override default refinery homepage styles here. 
   These only apply to the homepage of your site. 
 */
+
+body {font: normal 12px/14px Arial, Helvetica, sans-serif}
