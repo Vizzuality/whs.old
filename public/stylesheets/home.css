@@ -1,7 +1,38 @@
-@import url('/stylesheets/refinery/home.css');
-/* 
-  Override default refinery homepage styles here. 
-  These only apply to the homepage of your site. 
-*/
+@font-face {
+    font-family: 'LiberationSerifBold';
+    src: url('liberationserif-bold-webfont.eot?') format('eot'),
+         url('liberationserif-bold-webfont.woff') format('woff'),
+         url('liberationserif-bold-webfont.ttf') format('truetype'),
+         url('liberationserif-bold-webfont.svg#webfontIsdw9cG6') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LiberationSerifRegular';
+    src: url('liberationserif-regular-webfont.eot?') format('eot'),
+         url('liberationserif-regular-webfont.woff') format('woff'),
+         url('liberationserif-regular-webfont.ttf') format('truetype'),
+         url('liberationserif-regular-webfont.svg#webfontrmG0Rq3T') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 
 body {font: normal 12px/14px Arial, Helvetica, sans-serif}
+
+div.content_box {margin: 0 auto; width: 896px;}
+div.content_box div.top {height: 7px; background: url("/images/content_top_background.png");}
+div.content_box div.middle {background: url("/images/content_middle_background.png");}
+div.content_box div.bottom {height: 7px; margin: 0 0 35px 0; background: url("/images/content_bottom_background.png");}
+div.content_box div.middle div.content {padding: 25px 35px 0 35px;}
+div.content_box div.middle div.footer {clear: both; margin: 0 9px 0 9px; padding: 20px 26px 20px 26px; background-color: #EDEDED; text-align: right; }
+div.content_box div.middle div.footer a{color: #000000; font: normal 16px "LiberationSerifRegular"}
+
+h1 {width: 600px; font: bold 57px "PT Sans"; color: white; background-color: black;}
+h2 {font: normal 19px "PT Sans"; color: white; background-color: black;}
+
+div#more_sites h2 {margin: 0 0 10px 0;color: #333333; font: bold 23px "PT Sans";}
+div#more_sites ul {float: left; margin: 0 0 25px 0;}
+div#more_sites ul li { float: left; width: 275px; padding: 8px 0 5px 0;}
+div#more_sites ul li a{color: #3FB0D6; font: normal 16px "LiberationSerifRegular"; text-decoration: none;}
+div#more_sites ul li p{ margin: 2px 0 0 0; color: #CCCCCC; font: normal 13px Arial;}
