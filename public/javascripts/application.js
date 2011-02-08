@@ -4,7 +4,7 @@ $(document).ready(function(){
   //FUNCTIONS FOR THE SEARCHBOX BEHAVIOUR 
   $('#searchText').focus(function() {
     this.value = '';
-    $('this').animate({
+    $('#searchText').animate({
         width: '+=70'
       },200);
     $('.input_center').animate({
@@ -15,7 +15,7 @@ $(document).ready(function(){
     if(this.value == ''){
       this.value = 'Search...';
     }
-    $('this').animate({
+    $('#searchText').animate({
         width: '-=70'
       },200);
     $('.input_center').animate({
