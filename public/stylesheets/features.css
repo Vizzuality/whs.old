@@ -1,7 +1,3 @@
-/* Adaptado para esta página*/
-
-
-
 /* Image area */
 div#feature_image {padding: 0; margin: 0 8px 0 8px; position: relative;}
 div#feature_image ul.image_selector {position: absolute; top: 20px; left: -15px; padding:10px 5px 10px 10px; background-color: #000000;}
@@ -12,6 +8,8 @@ div#feature_image div#endangered {position: absolute; top: -12px; right: -12px; 
 
 /* Content area */
 div#feature div.middle div.content {position: relative;}
+div#feature div.middle div.content {margin: 0 8px 0 8px; background: #FFFFFF;}
+
 div#feature_title {position: absolute; top: -60px; left: -15px;}
 div#feature_title p#country {padding: 10px 20px 0px 20px ; color: #FFFFFF; background-color: #000000; font: normal 15px "PT Sans";}
 div#feature_title p#country img {margin: 0 8px 0 0;}
@@ -39,7 +37,7 @@ div#feature_mosaic {position: relative;}
 div#feature_mosaic div#big_image { width: 880px; height: 430px; }
 div#feature_mosaic div#big_image p {display: none;}
 div#feature_mosaic div.middle div.content {margin: 0 8px 0 8px; background: #FFFFFF;}
-div#feature_mosaic div.middle div.content ul#image_list {height: 215px;}
+div#feature_mosaic div.middle div.content ul#image_list {height: 214px;}
 
 /* Teleport */
 div.content_box#teleport div.middle div.content{padding: 25px; background-color: white; font: normal 17px "PT Sans";}
