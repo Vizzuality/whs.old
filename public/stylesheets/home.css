@@ -1,18 +1,29 @@
 body {font: normal 12px/14px Arial, Helvetica, sans-serif}
 
-div.content_box {margin: 0 auto; width: 896px;}
+div.content_box {margin: 25px auto; width: 896px;}
 div.content_box div.top {height: 7px; background: url("/images/content_top_background.png");}
 div.content_box div.middle {background: url("/images/content_middle_background.png");}
-div.content_box div.bottom {height: 7px; margin: 0 0 35px 0; background: url("/images/content_bottom_background.png");}
-div.content_box div.middle div.content {padding: 25px 35px 0 35px;}
-div.content_box div.middle div.footer {clear: both; margin: 0 9px 0 9px; padding: 20px 26px 20px 26px; background-color: #EDEDED; text-align: right; }
+div.content_box div.bottom {height: 7px; margin: 0 0 0 0; background: url("/images/content_bottom_background.png");}
+div.content_box div.middle div.content {padding: 25px 35px 25px 35px;}
+div.content_box div.middle div.footer {margin: 0 9px 0 9px; padding: 20px 26px 20px 26px; background-color: #EDEDED; text-align: right; }
 div.content_box div.middle div.footer a{color: #000000; font: normal 16px "LiberationSerifRegular"}
 
-h1 {width: 600px; font: bold 57px "PT Sans"; color: white; background-color: black;}
-h2 {font: normal 19px "PT Sans"; color: white; background-color: black;}
+div#mosaic {position: relative;}
+div#mosaic h1 {position: absolute; z-index: 5; top: 350px; left: -15px; width: 750px; padding: 20px; font: normal 50px/55px "PT Sans Bold"; color: white; background-color: black;} 
+div#mosaic h2 {position: absolute; z-index: 6; top: 320px; left: -15px; padding: 10px 20px 10px 20px; font: normal 19px "PT Sans"; color: white; background-color: black;}
 
-div#more_sites h2 {margin: 0 0 10px 0;color: #333333; font: bold 23px "PT Sans";}
-div#more_sites ul {float: left; margin: 0 0 25px 0;}
-div#more_sites ul li { float: left; width: 275px; padding: 8px 0 5px 0;}
+div#mosaic div#big_image { width: 880px; height: 430px; }
+div#mosaic div#big_image p {display: none;}
+div#mosaic div.middle div.content {padding: 0 7px 0 7px;}
+ul#image_list li{position: relative; display: inline-block; width: 293px; height: 214px;}
+ul#image_list li a{position: relative; text-decoration: none; }
+ul#image_list li a div.mosaic_label {position: absolute; bottom: 30px; left: 20px; width: 180px;}
+ul#image_list li a div.mosaic_label p.place {float: left; padding: 5px 10px 0px 10px; text-decoration: none; background-color: black; font: bold 17px "PT Sans"; color: #FFFFFF;}
+ul#image_list li a div.mosaic_label p.distance {float: left; padding: 5px 10px 5px 10px; text-decoration: none; background-color: black;  font: normal 13px "Arial"; color: #CCCCCC;}
+
+div#more_sites div.middle div.content {padding: 25px 35px 25px 35px;}
+div#more_sites h2 {margin: 0 0 10px 0;color: #333333; font: normal 23px "PT Sans Bold";}
+div#more_sites ul {margin: 0 0 0 0;}
+div#more_sites ul li {display: inline-block; width: 275px; padding: 8px 0 5px 0;}
 div#more_sites ul li a{color: #3FB0D6; font: normal 16px "LiberationSerifRegular"; text-decoration: none;}
 div#more_sites ul li p{ margin: 2px 0 0 0; color: #CCCCCC; font: normal 13px Arial;}
