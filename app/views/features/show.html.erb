@@ -1,33 +1,117 @@
+<div class="content_box" id="feature">	
+  <div class="top"></div>
+  <div class="middle">
+    <div id="feature_image">
+      <ul class="image_selector">
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+      </ul>
+      <img src="/images/test/test_big.jpg">
+      <div id="endangered"></div>
+    </div>
+      <div class="content">
+        <div id="main_area">
+          <div id="feature_title">
+            <p id="country"><img class="flag" src="/images/test/test_flag.png"/>Malaysia</p>
+            <h1>Gunung Mulu National Park</h2>
+            <p id="distance">Just 13 hours away from Madrid by plane</p>
+          </div>
+          <p>Important both for its high biodiversity and for its karst features, Gunung Mulu National Park, on the island of Borneo in the State of Sarawak, is the most studied tropical karst area in the world. The 52,864-ha park contains seventeen vegetation zones, exhibiting some 3,500 species of vascular plants. Its palm species are exceptionally rich, with 109 species in twenty genera noted. The park is dominated by Gunung Mulu, a 2,377 m-high sandstone pinnacle. At least 295 km of explored caves provide a spectacular sight and are home to millions of cave swiftlets and bats. The Sarawak Chamber, 600m by 415 m and 80 m high, is the largest known cave chamber in the world.</p>
+          <h3>Why it was inscribed</h3>
+          <p>Criteria (vii), (viii), (ix) and (x): The concentration of caves in Mulu’s Melinau Formation with its geomorphic and structural characteristics is an outstanding feature which allows a greater understanding of Earth’s history. The caves of Mulu are important for their classic features of underground geomorphology, demonstrating an evolutionary history of more than 1.5 million years. One of the world’s finest examples of the collapse process in Karstic terrain can be also found. GMNP provides outstanding scientific opportunities to study theories on the origins of cave faunas. With its deeply-incised canyons, wild rivers, rainforest-covered mountains, spectacular limestone pinnacles, cave passages and decorations, Mulu has outstanding scenic values.</p>
+          <div id="wikipedia">This information has been extracted from Wikipedia. <a href="">Learn more</a>.</div>
+
+        </div>
+        <div id="data_column">
+          <div id="map_container"></div>
+          <p class="label" id="first">Date of inscription</p>
+          <p class="value">2000</p>
+          <span class="line"></span>
+          <p class="label">Why it is a World Heritage Site</p>
+          <ul>
+            <li>Natural phenomena</li>
+            <li>Culturally representative</li>
+            <li>Biological diversity</li>
+          </ul>
+          <span class="line"></span>
+          <p class="label">Size</p>
+          <p class="value">53,864Ha</p>
+          <span class="line"></span>
+          <p class="label">External links</p>
+          <ul>
+            <li><a href="">Cross-section view of the Colosseum</a></li>
+            <li><a href="">Cross-section view of the Colosseum</a></li>
+            <li><a href="">Cross-section view of the Colosseum</a></li>
+            <li><a href="">Cross-section view of the Colosseum</a></li>
+            <li><a href="">Cross-section view of the Colosseum</a></li>
+            <li><a href="">Cross-section view of the Colosseum</a></li>            
+          </ul>
+        </div>
+
+        <div id="clear"></div>
+      </div>
+  <div class="bottom"></div>
+</div>
+
+<div class="content_box" id="mosaic">	
+  <div class="top"></div>
+  <div class="middle">
+    <div class="content">
+      <ul id="image_list">
+          <li class="mosaic_element">
+            <div class="mosaic_element_div">
+              <img src="/images/test/test_small.jpg">
+              <!-- <div class="mosaic_label">
+                <p class="place">Acrópolis</p>
+                <p class="distance">4 hours by car from Madrid</p>
+              </div> -->
+            </div>
+          </li>
+          <li class="separator"></li>
+          <li class="mosaic_element middle">
+            <div class="mosaic_element_div">
+              <img src="/images/test/test_small.jpg">
+              <!-- <div class="mosaic_label">
+                <p class="place">Acrópolis</p>
+                <p class="distance">4 hours by car from Madrid</p>
+              </div> -->
+            </div>
+          </li>
+          <li class="separator"></li>          
+          <li class="mosaic_element">
+            <div class="mosaic_element_div">
+              <img src="/images/test/test_small.jpg">
+              <!-- <div class="mosaic_label">
+                <p class="place">Acrópolis</p>
+                <p class="distance">4 hours by car from Madrid</p>
+              </div> -->
+            </div>
+          </li>
+      </ul>
+    </div>
+  </div>
+  <div class="bottom"></div>
+</div>
+
+<div class="content_box" id="teleport">	
+  <div class="top"></div>
+  <div class="middle">
+    <div class="content">
+      <div id="message">Or would you rather be randomly teleported to a new beautiful site?</div>
+      <a id="teleport" href="">"Bean me up, Scotty!"</a>
+    </div>
+  </div>
+  <div class="bottom"></div>
+</div>
+
+<!--
 <% content_for :body_content_title do %>
-
-
-
   <%= @feature.meta.keys %>
-
 <% end %>
-
-<% content_for :body_content_left do %>
-
-  <div>
-    <h3>Title</h3>
-    <%=raw @feature.title %>
-    
-    <%=@feature.official_url %>    
-    
-  </div>
-
-  <div>
-    <h3>Description</h3>
-    <%=raw @feature.description %>
-  </div>
-
-  <div>
-    <h3>Gallery</h3>
-    <%=raw @feature.gallery_id %>
-  </div>
-
-  <!-- The Geom -->
-
-<% end %>
+-->
 
 <%= render :partial => "/shared/content_page" %>
