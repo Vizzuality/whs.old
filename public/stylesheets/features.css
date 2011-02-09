@@ -1,6 +1,6 @@
 /* Adaptado para esta página*/
-ul#image_list {height: 215px;}
-div.content_box div.middle div.content {margin: 0 8px 0 8px; background: #FFFFFF;}
+
+
 
 /* Image area */
 div#feature_image {padding: 0; margin: 0 8px 0 8px; position: relative;}
@@ -34,6 +34,15 @@ div#data_column ul li {margin: 0 0 5px 0;font: normal 15px "LiberationSerifRegul
 div#data_column ul li a {font: normal 15px "LiberationSerifRegular"; text-decoration: underline; color: #FF6600;}
 div#clear {clear: both;}
 
+/* Mosaico */
+div#feature_mosaic {position: relative;}
+div#feature_mosaic div#big_image { width: 880px; height: 430px; }
+div#feature_mosaic div#big_image p {display: none;}
+div#feature_mosaic div.middle div.content {margin: 0 8px 0 8px; background: #FFFFFF;}
+div#feature_mosaic div.middle div.content ul#image_list {height: 215px;}
+
 /* Teleport */
 div.content_box#teleport div.middle div.content{padding: 25px; background-color: white; font: normal 17px "PT Sans";}
-a#teleport {position: absolute; top: 13px; right: 13px; margin: 0px 0px 0px 0; padding: 10px 0 0 0; width: 195px; height: 44px; text-align: center; font: bold 17px "PT Sans"; text-decoration: none; color: #333333; background: transparent url("/images/teleport_orange.png") no-repeat;}
+a.teleport {position: absolute; top: 13px; right: 13px; margin: 0px 0px 0px 0; padding: 10px 0 0 0; width: 195px; height: 44px; text-align: center; font: bold 17px "PT Sans"; text-decoration: none; color: #333333;}
+a.teleport#orange {background: transparent url("/images/teleport_orange.png") no-repeat;}
+a.teleport#green {background: transparent url("/images/teleport_green.png") no-repeat;}
