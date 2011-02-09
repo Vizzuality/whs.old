@@ -3,8 +3,7 @@ body {font: normal 12px/14px Arial, Helvetica, sans-serif}
 div.content_box {margin: 25px auto; width: 896px;}
 div.content_box div.top {height: 7px; background: url("/images/content_top_background.png");}
 div.content_box div.middle {background: url("/images/content_middle_background.png");}
-div.content_box div.bottom {height: 7px; margin: 0 0 0 0; background: url("/images/content_bottom_background.png");}
-div.content_box div.middle div.content {padding: 25px 35px 25px 35px;}
+div.content_box div.bottom {height: 7px; margin: 0 0 0 0; background: url("/images/content_bottom_background.png"); clear:both;}
 div.content_box div.middle div.footer {margin: 0 9px 0 9px; padding: 20px 26px 20px 26px; background-color: #EDEDED; text-align: right; }
 div.content_box div.middle div.footer a{color: #000000; font: normal 16px "LiberationSerifRegular"}
 
@@ -14,12 +13,17 @@ div#mosaic h2 {position: absolute; z-index: 6; top: 320px; left: -15px; padding:
 
 div#mosaic div#big_image { width: 880px; height: 430px; }
 div#mosaic div#big_image p {display: none;}
-div#mosaic div.middle div.content {padding: 0 7px 0 7px;}
-ul#image_list li{position: relative; display: inline-block; width: 293px; height: 214px;}
-ul#image_list li a{position: relative; text-decoration: none; }
-ul#image_list li a div.mosaic_label {position: absolute; bottom: 30px; left: 20px; width: 180px;}
+div#mosaic div.middle div.content {margin: 0 7px 0 8px; background: transparent;}
+ul#image_list {height: 430px;}
+ul#image_list li{float:left;  display: inline; width: 293px; height: 214px;}
+ul#image_list li.separator{float:left;  width: 1px; height: 214px; background-color: #000000;}
+ul#image_list li.horizontal{float:left;  width: 880px; height: 1px;}
+ul#image_list li.middle{width:292px;}
+
+/*ul#image_list li a div.mosaic_label {position: absolute; bottom: 30px; left: 20px; width: 180px;}
 ul#image_list li a div.mosaic_label p.place {float: left; padding: 5px 10px 0px 10px; text-decoration: none; background-color: black; font: bold 17px "PT Sans"; color: #FFFFFF;}
 ul#image_list li a div.mosaic_label p.distance {float: left; padding: 5px 10px 5px 10px; text-decoration: none; background-color: black;  font: normal 13px "Arial"; color: #CCCCCC;}
+*/
 
 div#more_sites div.middle div.content {padding: 25px 35px 25px 35px;}
 div#more_sites h2 {margin: 0 0 10px 0;color: #333333; font: normal 23px "PT Sans Bold";}
