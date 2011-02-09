@@ -1,0 +1,26 @@
+div.content_box#explore div.middle {position: relative;}
+div.content_box#explore div.middle h1 {position: absolute; width: 500px; left: -15px; top: 20px; padding: 10px 15px 10px 15px; font: normal 41px/45px "PT Sans Bold"; color: white; background-color: black;}
+div.content_box#explore div.middle div#map {margin: 0 8px 0 8px; width: 880px; height: 430px;background-color: #FFFFFF;}
+div.content_box#explore div.middle div#explore_mosaic {margin: 0 8px 0 8px; width: 880px; height: 430px;background-color: #FFCC00;}
+
+/* Filtro */
+div#filter {position: relative; left: -15px; top: 0px; width: 880px; padding: 13px 20px 13px 20px; background-color: #000000;}
+div#filter div.input #searchText{border-style:hidden; border-width: 0px; color:#666666; margin: 0; height: 21px; font-family: Helvetica, Arial; font-size:13px; outline:none;}
+div#filter div.input div.input_left{float:left; background: url(/images/header/input_left.png) no-repeat; height:24px; width:10px;}
+div#filter div.input div.input_center{float:left; background: url(/images/header/input_center.png) repeat-x; height:24px; width:300px;}
+div#filter div.input div.input_right{float:left; background: url(/images/header/input_right.png) no-repeat; height:24px; width:27px;}
+
+div#filter a{width: 73px; height: 24px; font: normal 13px "PT Sans"; text-decoration: none; color: #000000; background: url(/images/explore/type_filter.png ) no-repeat;}
+div#filter a#type_all{}
+div#filter a#type_all:hover{}
+div#filter a#type_natural{}
+div#filter a#type_natural:hover{}
+div#filter a#type_cultural{}
+div#filter a#type_cultural:hover{}
+
+/* Mosaico */
+div#explore div.middle div#mosaic {position: relative;}
+div#explore div.middle div#mosaic {margin: 0 8px 0 8px; background: #FFFFFF;}
+div#explore div.middle div#mosaic ul#image_list {height: 646px;}
+
+div.clear {clear: both;}
