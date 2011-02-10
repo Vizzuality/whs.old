@@ -16,15 +16,22 @@
     </div>
     <div id="mosaic">
       <ul id="image_list">
+
+        <% @features[0..8].each do |feature |%>
         <li class="mosaic_element">
+          <a href="/features/<%=feature.id%>">
           <div class="mosaic_element_div">
             <img src="/images/test/test_small.jpg">
             <div class="mosaic_label">
-              <p class="place">Acrópolis</p>
+              <p class="place"><%=feature.title%></p>
               <p class="distance">4 hours by car from Madrid</p>
             </div>
           </div>
+          </a>
         </li>
+        <% end %>
+        
+        <!--
         <li class="separator"></li>
         <li class="mosaic_element middle">
           <div class="mosaic_element_div">
@@ -106,6 +113,7 @@
           </div>
         </li>
         <li class="separator horizontal"></li>                              
+        -->
       </ul>
 
 
@@ -114,17 +122,9 @@
   <div class="bottom"></div>
 </div>
 
-
-<% content_for :body_content_left do %>
-  <ul id="features">
+<!--
     <% @features.each do |feature| %>
-      <li>
         <%= link_to feature.title, feature_url(feature) %>
-      </li>
     <% end %>
-  </ul>
-<% end %>
-
-<%= render :partial => "/shared/content_page" %>
-
+-->
 
