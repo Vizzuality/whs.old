@@ -17,8 +17,9 @@
     <div id="mosaic">
       <ul id="image_list">
 
-        <% @features[0..8].each do |feature |%>
-        <li class="mosaic_element">
+        <% @features[0..8].each do |feature|%>
+        <li class="separator<%= cycle(' horizontal','','', :name => 'separator') %>"></li>
+        <li class="mosaic_element<%= cycle('',' middle','', :name => 'mosaic') %>">
           <a href="/features/<%=feature.id%>">
           <div class="mosaic_element_div">
             <img src="/images/test/test_small.jpg">
@@ -30,6 +31,7 @@
           </a>
         </li>
         <% end %>
+        <li class="separator horizontal"></li>                              
         
         <!--
         <li class="separator"></li>
