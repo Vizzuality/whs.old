@@ -56,6 +56,7 @@ ul#image_list li{float:left;  display: inline; width: 293px; height: 214px;}
 ul#image_list li.middle{width:292px;}
 ul#image_list li.separator{position:relative; float:left;  width: 1px; height: 214px; background-color: #000000;}
 ul#image_list li.horizontal{float:left;  width: 880px; height: 1px;}
+ul#image_list li a {text-decoration: none;}
 
 ul#image_list li div.mosaic_element_div{position:relative; }
 ul#image_list li div.mosaic_label{float:left; position:absolute; z-index:3; top:0; left:0;width: 100%; height: 214px; background: transparent url('/images/mosaic_image_over.png'); display:none; }
