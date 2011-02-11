@@ -61,6 +61,7 @@ GEM
       activesupport (= 3.0.1)
     activesupport (3.0.1)
     acts_as_indexed (0.6.6)
+    alchemist (0.1.2.1)
     arel (1.0.1)
       activesupport (~> 3.0.0)
     authlogic (2.1.6)
@@ -88,6 +89,7 @@ GEM
       babosa (~> 0.2.0)
     highline (1.6.1)
     i18n (0.4.2)
+    json (1.5.1)
     linecache (0.43)
     mail (2.2.13)
       activesupport (>= 2.3.6)
@@ -105,9 +107,10 @@ GEM
     net-ssh-gateway (1.0.1)
       net-ssh (>= 1.99.1)
     nofxx-georuby (1.7.3)
-    nokogiri (1.4.4)
     pg (0.9.0)
     polyglot (0.3.1)
+    ppe-panoramio (0.0.3)
+      typhoeus
     progressbar (0.9.0)
     rack (1.2.1)
     rack-cache (0.5.3)
@@ -158,6 +161,8 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     truncate_html (0.4.0)
+    typhoeus (0.2.1)
+      mime-types
     tzinfo (0.3.23)
     will_paginate (3.0.pre2)
 
@@ -165,13 +170,15 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  alchemist
   capistrano
   capistrano-ext
   csv-mapper
   dragonfly (= 0.7.7)
+  json
   nofxx-georuby
-  nokogiri
   pg (= 0.9.0)
+  ppe-panoramio
   ppe-postgis-adapter!
   progressbar
   rails (= 3.0.1)

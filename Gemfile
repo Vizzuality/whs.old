@@ -9,10 +9,12 @@ gem 'ppe-postgis-adapter',                    :require => 'postgis_adapter', :gi
 
 gem 'ruby-debug'
 gem 'rmagick',                  '~> 2.12.0',  :require => false
-gem 'csv-mapper'
-gem 'nokogiri'
 
+gem 'csv-mapper'
+gem 'json'
+gem 'ppe-panoramio'
 gem 'progressbar'
+gem 'alchemist'
 
 group :development do
   gem 'capistrano'
