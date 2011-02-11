@@ -1,0 +1,48 @@
+/* Image area */
+div#feature_image {margin: 0 8px -4px 8px; position: relative;}
+div#feature_image ul.image_selector {position: absolute; top: 20px; left: -15px; padding:10px 5px 10px 10px; background-color: #000000;}
+div#feature_image ul.image_selector li {float: left; padding: 0 5px 0 0;}
+div#feature_image ul.image_selector li a {float: left; width: 8px; height: 8px; background: url("/images/image_selector.png") no-repeat 0 0;}
+div#feature_image ul.image_selector li a:hover {background-position: -9px 0px}
+div#feature_image div#endangered {position: absolute; top: -12px; right: -12px; width: 97px; height: 94px; background: url("/images/endangered.png");}
+
+div.horizontal{float:left;  width: 880px; height: 1px;}
+
+/* Content area */
+div#feature div.middle div.content {position: relative;}
+div#feature div.middle div.content {margin: 0 8px 0 8px; background: #FFFFFF;}
+
+div#feature_title {position: absolute; bottom: -30px; left: -15px; z-index: 5;}
+div#feature_title p#country {padding: 10px 20px 0px 20px ; color: #FFFFFF; background-color: #000000; font: normal 15px "PT Sans";}
+div#feature_title p#country img {margin: 0 8px 0 0;}
+div#feature_title h1 {width: 500px; padding: 5px 20px 5px 20px; color: #FFFFFF; background-color: #000000; font: normal 35px "PT Sans Bold";}
+div#feature_title p#distance {padding: 0px 20px 10px 40px; color: #999999; background: url("/images/plane_icon.png") no-repeat 20px 0; background-color: #000000; font: normal 13px Arial;}
+
+div#main_area { float: left; width: 535px; padding: 60px 25px 0 25px; color: #333333; background-color: #FFFFFF; font: 15px normal "LiberationSerifRegular";}
+div#main_area h3 {margin-top: 25px; margin-bottom: 10px; color: #333333; font: normal 23px "PT Sans Bold";}
+div#main_area div#wikipedia {position: absolute; bottom: 0; width: 535px; margin: 20px 0 0 0;  padding: 20px 0 20px 0; border-top: 1px solid #CCCCCC; color: #999999; background: url("/images/wikipedia.png") no-repeat right bottom;}
+div#main_area div#wikipedia a {color: #999999; }
+
+div#data_column {float: right; width: 245px; padding: 25px; background-color: #EDEDED;}
+div#data_column div#map_container {position: absolute; top: -25px; width: 245px; height:162px; background-color: #F9F9F9;}
+div#data_column p.label {font: normal 13px "PT Sans Bold"; color: #333333;}
+div#data_column p.label#first {margin: 130px 0 0 0;}
+div#data_column p.value {margin: 3px 0 0 0; font: normal 15px "LiberationSerifRegular"; color: #666666;}
+div#data_column span.line {margin: 10px 0 10px 0; bordertop: 1px solid #333333;}
+div#data_column ul {margin: 3px 0 0 18px; list-style-type: disc;}
+div#data_column ul li {margin: 0 0 5px 0;font: normal 15px "LiberationSerifRegular"; color: #666666;}
+div#data_column ul li a {font: normal 15px "LiberationSerifRegular"; text-decoration: underline; color: #FF6600;}
+div#clear {clear: both;}
+
+/* Mosaico */
+div#feature_mosaic {position: relative;}
+div#feature_mosaic div#big_image { width: 880px; height: 430px; }
+div#feature_mosaic div#big_image p {display: none;}
+div#feature_mosaic div.middle div.content {margin: 0 8px 0 8px; background: #FFFFFF;}
+div#feature_mosaic div.middle div.content ul#image_list {height: 214px;}
+
+/* Teleport */
+div.content_box#teleport div.middle div.content{padding: 25px; background-color: white; font: normal 17px "PT Sans";}
+a.teleport {position: absolute; top: 13px; right: 13px; margin: 0px 0px 0px 0; padding: 10px 0 0 0; width: 195px; height: 44px; text-align: center; font: bold 17px "PT Sans"; text-decoration: none; color: #333333;}
+a.teleport#orange {background: transparent url("/images/teleport_orange.png") no-repeat;}
+a.teleport#green {background: transparent url("/images/teleport_green.png") no-repeat;}
