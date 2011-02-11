@@ -24,7 +24,7 @@
           <p><%= @feature.description %></p>
         </div>
         <div id="data_column">
-          <div id="map_container"></div>
+          <div class="map_container"><div id="map"></div></div>
           <p class="label" id="first">Date of inscription</p>
           <p class="value"><%= @feature.designation_date %></p>
 
@@ -120,3 +120,27 @@
   </div>
   <div class="bottom"></div>
 </div>
+
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+
+<script type="text/javascript">
+  $(document).ready( function(){
+    var latlng = new google.maps.LatLng(<%=@feature.the_geom.y%>, <%=@feature.the_geom.x%>);
+    var myOptions = {
+      zoom: 8,
+      disableDefaultUI: true,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    var map = new google.maps.Map(document.getElementById("map"),
+        myOptions);
+
+    var marker = new google.maps.Marker({
+          position: latlng, 
+          map: map, 
+          title:"Hello World!"
+    })
+  });
+</script>

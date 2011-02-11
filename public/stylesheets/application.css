@@ -151,7 +151,8 @@ div#main_area div#wikipedia {position: absolute; bottom: 0; width: 535px; margin
 div#main_area div#wikipedia a {color: #999999; }
 
 div#data_column {float: right; width: 245px; padding: 25px; background-color: #EDEDED;}
-div#data_column div#map_container {position: absolute; top: -25px; width: 245px; height:162px; background-color: #F9F9F9;}
+div#data_column div.map_container {position: absolute; padding: 5px; top: -25px; width: 245px; height:162px; background-color: #F9F9F9; z-index: 15;}
+div#data_column div.map_container div#map { width: 245px; height:162px; background-color: #F9F9F9; z-index: 15;}
 div#data_column p.label {font: normal 13px "PT Sans Bold"; color: #333333;}
 div#data_column p.label#first {margin: 130px 0 0 0;}
 div#data_column p.value {margin: 3px 0 0 0; font: normal 15px "LiberationSerifRegular"; color: #666666;}
