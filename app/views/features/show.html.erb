@@ -43,7 +43,7 @@
 
           <% %>
           
-          <p class="value"><%="%.2f" % @feature.size.gsub!("Ha","") %> Ha</p>
+          <p class="value"><%="%.2f" % @feature.size %> Ha</p>
           <% end %>
           
           <span class="line"></span>
@@ -62,6 +62,7 @@
   <div class="top"></div>
   <div class="middle">
     <div class="content">
+      <!--
       <ul id="image_list">
           <li class="mosaic_element">
             <div class="mosaic_element_div">
@@ -81,6 +82,50 @@
             </div>
           </li>
       </ul>
+    -->
+    
+
+    <div id="mosaic">
+      <ul id="image_list">
+        <li class="mosaic_element">
+          <a href="/features/">
+          <div class="mosaic_element_div">
+            <img src="/images/test/test_small.jpg">
+            <div class="mosaic_label">
+              <p class="place">Acropolis</p>
+              <p class="distance">4 hours by car from Madrid</p>
+            </div>
+          </div>
+          </a>
+        </li>
+        <li class="separator"></li>
+        <li class="mosaic_element middle">
+          <a href="/features/">
+          <div class="mosaic_element_div">
+            <img src="/images/test/test_small.jpg">
+            <div class="mosaic_label">
+              <p class="place">Acropolis</p>
+              <p class="distance">4 hours by car from Madrid</p>
+            </div>
+          </div>
+          </a>
+        </li>
+        <li class="separator"></li>
+        <li class="mosaic_element">
+          <a href="/features/">
+          <div class="mosaic_element_div">
+            <img src="/images/test/test_small.jpg">
+            <div class="mosaic_label">
+              <p class="place">Acropolis</p>
+              <p class="distance">4 hours by car from Madrid</p>
+            </div>
+          </div>
+          </a>
+        </li>
+      </ul>
+  </div>
+    
+
     </div>
   </div>
   <div class="bottom"></div>
