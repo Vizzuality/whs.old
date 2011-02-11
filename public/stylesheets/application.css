@@ -141,7 +141,7 @@ div#feature_title {position: absolute; bottom: -30px; left: -15px; z-index: 5;}
 div#feature_title p#country span{padding: 8px 20px 0px 20px ; color: #FFFFFF; background-color: #000000; font: normal 15px "PT Sans";}
 div#feature_title p#country span img {margin: 0 8px 0 0;}
 
-div#feature_title h1 {margin:5px 0 0 0;}
+div#feature_title h1 {margin:5px 0 5px 0;}
 div#feature_title h1 span {color: #FFFFFF;  font: normal 35px "PT Sans Bold"; padding: 5px 20px 3px 20px; background-color: #000000;}
 div#feature_title p#distance span {padding: 7px 20px 10px 40px; color: #999999; background: url("/images/plane_icon.png") no-repeat 20px 7px; background-color: #000000; font: normal 13px Arial;}
 
@@ -152,7 +152,7 @@ div#main_area div#wikipedia a {color: #999999; }
 
 div#data_column {float: right; width: 245px; padding: 25px; background-color: #EDEDED;}
 div#data_column div.map_container {position: absolute; padding: 5px; top: -25px; width: 245px; height:162px; background-color: #F9F9F9; z-index: 15;}
-div#data_column div.map_container div#map { width: 245px; height:162px; background-color: #F9F9F9; z-index: 15;}
+div#data_column div.map_container div#map { width: 245px; height:152px; background-color: #F9F9F9; z-index: 15;}
 div#data_column p.label {font: normal 13px "PT Sans Bold"; color: #333333;}
 div#data_column p.label#first {margin: 130px 0 0 0;}
 div#data_column p.value {margin: 3px 0 0 0; font: normal 15px "LiberationSerifRegular"; color: #666666;}
