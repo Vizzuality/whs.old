@@ -37,7 +37,7 @@ div#feature_mosaic {position: relative;}
 div#feature_mosaic div#big_image { width: 880px; height: 430px; }
 div#feature_mosaic div#big_image p {display: none;}
 div#feature_mosaic div.middle div.content {margin: 0 8px 0 8px; background: #FFFFFF;}
-div#feature_mosaic div.middle div.content ul#image_list {height: 220px;}
+div#feature_mosaic div.middle div.content ul#image_list {height: 214px;}
 
 /* Teleport */
 div.content_box#teleport div.middle div.content{padding: 25px; background-color: white; font: normal 17px "PT Sans";}
