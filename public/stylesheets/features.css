@@ -10,7 +10,7 @@ div#feature_image div#endangered {position: absolute; top: -12px; right: -12px; 
 div#feature div.middle div.content {position: relative;}
 div#feature div.middle div.content {margin: 0 8px 0 8px; background: #FFFFFF;}
 
-div#feature_title {position: absolute; top: -60px; left: -15px;}
+div#feature_title {position: absolute; bottom: -30px; left: -15px; z-index: 5;}
 div#feature_title p#country {padding: 10px 20px 0px 20px ; color: #FFFFFF; background-color: #000000; font: normal 15px "PT Sans";}
 div#feature_title p#country img {margin: 0 8px 0 0;}
 div#feature_title h1 {width: 500px; padding: 5px 20px 5px 20px; color: #FFFFFF; background-color: #000000; font: normal 35px "PT Sans Bold";}
