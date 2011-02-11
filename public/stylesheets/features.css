@@ -1,10 +1,12 @@
 /* Image area */
-div#feature_image {padding: 0; margin: 0 8px 0 8px; position: relative;}
+div#feature_image {margin: 0 8px -4px 8px; position: relative;}
 div#feature_image ul.image_selector {position: absolute; top: 20px; left: -15px; padding:10px 5px 10px 10px; background-color: #000000;}
 div#feature_image ul.image_selector li {float: left; padding: 0 5px 0 0;}
 div#feature_image ul.image_selector li a {float: left; width: 8px; height: 8px; background: url("/images/image_selector.png") no-repeat 0 0;}
 div#feature_image ul.image_selector li a:hover {background-position: -9px 0px}
 div#feature_image div#endangered {position: absolute; top: -12px; right: -12px; width: 97px; height: 94px; background: url("/images/endangered.png");}
+
+div.horizontal{float:left;  width: 880px; height: 1px;}
 
 /* Content area */
 div#feature div.middle div.content {position: relative;}
@@ -14,11 +16,7 @@ div#feature_title {position: absolute; bottom: -30px; left: -15px; z-index: 5;}
 div#feature_title p#country {padding: 10px 20px 0px 20px ; color: #FFFFFF; background-color: #000000; font: normal 15px "PT Sans";}
 div#feature_title p#country img {margin: 0 8px 0 0;}
 div#feature_title h1 {width: 500px; padding: 5px 20px 5px 20px; color: #FFFFFF; background-color: #000000; font: normal 35px "PT Sans Bold";}
-
-div#feature_title p.distance {padding: 0px 20px 10px 40px; color: #999999; background: url("/images/transport_icons.png") no-repeat 20px 0; background-color: #000000; font: normal 13px Arial;}
-div#feature_title p.distance#distance_plane {background-position: 18px 2px;}
-div#feature_title p.distance#distance_car {background-position: 18px -32px;}
-div#feature_title p.distance#distance_walking {background-position: 18px -67px;}
+div#feature_title p#distance {padding: 0px 20px 10px 40px; color: #999999; background: url("/images/plane_icon.png") no-repeat 20px 0; background-color: #000000; font: normal 13px Arial;}
 
 div#main_area { float: left; width: 535px; padding: 60px 25px 0 25px; color: #333333; background-color: #FFFFFF; font: 15px normal "LiberationSerifRegular";}
 div#main_area h3 {margin-top: 25px; margin-bottom: 10px; color: #333333; font: normal 23px "PT Sans Bold";}
