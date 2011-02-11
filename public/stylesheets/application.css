@@ -67,8 +67,11 @@ ul#image_list li div.mosaic_label p.distance { z-index:4; bottom: 16px; padding:
 
 /*HOME SPECIFIC*/
 
-div#mosaic h1 {position: absolute; z-index: 5; top: 350px; left: -15px; width: 750px; padding: 20px; font: normal 50px/55px "PT Sans Bold"; color: white; background-color: black;} 
-div#mosaic h2 {position: absolute; z-index: 6; top: 320px; left: -15px; padding: 10px 20px 10px 20px; font: normal 19px "PT Sans"; color: white; background-color: black;}
+div#mosaic h1 {position: absolute; z-index: 5; top: 340px; left: -15px; font: normal 50px "PT Sans Bold"; color: white;} 
+div#mosaic h2 {position: absolute; z-index: 6; top: 305px; left: -15px; padding: 10px 20px 0 20px; font: normal 19px "PT Sans"; color: white; background-color: black;}
+div#mosaic h1 span{padding:12px 20px 20px 20px; background-color: black;}
+div#mosaic h1.down {top:402px;}
+div#mosaic h1.down span{padding:8px 20px 20px 20px;}
 
 div#more_sites div.middle {padding: 1px 0 2px 0;}
 div#more_sites div.middle div.content {margin: 0 8px 0 8px; padding: 25px 32px 25px 32px; background-color: #FFFFFF;}
@@ -81,6 +84,131 @@ div#more_sites ul li p{ margin: 2px 0 0 0; color: #CCCCCC; font: normal 13px Ari
 div.content_box div.middle div.footer {margin: 0 8px 0 8px; padding: 20px 26px 20px 586px; background-color: #EDEDED; text-align: left; }
 div.content_box div.middle div.footer a{color: #000000; font: normal 16px "LiberationSerifRegular"}
 
+/*EXPLORE SPECIFIC */
+div.content_box#explore div.middle {position: relative;}
+div.content_box#explore div.middle h1 {position: absolute; left: -15px; top: 30px;  font: normal 41px/45px "PT Sans Bold"; color: #FFFFFF; }
+div.content_box#explore div.middle h1.down {position: absolute; left: -15px; top: 78px; font: normal 41px/45px "PT Sans Bold"; color:#FFFFFF;}
+div.content_box#explore div.middle h1 span{padding: 10px 15px 10px 15px; background-color: #000000;}
+div.content_box#explore div.middle h1.down span{padding: 10px 15px 15px 15px; background-color: #000000;}
+div.content_box#explore div.middle div#map {margin: 0 8px 0 8px; width: 880px; height: 430px;background-color: #FFFFFF;}
+div.content_box#explore div.middle div#explore_mosaic {margin: 0 8px 0 8px; width: 880px; height: 430px;background-color: #FFCC00;}
+
+/* Filtro */
+div#filter {position: relative; left: -15px; top: 0px; height: 25px; width: 885px; padding: 13px 20px 13px 20px; background-color: #000000;}
+div#filter div.input #searchText{border-style:hidden; border-width: 0px; color:#666666; margin: 0; height: 21px; font-family: Helvetica, Arial; font-size:13px; outline:none;}
+div#filter div.input div.input_left{float:left; background: url(/images/header/input_left.png) no-repeat; height:24px; width:10px;}
+div#filter div.input div.input_center{float:left; background: url(/images/header/input_center.png) repeat-x; height:24px; width:300px;}
+div#filter div.input div.input_right{float:left; background: url(/images/header/input_right.png) no-repeat; height:24px; width:27px;}
+
+div#filter a#all_selector, a#natural_selector, a#cultural_selector{float: left; height: 19px; padding: 5px 0 0 0; text-align: center; font: normal 13px "PT Sans"; text-decoration: none; color: #000000; color: #333333; background: url("/images/explore/type_filter.png") 0 0; font: normal 13px "PT Sans Bold"; text-shadow: #FFFFFF }
+div#filter a#all_selector{width: 73px; margin: 0 0 0 15px; background-position: 0 0;}
+div#filter a#all_selector:hover{width: 73px; color: #4C2401; 0px 1px; background-position: 0 24px;}
+div#filter a#natural_selector{width: 78px; background-position: -73px 0;}
+div#filter a#natural_selector:hover{width: 78px; background-position: -73px 24px ;}
+div#filter a#cultural_selector{width: 73px; background-position: 73px 0;}
+div#filter a#cultural_selector:hover{width: 73px; background-position: 73px 24px;}
+
+div#filter a#mosaic_selector, a#list_selector{float: left; width: 45px; height: 19px; padding: 5px 0 0 0; text-align: center; font: normal 13px "PT Sans"; text-decoration: none; color: #000000; color: #333333; background: url("/images/explore/display_filter.png") 0 0; font: normal 13px "PT Sans Bold"; text-shadow: #FFFFFF }
+div#filter a#mosaic_selector{margin: 0 0 0 15px; background-position: 0 0;}
+div#filter a#mosaic_selector:hover{background-position: 0 24px;}
+div#filter a#list_selector{background-position: 45px 0;}
+div#filter a#list_selector:hover{background-position: 45px 24px;}
+
+/* Mosaico */
+div#explore div.middle div#mosaic {position: relative;}
+div#explore div.middle div#mosaic {margin: 0 8px 0 8px; background: #FFFFFF;}
+div#explore div.middle div#mosaic ul#image_list {height: 645px;}
+
+div.clear {clear: both;}
+
+
+/*FEATURES SPECIFIC*/
+
+div#feature_image {margin: 0 8px -4px 8px; position: relative;}
+div#feature_image ul.image_selector {position: absolute; top: 20px; left: -15px; padding:10px 5px 10px 10px; background-color: #000000;}
+div#feature_image ul.image_selector li {float: left; padding: 0 5px 0 0;}
+div#feature_image ul.image_selector li a {float: left; width: 8px; height: 8px; background: url("/images/image_selector.png") no-repeat 0 0;}
+div#feature_image ul.image_selector li a:hover {background-position: -9px 0px}
+div#feature_image div#endangered {position: absolute; top: -12px; right: -12px; width: 97px; height: 94px; background: url("/images/endangered.png");}
+
+div.horizontal{float:left;  width: 880px; height: 1px;}
+
+/* Content area */
+div#feature div.middle div.content {position: relative;}
+div#feature div.middle div.content {margin: 0 8px 0 8px; background: #FFFFFF;}
+
+div#feature_title {position: absolute; bottom: -30px; left: -15px; z-index: 5;}
+div#feature_title p#country span{padding: 8px 20px 0px 20px ; color: #FFFFFF; background-color: #000000; font: normal 15px "PT Sans";}
+div#feature_title p#country span img {margin: 0 8px 0 0;}
+
+div#feature_title h1 {margin:5px 0 0 0;}
+div#feature_title h1 span {color: #FFFFFF;  font: normal 35px "PT Sans Bold"; padding: 5px 20px 3px 20px; background-color: #000000;}
+div#feature_title p#distance span {padding: 7px 20px 10px 40px; color: #999999; background: url("/images/plane_icon.png") no-repeat 20px 7px; background-color: #000000; font: normal 13px Arial;}
+
+div#main_area { float: left; width: 535px; padding: 60px 25px 0 25px; color: #333333; background-color: #FFFFFF; font: 15px normal "LiberationSerifRegular";}
+div#main_area h3 {margin-top: 25px; margin-bottom: 10px; color: #333333; font: normal 23px "PT Sans Bold";}
+div#main_area div#wikipedia {position: absolute; bottom: 0; width: 535px; margin: 20px 0 0 0;  padding: 20px 0 20px 0; border-top: 1px solid #CCCCCC; color: #999999; background: url("/images/wikipedia.png") no-repeat right bottom;}
+div#main_area div#wikipedia a {color: #999999; }
+
+div#data_column {float: right; width: 245px; padding: 25px; background-color: #EDEDED;}
+div#data_column div#map_container {position: absolute; top: -25px; width: 245px; height:162px; background-color: #F9F9F9;}
+div#data_column p.label {font: normal 13px "PT Sans Bold"; color: #333333;}
+div#data_column p.label#first {margin: 130px 0 0 0;}
+div#data_column p.value {margin: 3px 0 0 0; font: normal 15px "LiberationSerifRegular"; color: #666666;}
+div#data_column span.line {margin: 10px 0 10px 0; bordertop: 1px solid #333333;}
+div#data_column ul {margin: 3px 0 0 18px; list-style-type: disc;}
+div#data_column ul li {margin: 0 0 5px 0;font: normal 15px "LiberationSerifRegular"; color: #666666;}
+div#data_column ul li a {font: normal 15px "LiberationSerifRegular"; text-decoration: underline; color: #FF6600;}
+div#clear {clear: both;}
+
+/* Mosaico */
+div#feature_mosaic {position: relative;}
+div#feature_mosaic div#big_image { width: 880px; height: 430px; }
+div#feature_mosaic div#big_image p {display: none;}
+div#feature_mosaic div.middle div.content {margin: 0 8px 0 8px; background: #FFFFFF;}
+div#feature_mosaic div.middle div.content ul#image_list {height: 214px;}
+
+/* Teleport */
+div.content_box#teleport div.middle div.content{padding: 25px; background-color: white; font: normal 17px "PT Sans";}
+a.teleport {position: absolute; top: 13px; right: 13px; margin: 0px 0px 0px 0; padding: 10px 0 0 0; width: 195px; height: 44px; text-align: center; font: bold 17px "PT Sans"; text-decoration: none; color: #333333;}
+a.teleport#orange {background: transparent url("/images/teleport_orange.png") no-repeat;}
+a.teleport#green {background: transparent url("/images/teleport_green.png") no-repeat;}
+
+
+
+/*ABOUT SPECIFIC*/
+div.content_box#about div.middle {position: relative;}
+div.content_box#about div.middle div.content {margin: 0 8px 0 8px; padding: 25px; width: 830px; background-color: #FFFFFF;}
+
+/*div.content_box#about div.middle div.content h1 {position: absolute; width: 800px; left: -15px; padding: 10px 10px 10px 10px; color: #FFFFFF; background-color: #000000; font: normal 41px "PT Sans Bold";}*/
+div.content_box#about div.middle h1 {position: absolute; left: -15px; top: 30px;  font: normal 41px/45px "PT Sans Bold"; color: #FFFFFF; }
+div.content_box#about div.middle h1.down {position: absolute; left: -15px; top: 78px; font: normal 41px/45px "PT Sans Bold"; color:#FFFFFF;}
+div.content_box#about div.middle h1 span{padding: 10px 15px 10px 15px; background-color: #000000;}
+div.content_box#about div.middle h1.down span{padding: 10px 15px 15px 15px; background-color: #000000;}
+div.content_box#about div.middle div.content div#left {float: left; width: 240px;margin: 140px 0 30px 0;}
+div.content_box#about div.middle div.content div#center {float: left; width: 240px; margin: 140px 0 0 55px;}
+div.content_box#about div.middle div.content div#right {float: left; width: 240px; margin: 140px 0 0 55px;}
+
+div.content_box#about div.middle div.content h2 {padding: 15px 0 10px 0; color: #333333; font: normal 23px "PT Sans Bold";}
+
+div.content_box#about div.middle div.content div div.amount {padding: 25px 0 0 15px; width: 220px; height: 119px; color: white; text-shadow: #666666 0 -1px;}
+div.content_box#about div.middle div.content div div.amount span.big_number {float: left; width: 120px; font: normal 65px "PT Sans Bold";}
+div.content_box#about div.middle div.content div div.amount span.big_number_subtitle {float: left; width: 90px; margin: 10px 0 0 5px; font: normal 19px "PT Sans Bold";}
+div.content_box#about div.middle div.content div#left div.amount {background: url("/images/about/total_amount.png") no-repeat 0 0;}
+div.content_box#about div.middle div.content div#center div.amount {background: url("/images/about/cultural_amount.png") no-repeat 0 0;}
+div.content_box#about div.middle div.content div#right div.amount {background: url("/images/about/natural_amount.png") no-repeat 0 0;}
+
+div.content_box#about div.middle div.content p {color: #333333; font: normal 15px "LiberationSerifSans";}
+div.content_box#about div.middle div.content div ul {padding: 0 0 0 20px; list-style-type: disc;}
+div.content_box#about div.middle div.content ul li {color: #333333; font: normal 15px "LiberationSerifSans";}
+div.content_box#about div.middle div.content div#more_information {clear: both; margin: 50px 0 0 0;}
+
+div.content_box#about div.middle div.content div#more_information h3 {position: absolute; left: -15px; padding: 10px 10px 10px 10px; color: #FFFFFF; background-color: #000000; font: normal 23px "PT Sans Bold";}
+div.content_box#about div.middle div.content div#more_information ul {padding: 80px 0 0 0; list-style-type: none;}
+div.content_box#about div.middle div.content div#more_information ul li {float: left; width: 240px; height: 109px; margin: 0 55px 0 0}
+div.content_box#about div.middle div.content div#more_information ul li.last {margin: 0 0 0 0}
+
+div.clear{clear: both;}
 
 /*MISC STYLES */
 .hidden{display: none;}
