@@ -10,16 +10,16 @@
         <li><a href=""></a></li>
         <li><a href=""></a></li>
       </ul>
+      <div id="feature_title">
+        <p id="country"><img class="flag" src="/images/test/test_flag.png"/><%= @feature.country %></p>
+        <h1><%= @feature.title %></h2>
+        <p id="distance">Just 13 hours away from Madrid by plane</p>
+      </div>
       <img src="/images/test/test_big.jpg">
       <div id="endangered"></div>
     </div>
       <div class="content">
         <div id="main_area">
-          <div id="feature_title">
-            <p id="country"><img class="flag" src="/images/test/test_flag.png"/><%= @feature.country %></p>
-            <h1><%= @feature.title %></h2>
-            <p id="distance">Just 13 hours away from Madrid by plane</p>
-          </div>
           <p><%= @feature.description %></p>
         </div>
         <div id="data_column">
