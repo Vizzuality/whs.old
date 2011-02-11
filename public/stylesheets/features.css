@@ -29,7 +29,7 @@ div#data_column p.label {font: normal 13px "PT Sans Bold"; color: #333333;}
 div#data_column p.label#first {margin: 130px 0 0 0;}
 div#data_column p.value {margin: 3px 0 0 0; font: normal 15px "LiberationSerifRegular"; color: #666666;}
 div#data_column span.line {margin: 10px 0 10px 0; bordertop: 1px solid #333333;}
-div#data_column ul {margin: 3px 0 0 18px; list-style-type: disc;}
+div#data_column ul {margin: 3px 0 0 15px; list-style-image: url("/images/bullet.png");list-style-type: disc;}
 div#data_column ul li {margin: 0 0 5px 0;font: normal 15px "LiberationSerifRegular"; color: #666666;}
 div#data_column ul li a {font: normal 15px "LiberationSerifRegular"; text-decoration: underline; color: #FF6600;}
 div#clear {clear: both;}

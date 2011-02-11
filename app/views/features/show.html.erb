@@ -21,7 +21,7 @@
     </div>
       <div class="content">
         <div id="main_area">
-          <p><%= @feature.description %></p>
+          <p><%= simple_format @feature.description %></p>
         </div>
         <div id="data_column">
           <div class="map_container"><div id="map"></div></div>
@@ -31,9 +31,9 @@
           <% unless @feature.designation_criteria.blank? %>
           <span class="line"></span>
           <p class="label">Why it is a World Heritage Site</p>
-          <% @feature.designation_criteria.gsub!("(","").split(")").each do |criteria|%>
-          <ul>            
-            <li><%= criteria %></li>
+          <% @feature.designation_criteria.delete("(").split(")").each do |criteria|%>
+          <ul>
+            <li><%= I18n.t("feature.criteria.#{criteria}") %></li>
           </ul>
           <% end %>
           <% end %>
@@ -41,10 +41,9 @@
           <% unless @feature.size.blank? %>
           <span class="line"></span>
           <p class="label">Size</p>
-
-          <% %>
           
-          <p class="value"><%="%.2f" % @feature.size %> Ha</p>
+          <% %>
+          <p class="value"><%= number_with_precision(@feature.size.to_f, :precision => 2) %> Ha</p>
           <% end %>
           
           <span class="line"></span>
@@ -115,7 +114,7 @@
   <div class="middle">
     <div class="content">
       <div id="message">Or would you rather be randomly teleported to a new beautiful site?</div>
-      <a class="teleport" id="green" href="/features/<%=rand(900)%>">"Bean me up, Scotty!"</a>
+      <%= link_to '"Bean me up, Scotty!"', feature_path(Feature.all.reject{|f| f.id == @features.id}.sample), :class => "teleport"  , :id => 'green'%>
     </div>
   </div>
   <div class="bottom"></div>
