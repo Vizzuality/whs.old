@@ -10,12 +10,21 @@
         <a id="all_selector" href="">All</a>    
         <a id="natural_selector" href="">Natural</a>            
         <a id="cultural_selector" href="">Cultural</a>
-        <select>
-          <option>Search by criteria</option>
-          <option>a</option>
-          <option>s</option>
-          <option>c</option>
-        </select>
+        <div id="criteria">
+          <span><a id="criteria" href="#">Search by criteria</a></span>
+          <ul>
+            <li><a href=""><%= I18n.t("feature.criteria.i") %></a></li>
+            <li><a href=""><%= I18n.t("feature.criteria.ii") %></a></li>
+            <li><a href=""><%= I18n.t("feature.criteria.iii") %></a></li>
+            <li><a href=""><%= I18n.t("feature.criteria.iv") %></a></li>                  
+            <li><a href=""><%= I18n.t("feature.criteria.v") %></a></li>
+            <li><a href=""><%= I18n.t("feature.criteria.vi") %></a></li>
+            <li><a href=""><%= I18n.t("feature.criteria.vii") %></a></li>
+            <li><a href=""><%= I18n.t("feature.criteria.viii") %></a></li>                                                
+            <li><a href=""><%= I18n.t("feature.criteria.ix") %></a></li>
+            <li><a href=""><%= I18n.t("feature.criteria.x") %></a></li>                                                
+          </ul>                                                                        
+        </div>
         <a id="mosaic_selector" href=""></a>            
         <a id="list_selector" href=""></a>
       </form>
@@ -50,6 +59,28 @@
 
   $(document).ready( function(){
 
+    $("a#criteria").click(function(ev) {
+      ev.stopPropagation();
+      ev.preventDefault();
+      if ($("div#criteria ul").is(":visible")) {
+        console.log("Es visible");
+      $("div#criteria span").css("backgroundPosition","0 0");        
+      } else {
+        console.log("No es visible");
+      $("div#criteria span").css("backgroundPosition","0 -24px");
+      }
+      $("div#criteria ul").toggle();
+    });
+
+    $("div#criteria ul a").click(function(ev) {
+      ev.stopPropagation();
+      ev.preventDefault();      
+      $("div#criteria span").css("backgroundPosition","0 0");        
+      $("div#criteria ul").toggle();
+      $("a#criteria").text($(this).text());
+    });
+
+
     $("div#map").mouseover(function() {
       $("h1").hide();
     });
@@ -57,7 +88,6 @@
     $("div#map").mouseout(function() {
       $("h1").show();
     });
-    
 
     var myOptions = {
       zoom: 2,
