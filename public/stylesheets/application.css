@@ -108,10 +108,10 @@ div#filter a#natural_selector:hover{width: 78px; background-position: -73px 24px
 div#filter a#cultural_selector{width: 73px; background-position: 73px 0;}
 div#filter a#cultural_selector:hover{width: 73px; background-position: 73px 24px;}
 
-div#filter div#criteria {float: left; margin: 0 15px	 0 15px; }
-div#filter div#criteria span {float: left; width: 208px; height: 24px; ; background: url("/images/explore/criteria_select.png") no-repeat;}
-div#filter div#criteria span a{display: block; width: 208px; height: 24px; padding: 5px 0 0 10px; color: #333333; font: normal 13px "PT Sans Bold"; text-decoration: none;}
-div#filter div#criteria ul{position: absolute; display: none; top: 36px; width: 207px; height: 264px; padding: 4px 0 0 0; z-index: 5; background: url("/images/explore/criteria_select.png") no-repeat 0 -47px;}
+div#filter div#criteria {float: left; margin: 0 10px 0 15px; }
+div#filter div#criteria span {float: left; width: 212px; height: 24px; ; background: url("/images/explore/criteria_select.png") no-repeat -2px 0;}
+div#filter div#criteria span a{display: block; width: 212px; height: 24px; padding: 5px 0 0 10px; color: #333333; font: normal 13px "PT Sans Bold"; text-decoration: none;}
+div#filter div#criteria ul{position: absolute; display: none; top: 36px; width: 215px; height: 264px; padding: 4px 0 0 0; z-index: 5; background: url("/images/explore/criteria_select.png") no-repeat -2px -47px;}
 div#filter div#criteria ul li{padding: 4px 10px 4px 10px; font: normal 13px "Arial";}
 div#filter div#criteria ul li a{text-decoration: none; color: #333333;}
 div#filter div#criteria ul li a:hover{color: #FF9900;}
@@ -150,7 +150,7 @@ div#feature_title p.distance span#plane {background-position: 20px 7px;}
 div#feature_title p.distance span#car {background-position: 20px -24px;}
 div#feature_title p.distance span#walking {background-position: 20px -60px;}
 
- div#main_area { float: left; width: 535px; padding: 60px 25px 0 25px; color: #333333; background-color: #FFFFFF; font: 15px normal "LiberationSerifRegular";}
+div#main_area { float: left; width: 535px; padding: 60px 25px 0 25px; color: #333333; background-color: #FFFFFF; font: 15px normal "LiberationSerifRegular";}
 div#main_area h3 {margin-top: 25px; margin-bottom: 10px; color: #333333; font: normal 23px "PT Sans Bold";}
 div#main_area div#wikipedia {position: absolute; bottom: 0; width: 535px; margin: 20px 0 0 0;  padding: 20px 0 20px 0; border-top: 1px solid #CCCCCC; color: #999999; background: url("/images/wikipedia.png") no-repeat right bottom;}
 div#main_area div#wikipedia a {color: #999999; }

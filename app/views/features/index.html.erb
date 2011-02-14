@@ -64,10 +64,10 @@
       ev.preventDefault();
       if ($("div#criteria ul").is(":visible")) {
         console.log("Es visible");
-      $("div#criteria span").css("backgroundPosition","0 0");        
+      $("div#criteria span").css("backgroundPosition","-2px 0");        
       } else {
         console.log("No es visible");
-      $("div#criteria span").css("backgroundPosition","0 -24px");
+      $("div#criteria span").css("backgroundPosition","-2px -24px");
       }
       $("div#criteria ul").toggle();
     });
@@ -75,7 +75,7 @@
     $("div#criteria ul a").click(function(ev) {
       ev.stopPropagation();
       ev.preventDefault();      
-      $("div#criteria span").css("backgroundPosition","0 0");        
+      $("div#criteria span").css("backgroundPosition","-2px 0");        
       $("div#criteria ul").toggle();
       $("a#criteria").text($(this).text());
     });
