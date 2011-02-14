@@ -6,6 +6,9 @@ class WHS < Feature
   # Returns all features without consolidated images
   scope :without_consolidated_images, where('meta not like ?', "%:images_consolidated: true%")
 
+  # Returns all features with consolidated images
+  scope :with_consolidated_images, where('meta like ?', "%:images_consolidated: true%")
+
   # Returns all features with a gallery associated
   scope :with_gallery, where('gallery_id IS NOT NULL')
 
@@ -21,11 +24,20 @@ class WHS < Feature
         result = {
           :feature_id => feature.whs_site_id,
           :name => feature.title,
-          :pics => images.map{|gallery| {:pic_id => gallery.image.id, :url_big => "http://192.168.1.157:3000#{gallery.image.thumbnail(:large).url}", :url_small => "http://192.168.1.157:3000#{gallery.image.thumbnail(:small).url}"}}
+          # :pics => images.map{|gallery| {:pic_id => gallery.id, :url_big => gallery.image.thumbnail(:large).url, :url_small => gallery.image.thumbnail(:small).url}}
+          :pics => images.map{|gallery| {:pic_id => gallery.id, :url_big => "http://192.168.1.157:3000#{gallery.image.thumbnail(:large).url}", :url_small => "http://192.168.1.157:3000#{gallery.image.thumbnail(:small).url}"}}
         }
       end
     end
     result
+  end
+
+  def consolidate_images(pics_ids)
+    pics_ids = pics_ids.split(',').map{|id| id.to_i}
+
+    gallery.gallery_entry_ids = pics_ids
+    meta[:images_consolidated] = true
+    save!
   end
 
 end

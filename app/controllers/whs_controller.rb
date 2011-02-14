@@ -16,13 +16,9 @@ class WhsController < ApplicationController
     result = WHS.next_feature_images
 
     if params[:feature_id].present? || params[:pic_ids].present?
-      # params => {"action"=>"set_feature_images", "pic_ids"=>"5749", "feature_id"=>"739", "controller"=>"whs", "locale"=>:en}
-      feature = Feature.find(params[:feature_id])
-      pics_ids = params[:pic_ids].split(',').map{|id| id.to_i}
-
-      feature.gallery.gallery_entry_ids = pics_ids
-      feature.meta[:images_consolidated] = true
-      feature.save!
+      if feature = WHS.by_whs_site_id(params[:feature_id]).first
+        feature.consolidate_images(params[:pic_ids])
+      end
     end
 
     render :json => result.to_json
