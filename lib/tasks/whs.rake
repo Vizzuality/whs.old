@@ -11,7 +11,10 @@ namespace :whs do
 
     feature_attributes = [
       %w(whs_source_page string),
+      %w(comments string),
       %w(whs_site_id string),
+      %w(endangered_reason string),
+      %w(endangered_year integer),
       %w(name string),
       %w(wikipedia_link string),
       %w(country string),
@@ -19,7 +22,8 @@ namespace :whs do
       %w(criteria string),
       %w(date_of_inscription datetime),
       %w(size float),
-      %w(region string)
+      %w(region string),
+      %w(edited_region string)
     ]
     RefinerySetting.set(:feature_attributes, feature_attributes.map{|a| a.join(':')}.join("\r\n"))
 
@@ -28,15 +32,14 @@ namespace :whs do
     puts 'Importing features data'
     puts '======================='
     # Hey, look at me!!
-    sleep 0.3 and print "\a" # beep!
-    sleep 0.3 and print "\a" # beep!
-    sleep 0.3 and print "\a" # beep!
-    puts 'Destroy previously created Features? (yes/no*)'
+    print "\a\a\a" # beep! beep! beep!
+    puts 'Destroy previously created Features?'
+    print '(yes/no*) >> '
     STDOUT.flush
     destroy_features = STDIN.gets.chomp
     if destroy_features == 'yes'
       puts 'Destroying features...'
-      Feature.delete_all
+      Feature.destroy_all
       puts '... done!'
     end
     progressbar = ProgressBar.new("Importing...", csv.count)
@@ -46,9 +49,11 @@ namespace :whs do
         whs = Feature.find_or_create_by_title(row.edited_name)
 
         whs.title               = row.edited_name
-        # whs.description         = row.description
         whs.whs_source_page     = row.whs_source_page
+        whs.comments            = row.comments
         whs.whs_site_id         = row.whs_site_id
+        whs.endangered_reason   = row.endangered_reason
+        whs.endangered_year     = row.endangered_year
         whs.name                = row.name
         whs.wikipedia_link      = row.wikipedia_link
         whs.country             = row.country
@@ -57,6 +62,7 @@ namespace :whs do
         whs.date_of_inscription = row.date_of_inscription
         whs.size                = row.size_has.to_f.hectare.to.square_meters.value if row.size_has.present?
         whs.region              = row.region
+        whs.edited_region       = row.edited_region
         whs.the_geom            = Point.from_x_y(row.longitude, row.latitude).as_wkt
 
         whs.save!
@@ -78,7 +84,7 @@ namespace :whs do
   end
 
   desc "Imports panoramio images for each feature"
-  task :download_panoramio_images => :environment do
+  task :import_features_images => :environment do
     require 'panoramio'
     require 'net/http'
     require 'uri'
@@ -105,26 +111,38 @@ namespace :whs do
 
       puts "Downloading photos for #{feature.title} (#{counter} feature of #{feature_count} - #{counter * 100 / feature_count}%)"
       if photos.present?
-        FileUtils.mkdir_p(Rails.root.join("tmp/panoramio/features/#{feature.whs_site_id}")) unless File.directory?(Rails.root.join("tmp/panoramio/features/#{feature.whs_site_id}"))
+        begin
 
-        photos_pg = ProgressBar.new("Feature ##{feature.whs_site_id}", photos.count)
+          feature.gallery = Gallery.find_or_create_by_name feature.title
+          feature.gallery.gallery_entries.clear
 
-        photos.each do |photo|
-          begin
-            next if File.exists? Rails.root.join("tmp/panoramio/features/#{feature.whs_site_id}/", "#{photo.photo_title}.jpg")
+          FileUtils.mkdir_p(Rails.root.join("tmp/panoramio/features/#{feature.whs_site_id}")) unless File.directory?(Rails.root.join("tmp/panoramio/features/#{feature.whs_site_id}"))
 
-            Net::HTTP.get_response(URI.parse(photo.photo_file_url)) do |response|
-              open(Rails.root.join("tmp/panoramio/features/#{feature.whs_site_id}/", "#{photo.photo_title}.jpg"), "w+") do |file|
-                file.write(response.body)
+          photos_pg = ProgressBar.new("Feature ##{feature.whs_site_id}", photos.count)
+
+          photos.each_with_index do |photo, index|
+            begin
+              next if File.exists? Rails.root.join("tmp/panoramio/features/#{feature.whs_site_id}/", "#{index}.jpg")
+
+              Net::HTTP.get_response(URI.parse(photo.photo_file_url)) do |response|
+                File.open(Rails.root.join("tmp/panoramio/features/#{feature.whs_site_id}/#{index}.jpg"), "a+") do |f|
+                  f.write(response.body)
+                  image = Image.create! :image => f
+                  feature.gallery.gallery_entries.create! :name => "Image for gallery #{feature.gallery.name} #{photo.photo_title}", :image_id => image.id
+                end
               end
-            end
-          rescue Exception => e
-            errors << ["Errors downloading image for #{photo.photo_title}", e]
-          end
 
-          photos_pg.inc
+            rescue Exception => e
+              errors << ["Errors downloading image for #{photo.photo_title}", e]
+            end
+
+            photos_pg.inc
+          end
+          feature.save!
+          photos_pg.finish
+        rescue Exception => e
+          errors << ["Errors downloading images for #{feature.title}", e]
         end
-        photos_pg.finish
       end
       features_pg.inc
       counter += 1
