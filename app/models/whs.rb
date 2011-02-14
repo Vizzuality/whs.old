@@ -24,8 +24,7 @@ class WHS < Feature
         result = {
           :feature_id => feature.whs_site_id,
           :name => feature.title,
-          # :pics => images.map{|gallery| {:pic_id => gallery.id, :url_big => gallery.image.thumbnail(:large).url, :url_small => gallery.image.thumbnail(:small).url}}
-          :pics => images.map{|gallery| {:pic_id => gallery.id, :url_big => "http://192.168.1.157:3000#{gallery.image.thumbnail(:large).url}", :url_small => "http://192.168.1.157:3000#{gallery.image.thumbnail(:small).url}"}}
+          :pics => images.map{|gallery| {:pic_id => gallery.id, :url_big => gallery.image.thumbnail(:large).url, :url_small => gallery.image.thumbnail(:small).url}}
         }
       end
     end
