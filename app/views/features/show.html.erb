@@ -2,22 +2,30 @@
   <div class="top"></div>
   <div class="middle">
     <div id="feature_image">
-      <ul class="image_selector">
-        <li><a href=""></a></li>
-        <li><a href=""></a></li>
-        <li><a href=""></a></li>
-        <li><a href=""></a></li>
-        <li><a href=""></a></li>
-        <li><a href=""></a></li>
-      </ul>
+      
+      <ul class="image_selector"> 
+        <li><a href="javascript:blendimage('03Thumbs','work3Image', '/images/test/test_big.jpg', 300, 'workDesc3', 3, 3, 1)" class="current" id="workLink31"></a></li> 
+        <li><a href="javascript:blendimage('03Thumbs','work3Image', '/images/test/test_big_2.jpg', 300, 'workDesc3', 3, 3, 2)" style="margin:0" id="workLink32"></a></li>
+        <li><a href="javascript:blendimage('03Thumbs','work3Image', '/images/test/test_big_3.jpg', 300, 'workDesc3', 3, 3, 2)" style="margin:0" id="workLink33"></a></li>         
+      </ul> 
       <div id="feature_title">
         <p id="country"><span><img class="flag" src="/images/test/test_flag.png"/><%= @feature.country %></span></p>
         <h1><span><%= @feature.title %></span></h1>
         <p class="distance"><span id="walking">Just 13 hours away from Madrid by plane</span></p>
       </div>
-      <img src="/images/test/test_big.jpg">
-      <div></div>
-      <div id="endangered"></div>
+      
+      <div class="bkg"> 
+	      <div class="image" id="03Thumbs"> 
+		      <img alt="<%= @feature.title %>" id="work3Image" src="/images/test/test_big.jpg?1297185441" /> 
+	      </div> 
+      </div> 
+      <img alt="<%= @feature.title %>" src="/images/test/test_big.jpg" style="display:none" />
+      <img alt="<%= @feature.title %>" src="/images/test/test_big_2.jpg" style="display:none" /> 
+      <img alt="<%= @feature.title %>" src="/images/test/test_big_3.jpg" style="display:none" />      
+      <div>
+        
+    </div>
+    <div id="endangered"></div>
     </div>
       <div class="content">
         <div id="main_area">
@@ -155,4 +163,10 @@
     map.setMapTypeId('my Style');
     
   });
+  
+  
+  
+  
+
+	
 </script>
