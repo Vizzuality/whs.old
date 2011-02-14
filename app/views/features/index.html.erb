@@ -3,14 +3,19 @@
   <div class="middle">
     <h1><span>More than 900 beautiful</span></h1>
     <h1 class="down"><span>places to see</span></h1>
-    <div id="map">
-    </div>
+    <div class="map_container"><div id="map"></div></div>
     <div id="filter">
       <form>        
         <div class="input"><div class="input_left"></div><div class="input_center"><form><input id="searchText" type="text" size="20" value="Search..."/><input class="hidden" type="submit"/></form></div><div class="input_right"></div></div>
         <a id="all_selector" href="">All</a>    
         <a id="natural_selector" href="">Natural</a>            
         <a id="cultural_selector" href="">Cultural</a>
+        <select>
+          <option>Search by criteria</option>
+          <option>a</option>
+          <option>s</option>
+          <option>c</option>
+        </select>
         <a id="mosaic_selector" href=""></a>            
         <a id="list_selector" href=""></a>
       </form>
@@ -38,4 +43,58 @@
   </div>
   <div class="bottom"></div>
 </div>
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+
+<script type="text/javascript">
+
+  $(document).ready( function(){
+
+    $("div#map").mouseover(function() {
+      $("h1").hide();
+    });
+    
+    $("div#map").mouseout(function() {
+      $("h1").show();
+    });
+    
+
+    var myOptions = {
+      zoom: 2,
+      disableDefaultUI: true,
+      center: new google.maps.LatLng(40,10),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map"), myOptions);
+
+    var marker;
+    var latlng;
+    
+    <% @features[0..8].each do |feature|%>
+      latlng = new google.maps.LatLng(<%=feature.the_geom.y%>, <%=feature.the_geom.x%>);
+      marker = new google.maps.Marker({
+        position: latlng, 
+        map: map, 
+        title:"<%=feature.title%>",
+        icon: "/images/explore/marker_natural.png"
+      });
+      google.maps.event.addListener(marker, "click", function() {window.location = "/features/<%=feature.id%>"});
+    <% end %>
+    
+    var map_style = [
+      {featureType: "administrative",elementType: "geometry",stylers: [{ visibility: "off" }]},
+	    {featureType: "poi",elementType: "all",stylers: [{ visibility: "off" }]},
+	    {featureType: "road",elementType: "all",stylers: [{ visibility: "off" }]},
+	    {featureType: "transit",elementType: "all",stylers: [{ visibility: "off" }]},
+	    {featureType: "landscape.natural",elementType: "all",stylers: [{ visibility: "off" }]},
+	    {featureType: "water",elementType: "all",stylers: [{ lightness: 30 },{ saturation: -47 },{ gamma: 0.6 },{ hue: "#0088ff" }]}
+    ];
+    
+    var styledMap =  new google.maps.StyledMapType(map_style,{map: map,name: "My Style"});
+    map.mapTypes.set('my Style', styledMap);
+    map.setMapTypeId('my Style');
+
+  });
+</script>
+
 

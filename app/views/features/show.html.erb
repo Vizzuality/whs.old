@@ -13,7 +13,7 @@
       <div id="feature_title">
         <p id="country"><span><img class="flag" src="/images/test/test_flag.png"/><%= @feature.country %></span></p>
         <h1><span><%= @feature.title %></span></h1>
-        <p id="distance"><span>Just 13 hours away from Madrid by plane</span></p>
+        <p class="distance"><span id="walking">Just 13 hours away from Madrid by plane</span></p>
       </div>
       <img src="/images/test/test_big.jpg">
       <div></div>
@@ -133,13 +133,26 @@
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
-    var map = new google.maps.Map(document.getElementById("map"),
-        myOptions);
-
+    var map = new google.maps.Map(document.getElementById("map"),myOptions);
     var marker = new google.maps.Marker({
           position: latlng, 
           map: map, 
-          title:"Hello World!"
+          title:"Hello World!",
+          icon: "/images/explore/marker_natural.png"
     })
+    
+    var map_style = [
+      {featureType: "administrative",elementType: "geometry",stylers: [{ visibility: "off" }]},
+	    {featureType: "poi",elementType: "all",stylers: [{ visibility: "off" }]},
+	    {featureType: "road",elementType: "all",stylers: [{ visibility: "off" }]},
+	    {featureType: "transit",elementType: "all",stylers: [{ visibility: "off" }]},
+	    {featureType: "landscape.natural",elementType: "all",stylers: [{ visibility: "off" }]},
+	    {featureType: "water",elementType: "all",stylers: [{ lightness: 30 },{ saturation: -47 },{ gamma: 0.6 },{ hue: "#0088ff" }]}
+    ];
+    
+    var styledMap =  new google.maps.StyledMapType(map_style,{map: map,name: "My Style"});
+    map.mapTypes.set('my Style', styledMap);
+    map.setMapTypeId('my Style');
+    
   });
 </script>
