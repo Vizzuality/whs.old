@@ -7,8 +7,8 @@
     <div id="filter">
       <form>        
         <div class="input"><div class="input_left"></div><div class="input_center"><form><input id="searchText" type="text" size="20" value="Search..."/><input class="hidden" type="submit"/></form></div><div class="input_right"></div></div>
-        <a id="all_selector" href="">All</a>    
-        <a id="natural_selector" href="">Natural</a>            
+        <a id="all_selector" class="selected" href="">All</a>
+        <a id="natural_selector" href="">Natural</a>
         <a id="cultural_selector" href="">Cultural</a>
         <div id="criteria">
           <span><a id="criteria" href="#">Search by criteria</a></span>
@@ -25,7 +25,7 @@
             <li><a href=""><%= I18n.t("feature.criteria.x") %></a></li>                                                
           </ul>                                                                        
         </div>
-        <a id="mosaic_selector" href=""></a>            
+        <a id="mosaic_selector" class="selected" href=""></a>            
         <a id="list_selector" href=""></a>
       </form>
     </div>
