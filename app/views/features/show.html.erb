@@ -34,7 +34,9 @@
       <% end %>
 
     </div>
-    <div id="endangered"></div>
+    <% if @feature.endangered_year %>
+      <div id="endangered"></div>
+    <% end %>
     </div>
       <div class="content">
         <div id="main_area">
