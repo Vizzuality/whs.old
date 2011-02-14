@@ -8,18 +8,6 @@ u.password_confirmation = 'admin'
 u.save
 
 
-# Feature attributes
-attributes = <<-ATTRIBUTES
-endangered:integer
-country:string
-designation_date:text
-designation_criteria:string
-size:string
-external_links:string
-ATTRIBUTES
-
-RefinerySetting.set(:feature_attributes, attributes)
-
 # Refinery settings
 Dir[Rails.root.join('db', 'seeds','*.rb').to_s].each do |file|
   load(file)
@@ -36,3 +24,23 @@ u.reload
 end
 
 u.roles << r
+
+# Feature attributes
+attributes = <<-ATTRIBUTES
+endangered:integer
+country:string
+designation_date:text
+designation_criteria:string
+size:string
+external_links:string
+ATTRIBUTES
+
+RefinerySetting.set(:feature_attributes, attributes)
+
+# Image thumbnails sizes
+attributes = <<-SIZES
+---
+:large: 880x430#
+:small: 293x214#
+SIZES
+RefinerySetting.set(:image_thumbnails, attributes)

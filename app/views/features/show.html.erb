@@ -1,29 +1,29 @@
-<div class="content_box" id="feature">	
+<div class="content_box" id="feature">
   <div class="top"></div>
   <div class="middle">
     <div id="feature_image">
-      
-      <ul class="image_selector"> 
-        <li><a href="javascript:blendimage('03Thumbs','work3Image', '/images/test/test_big.jpg', 300, 'workDesc3', 3, 3, 1)" class="current" id="workLink31"></a></li> 
+
+      <ul class="image_selector">
+        <li><a href="javascript:blendimage('03Thumbs','work3Image', '/images/test/test_big.jpg', 300, 'workDesc3', 3, 3, 1)" class="current" id="workLink31"></a></li>
         <li><a href="javascript:blendimage('03Thumbs','work3Image', '/images/test/test_big_2.jpg', 300, 'workDesc3', 3, 3, 2)" style="margin:0" id="workLink32"></a></li>
-        <li><a href="javascript:blendimage('03Thumbs','work3Image', '/images/test/test_big_3.jpg', 300, 'workDesc3', 3, 3, 2)" style="margin:0" id="workLink33"></a></li>         
-      </ul> 
+        <li><a href="javascript:blendimage('03Thumbs','work3Image', '/images/test/test_big_3.jpg', 300, 'workDesc3', 3, 3, 2)" style="margin:0" id="workLink33"></a></li>
+      </ul>
       <div id="feature_title">
         <p id="country"><span><img class="flag" src="/images/test/test_flag.png"/><%= @feature.country %></span></p>
         <h1><span><%= @feature.title %></span></h1>
         <p class="distance"><span id="walking">Just 13 hours away from Madrid by plane</span></p>
       </div>
-      
-      <div class="bkg"> 
-	      <div class="image" id="03Thumbs"> 
-		      <img alt="<%= @feature.title %>" id="work3Image" src="/images/test/test_big.jpg?1297185441" /> 
-	      </div> 
-      </div> 
-      <img alt="<%= @feature.title %>" src="/images/test/test_big.jpg" style="display:none" />
-      <img alt="<%= @feature.title %>" src="/images/test/test_big_2.jpg" style="display:none" /> 
-      <img alt="<%= @feature.title %>" src="/images/test/test_big_3.jpg" style="display:none" />      
+
+      <div class="bkg">
+        <div class="image" id="03Thumbs">
+          <%= image_tag @feature.gallery.gallery_entries.first.image.thumbnail(:large).url, :alt => @feature.title %>
+        </div>
+      </div>
+      <% @feature.gallery.gallery_entries.each do |gallery_entry| %>
+        <%= image_tag gallery_entry.image.thumbnail(:large).url, :alt => @feature.title, :style => 'display: none' %>
+      <% end %>
       <div>
-        
+
     </div>
     <div id="endangered"></div>
     </div>
@@ -34,30 +34,30 @@
         <div id="data_column">
           <div class="map_container"><div id="map"></div></div>
           <p class="label" id="first">Date of inscription</p>
-          <p class="value"><%= @feature.designation_date %></p>
+          <p class="value"><%= @feature.date_of_inscription %></p>
 
-          <% unless @feature.designation_criteria.blank? %>
+          <% unless @feature.criteria.blank? %>
           <span class="line"></span>
           <p class="label">Why it is a World Heritage Site</p>
-          <% @feature.designation_criteria.delete("(").split(")").each do |criteria|%>
+          <% @feature.criteria.delete("(").split(")").each do |criteria|%>
           <ul>
             <li><%= I18n.t("feature.criteria.#{criteria}") %></li>
           </ul>
           <% end %>
           <% end %>
-          
+
           <% unless @feature.size.blank? %>
           <span class="line"></span>
           <p class="label">Size</p>
-          
+
           <% %>
           <p class="value"><%= number_with_precision(@feature.size.to_f, :precision => 2) %> Ha</p>
           <% end %>
-          
+
           <span class="line"></span>
           <p class="label">External links</p>
           <ul>
-            <li><a href="<%=@feature.official_url%>">Official Unesco WHS Site</a></li>            
+            <li><a href="<%=@feature.whs_source_page%>">Official Unesco WHS Site</a></li>
           </ul>
         </div>
 
@@ -66,7 +66,7 @@
   <div class="bottom"></div>
 </div>
 
-<div class="content_box" id="feature_mosaic">	
+<div class="content_box" id="feature_mosaic">
   <div class="top"></div>
   <div class="middle">
     <div class="content">
@@ -110,14 +110,14 @@
         </li>
       </ul>
   </div>
-    
+
 
     </div>
   </div>
   <div class="bottom"></div>
 </div>
 
-<div class="content_box" id="teleport">	
+<div class="content_box" id="teleport">
   <div class="top"></div>
   <div class="middle">
     <div class="content">
@@ -143,30 +143,30 @@
 
     var map = new google.maps.Map(document.getElementById("map"),myOptions);
     var marker = new google.maps.Marker({
-          position: latlng, 
-          map: map, 
+          position: latlng,
+          map: map,
           title:"Hello World!",
           icon: "/images/explore/marker_natural.png"
     })
-    
+
     var map_style = [
       {featureType: "administrative",elementType: "geometry",stylers: [{ visibility: "off" }]},
-	    {featureType: "poi",elementType: "all",stylers: [{ visibility: "off" }]},
-	    {featureType: "road",elementType: "all",stylers: [{ visibility: "off" }]},
-	    {featureType: "transit",elementType: "all",stylers: [{ visibility: "off" }]},
-	    {featureType: "landscape.natural",elementType: "all",stylers: [{ visibility: "off" }]},
-	    {featureType: "water",elementType: "all",stylers: [{ lightness: 30 },{ saturation: -47 },{ gamma: 0.6 },{ hue: "#0088ff" }]}
+      {featureType: "poi",elementType: "all",stylers: [{ visibility: "off" }]},
+      {featureType: "road",elementType: "all",stylers: [{ visibility: "off" }]},
+      {featureType: "transit",elementType: "all",stylers: [{ visibility: "off" }]},
+      {featureType: "landscape.natural",elementType: "all",stylers: [{ visibility: "off" }]},
+      {featureType: "water",elementType: "all",stylers: [{ lightness: 30 },{ saturation: -47 },{ gamma: 0.6 },{ hue: "#0088ff" }]}
     ];
-    
+
     var styledMap =  new google.maps.StyledMapType(map_style,{map: map,name: "My Style"});
     map.mapTypes.set('my Style', styledMap);
     map.setMapTypeId('my Style');
-    
-  });
-  
-  
-  
-  
 
-	
+  });
+
+
+
+
+
+
 </script>
