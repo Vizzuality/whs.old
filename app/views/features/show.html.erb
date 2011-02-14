@@ -14,15 +14,24 @@
         <p class="distance"><span id="walking">Just 13 hours away from Madrid by plane</span></p>
       </div>
 
-      <div class="bkg">
-        <div class="image" id="03Thumbs">
-          <%= image_tag @feature.gallery.gallery_entries.first.image.thumbnail(:large).url, :alt => @feature.title %>
+      <% if @feature.gallery && @feature.gallery.gallery_entries.any? %>
+        <div class="bkg">
+          <div class="image" id="03Thumbs">
+            <%= image_tag @feature.gallery.gallery_entries.first.image.thumbnail(:large).url, :alt => @feature.title %>
+          </div>
         </div>
-      </div>
-      <% @feature.gallery.gallery_entries.each do |gallery_entry| %>
-        <%= image_tag gallery_entry.image.thumbnail(:large).url, :alt => @feature.title, :style => 'display: none' %>
+        <% @feature.gallery.gallery_entries.each do |gallery_entry| %>
+          <%= image_tag gallery_entry.image.thumbnail(:large).url, :alt => @feature.title, :style => 'display: none' %>
+        <% end %>
+        <div>
+      <% else %>
+        <div class="bkg">
+          <div class="image" id="03Thumbs">
+            <img alt="<%= @feature.title %>" id="work3Image" src="/images/test/test_big.jpg?1297185441" />
+          </div>
+        </div>
+        <div>
       <% end %>
-      <div>
 
     </div>
     <div id="endangered"></div>
@@ -122,7 +131,7 @@
   <div class="middle">
     <div class="content">
       <div id="message">Or would you rather be randomly teleported to a new beautiful site?</div>
-      <%= link_to '"Bean me up, Scotty!"', feature_path(Feature.all.reject{|f| f.id == @features.id}.sample), :class => "teleport"  , :id => 'green'%>
+      <%= link_to '"Bean me up, Scotty!"', feature_path(@random_feature), :class => "teleport"  , :id => 'green'%>
     </div>
   </div>
   <div class="bottom"></div>
