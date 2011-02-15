@@ -18,18 +18,12 @@
         </ul>      
       
         <div class="images">
-          <%#= image_tag @feature.gallery.gallery_entries.first.image.thumbnail(:large).url, :alt => @feature.title %>
-
           <% @feature.gallery.gallery_entries.each_with_index do |gallery_entry,i| %>
             <div class="image  <% if (i == 0)%>first_image<% end%>" id="image_<%=i%>">
               <%= image_tag gallery_entry.image.thumbnail(:large).url, :alt => @feature.title %>
             </div>
           <% end %>          
         </div>
-        
-        <%# @feature.gallery.gallery_entries.each do |gallery_entry| %>
-          <%#= image_tag gallery_entry.image.thumbnail(:large).url, :alt => @feature.title, :style => 'display: none' %>
-        <%# end %>
         
       <% else %>
         <div class="images">
@@ -48,7 +42,8 @@
     
       <div class="content">
         <div id="main_area">
-          <p><%= simple_format @feature.description %></p>
+          <p><%= simple_format @feature.description %> Uno dos tres cuatro</p>
+          <div id="wikipedia">You can find more information at <a href="<%=@feature.wikipedia_link%>">Wikipedia</a>.</div>
         </div>
         <div id="data_column">
           <div class="map_container">
