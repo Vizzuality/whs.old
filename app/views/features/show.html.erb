@@ -19,7 +19,7 @@
       
         <div class="images">
           <% @feature.gallery.gallery_entries.each_with_index do |gallery_entry,i| %>
-            <div class="image  <% if (i == 0)%>first_image<% end%>" id="image_<%=i%>">
+            <div class="image<% if (i == 0)%> first_image<% end%>" id="image_<%=i%>">
               <%= image_tag gallery_entry.image.thumbnail(:large).url, :alt => @feature.title %>
             </div>
           <% end %>          
@@ -51,7 +51,14 @@
               <img src="http://maps.google.com/maps/api/staticmap?center=<%=@feature.the_geom.y%>,<%=@feature.the_geom.x%>&zoom=8&size=235x162&maptype=roadmap&markers=icon:/images/explore/marker_natural.png|<%=@feature.the_geom.y%>,<%=@feature.the_geom.x%>&sensor=false"/>
             
             </div>
-            <div id="img_thumb"><img src="/images/test/test_thumb.jpg"/></div>
+            <div id="img_thumb">
+              <% if @feature.gallery && @feature.gallery.gallery_entries.any? %>  
+                <%= image_tag @feature.gallery.gallery_entries.first.image.thumbnail(:tiny).url, :alt => @feature.title %>            
+                <% else %>
+                <img src="/images/test/test_small.jpg">
+              <% end %>
+            
+            </div>
             <div id="darken">
               <a href="#"><img src="/images/darken.png"/></a>
               <a href="#" id="show_link">Show map</a>

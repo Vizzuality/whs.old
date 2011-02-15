@@ -147,7 +147,7 @@ div#feature_image div#big_map_container {position: absolute; top: 0px; width: 88
 div#feature_image div#big_map_container div#big_map {position: absolute; top: 0px; width: 880px; height:430px;}
 div#feature_image div.images {position: relative; z-index: 5;}
 div#feature_image div.images div.image {position: absolute;}
-div#feature_image div.images div.first {z-index: 6;}
+div#feature_image div.images div.first_image {z-index: 6;}
 div#feature_image div#endangered {position: absolute; top: -11px; right: -11px; width: 97px; height: 94px; z-index: 15; background: url("/images/endangered.png");}
 
 /* Image area */
