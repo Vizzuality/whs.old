@@ -5,9 +5,39 @@
   	  <h2>RethinkWHS.org</h2>
         <h1><span>Discovering the most</h1>
         <h1 class="down"><span>beautiful places in the world</span></h1>
+
         <div id="big_image">
-          <img src="/images/test/test_big.jpg">
+            <% if @random_features[0].gallery && @random_features[0].gallery.gallery_entries.any? %>  
+              <%= image_tag @random_features[0].gallery.gallery_entries.first.image.thumbnail(:large).url, :alt => @random_features[0].title %>            
+            <% else %>
+              <img src="/images/test/test_big.jpg">
+            <% end %>
         </div>
+        
+        <ul id="image_list">
+        <% @random_features[1..6].each do |feature|%>
+        <li class="mosaic_element<%= cycle('',' middle','', :name => 'mosaic') %>">
+          <a href="/features/<%=feature.id%>">
+          <div class="mosaic_element_div">
+            
+            <% if feature.gallery && feature.gallery.gallery_entries.any? %>  
+              <%= image_tag feature.gallery.gallery_entries.first.image.thumbnail(:small).url, :alt => feature.title %>            
+            <% else %>
+              <img src="/images/test/test_small.jpg">
+            <% end %>
+            
+            <div class="mosaic_label">
+              <p class="place"><%=feature.title%></p>
+              <p class="distance">4 hours by car from Madrid</p>
+            </div>
+          </div>
+          </a>
+        </li>
+        <li class="separator<%= cycle('','',' horizontal', :name => 'separator') %>"></li>
+        <% end %>
+        </ul>
+        
+        <!--
         <ul id="image_list">
           <li class="separator horizontal"></li>          
           <li class="mosaic_element">
@@ -70,10 +100,13 @@
             </div>
           </li>
           <li class="separator horizontal"></li>                              
-        </ul>
+        </ul>-->
       </div>
   </div>
   <div class="bottom"></div>
+
+  
+  
 </div>
 
 <div class="content_box" id="more_sites">	
@@ -82,42 +115,12 @@
     <div class="content">
     <h2>Browse more sites around you</h2>
       <ul>
-        <li>
-		      <a href="/features/619">Shark bay, Westerns Australia 1</a>
+        <% @random_features.each do |feature|%>        
+        <li <%= cycle('','','class=\'last\'', :name => 'classname') %> >
+		      <a href="/features/<%=feature.id%>"><%=feature.title%></a>
 		      <p>3 hours by car from Madrid</p>
 	      </li>
-	      <li>
-		      <a href="/features/619">Shark bay, Western Australia 2</a>
-		      <p>3 hours by car from Madrid</p>
-	      </li>
-	      <li class="last">
-		      <a href="/features/619">Shark bay, Western Australia 3</a>
-		      <p>3 hours by car from Madrid</p>
-	      </li>
-	      <li>
-		      <a href="/features/619">Shark bay, Western Australia</a>
-		      <p>3 hours by car from Madrid</p>
-	      </li>
-	      <li>
-		      <a href="/features/619">Shark bay, Western Australia</a>
-		      <p>3 hours by car from Madrid</p>
-	      </li>
-	      <li class="last">
-		      <a href="/features/619">Shark bay, Western Australia</a>
-		      <p>3 hours by car from Madrid</p>
-	      </li>
-	      <li>
-		      <a href="/features/619">Shark bay, Western Australia</a>
-		      <p>3 hours by car from Madrid</p>
-	      </li>
-	      <li>
-		      <a href="/features/619">Shark bay, Western Australia</a>
-		      <p>3 hours by car from Madrid</p>
-	      </li>
-	      <li class="last">
-		      <a href="/features/619">Shark bay, Western Australia</a>
-		      <p>3 hours by car from Madrid</p>
-	      </li>
+	      <% end %>
 	    </ul>
     </div>
 

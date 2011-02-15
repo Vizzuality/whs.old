@@ -33,7 +33,6 @@
       <ul id="image_list">
 
         <% @random_features.each do |feature|%>
-        <!--<li class="separator<%# cycle(' horizontal','','', :name => 'separator') %>"></li>-->
         <li class="mosaic_element<%= cycle('',' middle','', :name => 'mosaic') %>">
           <a href="/features/<%=feature.id%>">
           <div class="mosaic_element_div">
@@ -53,7 +52,6 @@
         </li>
         <li class="separator<%= cycle('','',' horizontal', :name => 'separator') %>"></li>
         <% end %>
-        <!--<li class="separator horizontal"></li>                                      -->
       </ul>
     </div>
   </div>
