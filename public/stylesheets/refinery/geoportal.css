@@ -5,19 +5,19 @@ body.login label {color:white;}
 ul {list-style:none!important;}
 /*FONTS FONT-FACE*/
 @font-face {
-	font-family: 'Museo Sans';
-	src: url('fonts/museosans_500_italic-webfont.eot');
-	src: local('☺'), url('fonts/museosans_500_italic-webfont.woff') format('woff'), url('fonts/museosans_500_italic-webfont.ttf') format('truetype'), url('fonts/museosans_500_italic-webfont.svg#webfontrWMt54Br') format('svg');
-	font-weight: normal;
-	font-style: italic;
+  font-family: 'Museo Sans';
+  src: url('fonts/museosans_500_italic-webfont.eot');
+  src: local('☺'), url('fonts/museosans_500_italic-webfont.woff') format('woff'), url('fonts/museosans_500_italic-webfont.ttf') format('truetype'), url('fonts/museosans_500_italic-webfont.svg#webfontrWMt54Br') format('svg');
+  font-weight: normal;
+  font-style: italic;
 }
 
 @font-face {
-	font-family: 'Museo Sans';
-	src: url('fonts/museosans_500-webfont.eot');
-	src: local('☺'), url('fonts/museosans_500-webfont.woff') format('woff'), url('fonts/museosans_500-webfont.ttf') format('truetype'), url('fonts/museosans_500-webfont.svg#webfontnw1AQrE0') format('svg');
-	font-weight: normal;
-	font-style: normal;
+  font-family: 'Museo Sans';
+  src: url('fonts/museosans_500-webfont.eot');
+  src: local('☺'), url('fonts/museosans_500-webfont.woff') format('woff'), url('fonts/museosans_500-webfont.ttf') format('truetype'), url('fonts/museosans_500-webfont.svg#webfontnw1AQrE0') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 /* ----------------------------------- LOGIN PAGE*/
@@ -81,7 +81,7 @@ header div.inner nav#menu a:hover span {background-position:right -56px;}
 header div.inner nav#menu a#menu_reorder {background:none;}
 header div.inner nav#menu a#menu_reorder_done {background:none;}
 
-#page_container {float:left; width:100%; padding:0; margin:0; background:none;}
+#page_container {width:100%; padding:0; margin:0; background:none;}
 #page_container #page {width:952px!important; margin:0 auto;}
 #page_container #page #content {background:none;}
 
@@ -103,8 +103,8 @@ div#actions ul li a:hover {background:url('/images/admin/dashboard/big_button.pn
 div#records {width:952px; margin:20px 0 0 0;}
 div#records ul#sortable_list {float:left; width:942px; padding:0!important; margin:0 0 0 5px;}
 div#records ul#sortable_list li {position:relative; height:70px; padding:20px 0 0 30px; border-bottom:1px solid #E3E3E3; width:912px;}
-div#records ul#sortable_list li.on {background-color:white;} 
-div#records ul#sortable_list li.on-hover {background-color:#FAFAFA;} 
+div#records ul#sortable_list li.on {background-color:white;}
+div#records ul#sortable_list li.on-hover {background-color:#FAFAFA;}
 div#records ul#sortable_list li a {font:normal 15px Arial; color:#FF3366; text-decoration:underline; border-bottom:none;}
 div#records ul#sortable_list li a:hover {color:#B3002D;}
 div#records ul#sortable_list div.icons {position:absolute; left:30px!important; bottom:0px!important; bottom:23px!important; height:22px; margin:0;}
@@ -118,10 +118,10 @@ div#records ul#sortable_list div.date span.to {width:100%;}
 div#records ul#sortable_list div.date span.from label {margin:20px 15px 0;}
 div#records ul#sortable_list div.date span.to label {margin:7px 14px 0 33px;}
 div#records ul#sortable_list div.date span p {font:normal 15px Arial; color:#666666;}
-div#records ul#sortable_list div.date span.from p {margin:16px 0 0 8px;} 
-div#records ul#sortable_list div.date span.to p {margin:4px 0 0 8px;} 
+div#records ul#sortable_list div.date span.from p {margin:16px 0 0 8px;}
+div#records ul#sortable_list div.date span.to p {margin:4px 0 0 8px;}
 div#records ul#sortable_list div.location {position:absolute; left:732px; top:20px; width:200px; height:70px;}
-div#records ul#sortable_list div.location p {float:left; font:normal 15px Arial; color:#666666; width:100%; margin:0;} 
+div#records ul#sortable_list div.location p {float:left; font:normal 15px Arial; color:#666666; width:100%; margin:0;}
 div#records ul#sortable_list div.location a.coords {float:left; font:normal 13px Arial; color:#FF3366; text-decoration:underline; margin:2px 0 0 0;}
 div#records ul#sortable_list div.location a.coords:hover {color:#B3002D; cursor:pointer;}
 

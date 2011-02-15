@@ -1,3 +1,5 @@
+load 'user.rb'
+
 r = Role.create :title => 'Refinery'
 
 u = User.new
