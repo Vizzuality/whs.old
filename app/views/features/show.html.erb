@@ -23,30 +23,35 @@
         <% @feature.gallery.gallery_entries.each do |gallery_entry| %>
           <%= image_tag gallery_entry.image.thumbnail(:large).url, :alt => @feature.title, :style => 'display: none' %>
         <% end %>
-        <div>
       <% else %>
         <div class="bkg">
-          <div class="image" id="03Thumbs">
-            <img alt="<%= @feature.title %>" id="work3Image" src="/images/test/test_big.jpg?1297185441" />
-          </div>
-        </div>
-        <div>
+          <img src="/images/test/test_big.jpg"/>
+        </div>          
       <% end %>
+      
+    <!--<div id="big_map_container"><div id="big_map"></div></div>-->
 
-    </div>
     <% if @feature.endangered_year %>
       <div id="endangered"></div>
     <% end %>
     </div>
+    
       <div class="content">
         <div id="main_area">
           <p><%= simple_format @feature.description %></p>
         </div>
         <div id="data_column">
-          <div class="map_container"><div id="map">
+          <div class="map_container">
+            <div id="map">
               <img src="http://maps.google.com/maps/api/staticmap?center=<%=@feature.the_geom.y%>,<%=@feature.the_geom.x%>&zoom=8&size=235x162&maptype=roadmap&markers=icon:/images/explore/marker_natural.png|<%=@feature.the_geom.y%>,<%=@feature.the_geom.x%>&sensor=false"/>
             
-          </div></div>
+            </div>
+            <div id="img_thumb"><img src="/images/test/test_thumb.jpg"/></div>
+            <div id="darken">
+              <a href="#"><img src="/images/darken.png"/></a>
+              <a href="#" id="show_link">Show map</a>
+            </div>
+          </div>
           <p class="label" id="first">Date of inscription</p>
           <p class="value"><%= @feature.date_of_inscription %></p>
 
@@ -77,8 +82,10 @@
 
         <div id="clear"></div>
       </div>
+  </div>
   <div class="bottom"></div>
 </div>
+
 
 <div class="content_box" id="feature_mosaic">
   <div class="top"></div>
@@ -142,7 +149,59 @@
   <div class="bottom"></div>
 </div>
 
-
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 
+<script type="text/javascript">
+  
+  $(document).ready( function(){
+
+    $("div.map_container").mouseover(function() {
+      $("div#darken").show();
+      $("a#show_link").show();      
+    });
+
+    $("div.map_container").mouseout(function() {
+      $("div#darken").hide();
+      $("a#show_link").hide();
+    });
+
+    $("div.map_container div#darken a").click(function(ev) {
+      ev.stopPropagation();
+      ev.preventDefault();
+      if ($("div#img_thumb").is(":visible")) {
+        $("div#img_thumb").hide();
+        $("a#show_link").html("Show map");
+        $("div#big_map_container").show();
+      } else {
+        $("div#img_thumb").show();
+        $("a#show_link").html("Show images");        
+      } 
+    });
+    
+    var myOptions = {
+      zoom: 8,
+      disableDefaultUI: true,
+      center: new google.maps.LatLng(<%=@feature.the_geom.y%>,<%=@feature.the_geom.x%>),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map"), myOptions);
+
+    
+    var map_style = [
+      {featureType: "administrative",elementType: "geometry",stylers: [{ visibility: "off" }]},
+	    {featureType: "poi",elementType: "all",stylers: [{ visibility: "off" }]},
+	    {featureType: "road",elementType: "all",stylers: [{ visibility: "off" }]},
+	    {featureType: "transit",elementType: "all",stylers: [{ visibility: "off" }]},
+	    {featureType: "landscape.natural",elementType: "all",stylers: [{ visibility: "off" }]},
+	    {featureType: "water",elementType: "all",stylers: [{ lightness: 30 },{ saturation: -47 },{ gamma: 0.6 },{ hue: "#0088ff" }]}
+    ];
+    
+    var styledMap =  new google.maps.StyledMapType(map_style,{map: map,name: "My Style"});
+    map.mapTypes.set('my Style', styledMap);
+    map.setMapTypeId('my Style');
+    
+
+  });
+
+</script>
 

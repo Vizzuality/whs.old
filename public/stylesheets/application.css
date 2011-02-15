@@ -129,10 +129,14 @@ div.clear {clear: both;}
 /* FEATURES SPECIFIC -------------------------------------------- */
 
 div#feature_image {margin: 0 8px -4px 8px; position: relative;}
-div#feature_image ul.image_selector {position: absolute; top: 20px; left: -15px; padding:10px 5px 10px 10px; background-color: #000000;}
+div#feature_image ul.image_selector {position: absolute; top: 20px; left: -15px; padding:10px 5px 10px 10px; z-index: 5; background-color: #000000;}
 div#feature_image ul.image_selector li {float: left; padding: 0 5px 0 0;}
 div#feature_image ul.image_selector li a {float: left; width: 8px; height: 8px; background: url("/images/image_selector.png") no-repeat 0 0;}
 div#feature_image ul.image_selector li a:hover {background-position: -9px 0px}
+div#feature_image div#big_map_container {position: absolute; display: none; top: -0px; width: 880px; height:430px}
+div#feature_image div#big_map_container div#big_map {}
+div#feature_image div.bkg {z-index: 15;}
+div#feature_image div.bkg div.image {z-index: 15;}
 div#feature_image div#endangered {position: absolute; top: -11px; right: -11px; width: 97px; height: 94px; background: url("/images/endangered.png");}
 
 /* Image area */
@@ -156,6 +160,11 @@ div#main_area div#wikipedia a {color: #999999; }
 div#data_column {float: right; width: 245px; padding: 25px; background-color: #EDEDED;}
 div#data_column div.map_container {position: absolute; padding: 5px; top: -25px; width: 235px; height:162px; background-color: #F9F9F9; z-index: 15;}
 div#data_column div.map_container div#map { width: 235px; height:162px; background-color: #F9F9F9; z-index: 15;}
+div#data_column div.map_container div#darken {position:absolute; display: none; top:5px; width: 235px; height:162px; z-index: 25;}
+div#data_column div.map_container div#darken a#show_link {position:absolute; top: 120px; left: -10px; z-index: 35; padding: 7px 7px 7px 30px; background: url("/images/expand_icon.png") no-repeat 8px 8px; background-color: #000000; color: #999999; font: normal 13px Arial; text-decoration: none;}
+div#data_column div.map_container div#img_thumb {position: absolute; display:none; top: 5px;	width: 235px; height:162px; z-index: 15;}
+
+
 div#data_column p.label {margin: 0 0 0 5px; font: normal 13px "PT Sans Bold"; color: #333333;}
 div#data_column p.label#first {margin: 130px 0 0 5px;}
 div#data_column p.value {margin: 3px 0 0 5px; font: normal 15px "LiberationSerifRegular"; color: #666666;}
@@ -173,7 +182,7 @@ div#feature_mosaic div.middle div.content {margin: 0 8px 0 8px; background: #FFF
 div#feature_mosaic div.middle div.content ul#image_list {height: 214px;}
 
 /* Teleport */
-div.content_box#teleport div.middle div.content{padding: 25px; background-color: white; font: normal 17px "PT Sans";}
+div.content_box#teleport div.middle div.content{position: relative; width: 830px; height: 20px;  margin: 0px 8px 0px 8px; padding: 25px; background-color: white; font: normal 17px "PT Sans";}
 a.teleport {position: absolute; top: 13px; right: 13px; margin: 0px 0px 0px 0; padding: 10px 0 0 0; width: 195px; height: 44px; text-align: center; font: bold 17px "PT Sans"; text-decoration: none; color: #333333;}
 a.teleport#orange {background: transparent url("/images/teleport_orange.png") no-repeat;}
 a.teleport#green {background: transparent url("/images/teleport_green.png") no-repeat;}
@@ -184,7 +193,6 @@ div.horizontal{float:left;  width: 880px; height: 1px;}
 div.content_box#about div.middle {position: relative;}
 div.content_box#about div.middle div.content {margin: 0 8px 0 8px; padding: 25px; width: 830px; background-color: #FFFFFF;}
 
-/*div.content_box#about div.middle div.content h1 {position: absolute; width: 800px; left: -15px; padding: 10px 10px 10px 10px; color: #FFFFFF; background-color: #000000; font: normal 41px "PT Sans Bold";}*/
 div.content_box#about div.middle h1 {position: absolute; left: -15px; top: 30px;  font: normal 41px/45px "PT Sans Bold"; color: #FFFFFF; }
 div.content_box#about div.middle h1.down {position: absolute; left: -15px; top: 78px; font: normal 41px/45px "PT Sans Bold"; color:#FFFFFF;}
 div.content_box#about div.middle h1 span{padding: 10px 15px 10px 15px; background-color: #000000;}
