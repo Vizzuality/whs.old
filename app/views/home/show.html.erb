@@ -27,7 +27,7 @@
             <% end %>
             
             <div class="mosaic_label">
-              <p class="place"><%=feature.title%></p>
+              <p class="place"><%=truncate(feature.title,:length=>60,:delimiter=>"...")%></p>
               <p class="distance">4 hours by car from Madrid</p>
             </div>
           </div>
@@ -52,7 +52,7 @@
       <ul>
         <% @random_features.each do |feature|%>        
         <li <%= cycle('','','class=\'last\'', :name => 'classname') %> >
-		      <a href="/features/<%=feature.id%>"><%=feature.title%></a>
+		      <a href="/features/<%=feature.id%>"><%=truncate(feature.title,:length=>35,:delimiter=>"...")%></a>
 		      <p>3 hours by car from Madrid</p>
 	      </li>
 	      <% end %>

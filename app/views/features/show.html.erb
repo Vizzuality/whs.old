@@ -42,7 +42,7 @@
     
       <div class="content">
         <div id="main_area">
-          <p><%= simple_format @feature.description %> Uno dos tres cuatro</p>
+          <p><%= simple_format @feature.description %></p>
           <div id="wikipedia">You can find more information at <a href="<%=@feature.wikipedia_link%>">Wikipedia</a>.</div>
         </div>
         <div id="data_column">
@@ -111,7 +111,7 @@
             <% end %>
             
             <div class="mosaic_label">
-              <p class="place"><%=feature.title%></p>
+              <p class="place"><%=truncate(feature.title,:length=>60,:delimiter=>"...")%></p>
               <p class="distance">4 hours by car from Madrid</p>
             </div>
           </div>

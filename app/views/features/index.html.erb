@@ -44,7 +44,7 @@
             <% end %>
             
             <div class="mosaic_label">
-              <p class="place"><%=feature.title%></p>
+              <p class="place"><%=truncate(feature.title,:length=>60,:delimiter=>"...")%></p>
               <p class="distance">4 hours by car from Madrid</p>
             </div>
           </div>
