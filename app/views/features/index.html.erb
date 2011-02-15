@@ -64,11 +64,9 @@
       ev.stopPropagation();
       ev.preventDefault();
       if ($("div#criteria ul").is(":visible")) {
-        console.log("Es visible");
-      $("div#criteria span").css("backgroundPosition","-2px 0");        
+        $("div#criteria span").css("backgroundPosition","-2px 0");        
       } else {
-        console.log("No es visible");
-      $("div#criteria span").css("backgroundPosition","-2px -24px");
+        $("div#criteria span").css("backgroundPosition","-2px -24px");
       }
       $("div#criteria ul").toggle();
     });
