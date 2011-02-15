@@ -3,11 +3,6 @@
   <div class="middle">
     <div id="feature_image">
 
-      <ul class="image_selector">
-        <li><a href="javascript:blendimage('03Thumbs','work3Image', '/images/test/test_big.jpg', 300, 'workDesc3', 3, 3, 1)" class="current" id="workLink31"></a></li>
-        <li><a href="javascript:blendimage('03Thumbs','work3Image', '/images/test/test_big_2.jpg', 300, 'workDesc3', 3, 3, 2)" style="margin:0" id="workLink32"></a></li>
-        <li><a href="javascript:blendimage('03Thumbs','work3Image', '/images/test/test_big_3.jpg', 300, 'workDesc3', 3, 3, 2)" style="margin:0" id="workLink33"></a></li>
-      </ul>
       <div id="feature_title">
         <p id="country"><span><img class="flag" src="/images/flags/<%=@feature.iso_code%>.png"/><%= @feature.country %></span></p>
         <h1><span><%= @feature.title %></span></h1>
@@ -15,16 +10,29 @@
       </div>
 
       <% if @feature.gallery && @feature.gallery.gallery_entries.any? %>
-        <div class="bkg">
-          <div class="image" id="03Thumbs">
-            <%= image_tag @feature.gallery.gallery_entries.first.image.thumbnail(:large).url, :alt => @feature.title %>
-          </div>
-        </div>
+      
+        <ul class="image_selector">
         <% @feature.gallery.gallery_entries.each do |gallery_entry| %>
-          <%= image_tag gallery_entry.image.thumbnail(:large).url, :alt => @feature.title, :style => 'display: none' %>
+          <li><a href="" id=""></a></li>
         <% end %>
+        </ul>      
+      
+        <div class="images">
+          <%#= image_tag @feature.gallery.gallery_entries.first.image.thumbnail(:large).url, :alt => @feature.title %>
+
+          <% @feature.gallery.gallery_entries.each do |gallery_entry| %>
+            <div class="image" id="">
+            <%= image_tag gallery_entry.image.thumbnail(:large).url, :alt => @feature.title %>
+            </div>
+          <% end %>          
+        </div>
+        
+        <%# @feature.gallery.gallery_entries.each do |gallery_entry| %>
+          <%#= image_tag gallery_entry.image.thumbnail(:large).url, :alt => @feature.title, :style => 'display: none' %>
+        <%# end %>
+        
       <% else %>
-        <div class="bkg">
+        <div class="image">
           <img src="/images/test/test_big.jpg"/>
         </div>          
       <% end %>
@@ -171,13 +179,13 @@
       if ($("div#img_thumb").is(":visible")) {
         $("div#img_thumb").hide();
         $("a#show_link").html("Show map");
-        $("div#big_map").hide();
+        $("div.images").show();
         $("ul.image_selector").show();              
       } else {
         $("div#img_thumb").show();
         $("a#show_link").html("Show images");       
-        $("div#big_map").show();
         $("ul.image_selector").hide();              
+        $("div.images").hide();
       } 
     });
     
@@ -189,7 +197,15 @@
     };
     var map = new google.maps.Map(document.getElementById("big_map"), myOptions);
 
-    
+    latlng = new google.maps.LatLng(<%=@feature.the_geom.y%>, <%=@feature.the_geom.x%>);
+    marker = new google.maps.Marker({
+      position: latlng, 
+      map: map, 
+      title:"<%=@feature.title%>",
+      icon: "/images/explore/marker_<%=@feature.type%>.png"
+    });
+    google.maps.event.addListener(marker, "click", function() {window.location = "/features/<%=@feature.id%>"});
+
     var map_style = [
       {featureType: "administrative",elementType: "geometry",stylers: [{ visibility: "off" }]},
 	    {featureType: "poi",elementType: "all",stylers: [{ visibility: "off" }]},

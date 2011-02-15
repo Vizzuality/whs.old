@@ -7,9 +7,9 @@
     <div id="filter">
       <form>        
         <div class="input"><div class="input_left"></div><div class="input_center"><form><input id="searchText" type="text" size="20" value="Search..."/><input class="hidden" type="submit"/></form></div><div class="input_right"></div></div>
-        <a id="all_selector" class="selected" href="">All</a>
-        <a id="natural_selector" href="">Natural</a>
-        <a id="cultural_selector" href="">Cultural</a>
+        <a id="all_selector" class="selected" href="#">All</a>
+        <a id="natural_selector" href="#">Natural</a>
+        <a id="cultural_selector" href="#">Cultural</a>
         <div id="criteria">
           <span><a id="criteria" href="#">Search by criteria</a></span>
           <ul>
@@ -25,8 +25,8 @@
             <li><a href=""><%= I18n.t("feature.criteria.x") %></a></li>                                                
           </ul>                                                                        
         </div>
-        <a id="mosaic_selector" class="selected" href=""></a>            
-        <a id="list_selector" href=""></a>
+        <a id="mosaic_selector" class="selected" href="#"></a>            
+        <a id="list_selector" href="#"></a>
       </form>
     </div>
     <div id="mosaic">
@@ -65,6 +65,46 @@
 <script type="text/javascript">
 
   $(document).ready( function(){
+
+    $("a#all_selector").click(function(ev) {    
+      ev.stopPropagation();
+      ev.preventDefault();      
+      $("a#all_selector").addClass("selected");
+      $("a#cultural_selector").removeClass("selected");
+      $("a#natural_selector").removeClass("selected");      
+    });
+
+    $("a#natural_selector").click(function(ev) {    
+      ev.stopPropagation();
+      ev.preventDefault();      
+      $("a#all_selector").removeClass("selected");
+      $("a#cultural_selector").removeClass("selected");
+      $("a#natural_selector").addClass("selected");      
+    });
+
+    $("a#cultural_selector").click(function(ev) {    
+      ev.stopPropagation();
+      ev.preventDefault();      
+      $("a#all_selector").removeClass("selected");
+      $("a#cultural_selector").addClass("selected");
+      $("a#natural_selector").removeClass("selected");      
+    });
+
+    $("a#mosaic_selector").click(function(ev) {    
+      ev.stopPropagation();
+      ev.preventDefault();      
+      $("a#mosaic_selector").addClass("selected");
+      $("a#list_selector").removeClass("selected");
+    });
+
+
+    $("a#list_selector").click(function(ev) {    
+      ev.stopPropagation();
+      ev.preventDefault();      
+      $("a#mosaic_selector").removeClass("selected");
+      $("a#list_selector").addClass("selected");
+    });
+
 
     $("a#criteria").click(function(ev) {
       ev.stopPropagation();
