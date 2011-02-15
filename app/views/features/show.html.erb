@@ -104,41 +104,26 @@
 
     <div id="mosaic">
       <ul id="image_list">
-        <li class="mosaic_element">
-          <a href="/features/">
+        <% @nearest_places.each do |feature|%>
+        <li class="mosaic_element<%= cycle('',' middle','', :name => 'mosaic') %>">
+          <a href="/features/<%=feature.id%>">
           <div class="mosaic_element_div">
-            <img src="/images/test/test_small.jpg">
+            
+            <% if feature.gallery && feature.gallery.gallery_entries.any? %>  
+              <%= image_tag feature.gallery.gallery_entries.first.image.thumbnail(:small).url, :alt => feature.title %>            
+            <% else %>
+              <img src="/images/test/test_small.jpg">
+            <% end %>
+            
             <div class="mosaic_label">
-              <p class="place">Acropolis</p>
+              <p class="place"><%=feature.title%></p>
               <p class="distance">4 hours by car from Madrid</p>
             </div>
           </div>
           </a>
         </li>
-        <li class="separator"></li>
-        <li class="mosaic_element middle">
-          <a href="/features/">
-          <div class="mosaic_element_div">
-            <img src="/images/test/test_small.jpg">
-            <div class="mosaic_label">
-              <p class="place">Acropolis</p>
-              <p class="distance">4 hours by car from Madrid</p>
-            </div>
-          </div>
-          </a>
-        </li>
-        <li class="separator"></li>
-        <li class="mosaic_element">
-          <a href="/features/">
-          <div class="mosaic_element_div">
-            <img src="/images/test/test_small.jpg">
-            <div class="mosaic_label">
-              <p class="place">Acropolis</p>
-              <p class="distance">4 hours by car from Madrid</p>
-            </div>
-          </div>
-          </a>
-        </li>
+        <%= raw cycle('<li class="separator"></li>','<li class="separator"></li>','', :name => 'separator') %>
+        <% end %>
       </ul>
   </div>
 

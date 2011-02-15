@@ -13,7 +13,10 @@ class FeaturesController < ApplicationController
   def show
     @feature        = Feature.find(params[:id])
     @random_feature = Feature.all.reject{|f| f.id == @features.id}.sample
-
+    
+    # TODO: Replace with nearest places, currently they are random
+    @nearest_places =  @features.sample(3)
+    
     # you can use meta fields from your model instead (e.g. browser_title)
     # by swapping @page for @feature in the line below:
     present(@page)
