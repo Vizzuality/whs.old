@@ -23,7 +23,8 @@ namespace :whs do
       %w(date_of_inscription datetime),
       %w(size float),
       %w(region string),
-      %w(edited_region string)
+      %w(edited_region string),
+      %w(type string)
     ]
     RefinerySetting.set(:feature_attributes, feature_attributes.map{|a| a.join(':')}.join("\r\n"))
 
@@ -51,7 +52,7 @@ namespace :whs do
         whs.title               = row.edited_name
         whs.whs_source_page     = row.whs_source_page
         whs.comments            = row.comments
-        whs.whs_site_id         = row.whs_site_id
+        whs.whs_site_id         = row.whs_site_id.to_i.to_s if row.whs_site_id
         whs.endangered_reason   = row.endangered_reason
         whs.endangered_year     = row.endangered_year
         whs.name                = row.name
@@ -63,6 +64,7 @@ namespace :whs do
         whs.size                = row.size_has.to_f.hectare.to.square_meters.value if row.size_has.present?
         whs.region              = row.region
         whs.edited_region       = row.edited_region
+        whs.type                = row.type
         whs.the_geom            = Point.from_x_y(row.longitude, row.latitude).as_wkt
 
         whs.save!
@@ -158,12 +160,100 @@ namespace :whs do
     end
   end
 
-  # desc "Inserts into database all the downloaded images from panoramio"
-  # task :import_images do
-  #   image = Image.create! :image => image_file
-  #   feature.gallery.gallery_entries.create! :name => "Image for gallery #{feature.gallery.name} #{photo.photo_title}", :image_id => image.id
-  #   feature.gallery = Gallery.find_or_create_by_name feature.title
-  #   feature.gallery.gallery_entries.clear
-  # end
+  desc "Loads into database images from tmp/panoramio"
+  task :import_images => :environment do
 
+    puts 'Importing images into database'
+    puts '=============================='
+
+    errors = []
+    total_images = 0
+    imported_images = 0
+
+    features_folders = Dir[Rails.root.join("tmp/panoramio/features/*")]
+    features_folders.each_with_index do |feature_folder, index|
+
+      whs_site_id = feature_folder.match(/.*\/(\d+)$/)[1]
+
+      if whs_site_id
+        feature = Feature.by_whs_site_id(whs_site_id)
+
+        next if feature.nil?
+
+        feature.gallery = Gallery.find_or_create_by_name feature.title
+        feature.gallery.gallery_entries.clear
+
+        puts "Importing photos for #{feature.title} (#{index} feature of #{features_folders.size} - #{index * 100 / features_folders.size}%)"
+
+        feature_images = Dir["#{feature_folder}/*"]
+        photos_pg = ProgressBar.new("Feature ##{feature.whs_site_id}", feature_images.count)
+
+        total_images += feature_images.count
+
+        feature_images.each_with_index do |feature_image, image_index|
+          begin
+            File.open(feature_image) do |f|
+              image = Image.create! :image => f
+              feature.gallery.gallery_entries.create! :name => "Image #{image_index} for gallery #{feature.gallery.name}", :image_id => image.id
+            end
+
+            imported_images += 1
+          rescue Exception => e
+            errors << ["Errors importing images for #{feature.title}", e]
+          end
+
+          photos_pg.inc
+        end
+
+        feature.meta[:images_consolidated] = false
+        feature.save!
+
+        photos_pg.finish
+
+      end
+    end
+
+    if errors.present?
+      puts '############################################'
+      puts 'There were some errors in the import process'
+      puts '============================================'
+      errors.each do |error|
+        puts "- #{error.first}"
+        puts "  error message: #{error.last.message}"
+      end
+    end
+    puts '#####################################################'
+    puts "#{imported_images} images imported of #{total_images}"
+  end
+
+  desc "Clean invalid image files from tmp/panoramio"
+  task :clean_invalid_image_files do
+    puts '#########################'
+    puts 'Cleaning invalid image files'
+    puts '-------------------------'
+    puts 'Detecting invalid files...'
+
+    image_files_paths = Dir[Rails.root.join("tmp/panoramio/features/**/*")]
+    pg = ProgressBar.new("Detecting...", image_files_paths.count)
+
+    invalid_images = []
+    image_files_paths.each do |p|
+      invalid_images << p if `file --mime -b #{p}`.match(/text\/html/)
+      pg.inc
+    end
+    pg.finish
+    puts '... done!'
+
+    puts '-------------------------'
+    puts 'Deleting invalid files...'
+    pg = ProgressBar.new("Deleting...", invalid_images.count)
+    invalid_images.each do |image_path|
+      FileUtils.rm(image_path)
+      pg.inc
+    end
+    pg.finish
+    puts '... done!'
+    puts '#######################'
+    puts "Process terminated. #{invalid_images.count} files deleted."
+  end
 end
