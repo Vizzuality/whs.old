@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101014144144) do
+ActiveRecord::Schema.define(:version => 20110215161711) do
 
   create_table "blog_categories", :force => true do |t|
     t.column "title", :string
@@ -99,8 +99,23 @@ ActiveRecord::Schema.define(:version => 20101014144144) do
 
   add_index "gallery_entries", ["id"], :name => "index_gallery_entries_on_id"
 
-# Could not dump table "geography_columns" because of following StandardError
-#   Unknown type 'name' for column 'f_table_catalog' /Users/diegocano/.rvm/gems/ruby-1.8.7-p330@whs/bundler/gems/postgis_adapter-e85ca1be881e/lib/postgis_adapter/common_spatial_adapter.rb:52:in `table'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@whs/bundler/gems/postgis_adapter-e85ca1be881e/lib/postgis_adapter/common_spatial_adapter.rb:50:in `each'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@whs/bundler/gems/postgis_adapter-e85ca1be881e/lib/postgis_adapter/common_spatial_adapter.rb:50:in `table'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.1/lib/active_record/schema_dumper.rb:75:in `tables'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.1/lib/active_record/schema_dumper.rb:66:in `each'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.1/lib/active_record/schema_dumper.rb:66:in `tables'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.1/lib/active_record/schema_dumper.rb:27:in `dump'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.1/lib/active_record/schema_dumper.rb:21:in `dump'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.1/lib/active_record/railties/databases.rake:327/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.1/lib/active_record/railties/databases.rake:326:in `open'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.1/lib/active_record/railties/databases.rake:326/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:636:in `call'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:636:in `execute'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:631:in `each'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:631:in `execute'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:597:in `invoke_with_call_chain'/Users/diegocano/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/monitor.rb:242:in `synchronize'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:590:in `invoke_with_call_chain'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:583:in `invoke'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.1/lib/active_record/railties/databases.rake:143/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:636:in `call'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:636:in `execute'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:631:in `each'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:631:in `execute'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:597:in `invoke_with_call_chain'/Users/diegocano/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/monitor.rb:242:in `synchronize'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:590:in `invoke_with_call_chain'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:583:in `invoke'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:2051:in `invoke_task'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:2029:in `top_level'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:2029:in `each'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:2029:in `top_level'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:2068:in `standard_exception_handling'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:2023:in `top_level'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:2001:in `run'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:2068:in `standard_exception_handling'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:1998:in `run'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/bin/rake:31/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/bin/rake:19:in `load'/Users/diegocano/.rvm/gems/ruby-1.8.7-p330@global/bin/rake:19
+  create_table "geo_ips", :force => true do |t|
+    t.column "ip_start", :integer, :limit => 8
+    t.column "country_code", :string
+    t.column "country_name", :string
+    t.column "region_code", :string
+    t.column "region_name", :string
+    t.column "city", :string
+    t.column "zipcode", :string
+    t.column "latitude", :float
+    t.column "longitude", :float
+    t.column "timezone", :integer
+    t.column "gmt_offset", :integer
+    t.column "dst_offset", :integer
+    t.column "city_latin1", :string
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
 
   create_table "images", :force => true do |t|
     t.column "image_mime_type", :string
