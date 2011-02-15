@@ -31,7 +31,6 @@
     </div>
     <div id="mosaic">
       <ul id="image_list">
-
         <% @random_features.each do |feature|%>
         <li class="mosaic_element<%= cycle('',' middle','', :name => 'mosaic') %>">
           <a href="/features/<%=feature.id%>">
@@ -51,6 +50,22 @@
           </a>
         </li>
         <li class="separator<%= cycle('','',' horizontal', :name => 'separator') %>"></li>
+        <% end %>
+      </ul>
+    </div>
+    <div id="list">
+      <ul id="result_list">
+        <% @random_features.each do |feature|%>        
+        <li>
+          <h3><a href="/features/<%=feature.id%>"><%=truncate(feature.title,:length=>50,:delimiter=>"...") %></a></h3>
+          
+          <span class="description">A <%=feature.type %> site at <%=feature.country%> (3 hours away from Madrid)</span>
+          <!--
+          <span class="distance">3 hours from Madrid</span>
+          <span class="type"><%=feature.type %></span>
+          <span class="country"><%=feature.country %></span>          
+        -->
+        </li>
         <% end %>
       </ul>
     </div>
@@ -93,6 +108,9 @@
       ev.preventDefault();      
       $("a#mosaic_selector").addClass("selected");
       $("a#list_selector").removeClass("selected");
+
+      $("div#explore div.middle div#list").hide();
+      $("div#explore div.middle div#mosaic").show();      
     });
 
 
@@ -101,6 +119,9 @@
       ev.preventDefault();      
       $("a#mosaic_selector").removeClass("selected");
       $("a#list_selector").addClass("selected");
+      
+      $("div#explore div.middle div#list").show();
+      $("div#explore div.middle div#mosaic").hide();      
     });
 
 

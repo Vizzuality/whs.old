@@ -124,9 +124,16 @@ div#filter a.selected#mosaic_selector, a.selected#list_selector{background-posit
 
 
 /* Mosaico */
-div#explore div.middle div#mosaic {position: relative;}
-div#explore div.middle div#mosaic {margin: 0 8px 0 8px; background: #FFFFFF;}
+div#explore div.middle div#mosaic {position: relative; margin: 0 8px 0 8px; background: #FFFFFF;}
 div#explore div.middle div#mosaic ul#image_list {height: 645px;}
+
+/* List */
+div#explore div.middle div#list {position: relative; display:none; margin: 0 8px 0 8px; background-color: #FFFFFF; color: #000000;}
+div#explore div.middle div#list ul {}
+div#explore div.middle div#list ul li {padding: 25px 25px 25px 25px; border-bottom: 1px solid #999999;}
+div#explore div.middle div#list ul li h3 a {font: normal 18px "PT Sans Bold"; color: #FF9900; text-decoration: none;}
+div#explore div.middle div#list ul li span.description {font: normal 13px "Arial"; color: #666666}
+
 div.clear {clear: both;}
 
 /* FEATURES SPECIFIC -------------------------------------------- */
@@ -149,7 +156,7 @@ div#feature div.middle div.content {margin: 0 8px 0 8px; background: #FFFFFF;}
 div#feature_title {position: absolute; bottom: -30px; left: -15px; z-index: 15;}
 div#feature_title p#country span{padding: 8px 20px 0px 20px ; color: #FFFFFF; background-color: #000000; font: normal 15px "PT Sans";}
 div#feature_title p#country span img {margin: 0 8px 0 0;}
-div#feature_title h1 {margin:5px 0 5px 0; z-index: 15;}
+div#feature_title h1 {margin:5px 0 5px 0; width: 600px; z-index: 15;}
 div#feature_title h1 span {color: #FFFFFF;  font: normal 35px "PT Sans Bold"; padding: 5px 20px 3px 20px; background-color: #000000; z-index: 15;}
 div#feature_title p.distance span {padding: 7px 20px 10px 40px; color: #999999; background: url("/images/transport_icons.png") no-repeat 20px 7px; background-color: #000000; font: normal 13px Arial;}
 div#feature_title p.distance span#plane {background-position: 20px 7px;}
