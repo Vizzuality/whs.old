@@ -12,17 +12,17 @@
       <% if @feature.gallery && @feature.gallery.gallery_entries.any? %>
       
         <ul class="image_selector">
-        <% @feature.gallery.gallery_entries.each do |gallery_entry| %>
-          <li><a href="" id=""></a></li>
+        <% @feature.gallery.gallery_entries.each_with_index do |gallery_entry,i| %>
+          <li><a href="javascript:view_image('<%=i%>')"></a></li>
         <% end %>
         </ul>      
       
         <div class="images">
           <%#= image_tag @feature.gallery.gallery_entries.first.image.thumbnail(:large).url, :alt => @feature.title %>
 
-          <% @feature.gallery.gallery_entries.each do |gallery_entry| %>
-            <div class="image" id="">
-            <%= image_tag gallery_entry.image.thumbnail(:large).url, :alt => @feature.title %>
+          <% @feature.gallery.gallery_entries.each_with_index do |gallery_entry,i| %>
+            <div class="image  <% if (i == 0)%>first_image<% end%>" id="image_<%=i%>">
+              <%= image_tag gallery_entry.image.thumbnail(:large).url, :alt => @feature.title %>
             </div>
           <% end %>          
         </div>
@@ -32,8 +32,10 @@
         <%# end %>
         
       <% else %>
-        <div class="image">
-          <img src="/images/test/test_big.jpg"/>
+        <div class="images">
+          <div class="image">
+            <img src="/images/test/test_big.jpg"/>
+          </div>
         </div>          
       <% end %>
       
@@ -160,6 +162,11 @@
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 
 <script type="text/javascript">
+  
+  function view_image(i) {
+    $("div.images div").css("z-index","5");
+    $("div.images div#image_"+i).css("z-index","6");
+  }
   
   $(document).ready( function(){
 
