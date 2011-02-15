@@ -129,24 +129,24 @@ div.clear {clear: both;}
 /* FEATURES SPECIFIC -------------------------------------------- */
 
 div#feature_image {margin: 0 8px -4px 8px; position: relative;}
-div#feature_image ul.image_selector {position: absolute; top: 20px; left: -15px; padding:10px 5px 10px 10px; z-index: 5; background-color: #000000;}
+div#feature_image ul.image_selector {position: absolute; top: 20px; left: -15px; padding:10px 5px 10px 10px; z-index: 15; background-color: #000000;}
 div#feature_image ul.image_selector li {float: left; padding: 0 5px 0 0;}
 div#feature_image ul.image_selector li a {float: left; width: 8px; height: 8px; background: url("/images/image_selector.png") no-repeat 0 0;}
 div#feature_image ul.image_selector li a:hover {background-position: -9px 0px}
-div#feature_image div#big_map_container {position: absolute; display: none; top: -0px; width: 880px; height:430px}
-div#feature_image div#big_map_container div#big_map {}
-div#feature_image div.bkg {z-index: 15;}
-div#feature_image div.bkg div.image {z-index: 15;}
+div#feature_image div#big_map_container {position: absolute; top: 0px; width: 880px; height:430px; z-index: 5;}
+div#feature_image div#big_map_container div#big_map {display: none; position: absolute; top: 0px; width: 880px; height:430px; z-index: 5;}
+div#feature_image div.bkg {z-index: 0;}
+div#feature_image div.bkg div.image {}
 div#feature_image div#endangered {position: absolute; top: -11px; right: -11px; width: 97px; height: 94px; background: url("/images/endangered.png");}
 
 /* Image area */
 div#feature div.middle div.content {position: relative;}
 div#feature div.middle div.content {margin: 0 8px 0 8px; background: #FFFFFF;}
-div#feature_title {position: absolute; bottom: -30px; left: -15px; z-index: 5;}
+div#feature_title {position: absolute; bottom: -30px; left: -15px; z-index: 15;}
 div#feature_title p#country span{padding: 8px 20px 0px 20px ; color: #FFFFFF; background-color: #000000; font: normal 15px "PT Sans";}
 div#feature_title p#country span img {margin: 0 8px 0 0;}
-div#feature_title h1 {margin:5px 0 5px 0;}
-div#feature_title h1 span {color: #FFFFFF;  font: normal 35px "PT Sans Bold"; padding: 5px 20px 3px 20px; background-color: #000000;}
+div#feature_title h1 {margin:5px 0 5px 0; z-index: 15;}
+div#feature_title h1 span {color: #FFFFFF;  font: normal 35px "PT Sans Bold"; padding: 5px 20px 3px 20px; background-color: #000000; z-index: 15;}
 div#feature_title p.distance span {padding: 7px 20px 10px 40px; color: #999999; background: url("/images/transport_icons.png") no-repeat 20px 7px; background-color: #000000; font: normal 13px Arial;}
 div#feature_title p.distance span#plane {background-position: 20px 7px;}
 div#feature_title p.distance span#car {background-position: 20px -24px;}
@@ -163,7 +163,6 @@ div#data_column div.map_container div#map { width: 235px; height:162px; backgrou
 div#data_column div.map_container div#darken {position:absolute; display: none; top:5px; width: 235px; height:162px; z-index: 25;}
 div#data_column div.map_container div#darken a#show_link {position:absolute; top: 120px; left: -10px; z-index: 35; padding: 7px 7px 7px 30px; background: url("/images/expand_icon.png") no-repeat 8px 8px; background-color: #000000; color: #999999; font: normal 13px Arial; text-decoration: none;}
 div#data_column div.map_container div#img_thumb {position: absolute; display:none; top: 5px;	width: 235px; height:162px; z-index: 15;}
-
 
 div#data_column p.label {margin: 0 0 0 5px; font: normal 13px "PT Sans Bold"; color: #333333;}
 div#data_column p.label#first {margin: 130px 0 0 5px;}

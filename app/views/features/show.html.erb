@@ -29,7 +29,7 @@
         </div>          
       <% end %>
       
-    <!--<div id="big_map_container"><div id="big_map"></div></div>-->
+      <div id="big_map_container"><div id="big_map"></div></div>
 
     <% if @feature.endangered_year %>
       <div id="endangered"></div>
@@ -171,10 +171,13 @@
       if ($("div#img_thumb").is(":visible")) {
         $("div#img_thumb").hide();
         $("a#show_link").html("Show map");
-        $("div#big_map_container").show();
+        $("div#big_map").hide();
+        $("ul.image_selector").show();              
       } else {
         $("div#img_thumb").show();
-        $("a#show_link").html("Show images");        
+        $("a#show_link").html("Show images");       
+        $("div#big_map").show();
+        $("ul.image_selector").hide();              
       } 
     });
     
@@ -184,7 +187,7 @@
       center: new google.maps.LatLng(<%=@feature.the_geom.y%>,<%=@feature.the_geom.x%>),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    var map = new google.maps.Map(document.getElementById("map"), myOptions);
+    var map = new google.maps.Map(document.getElementById("big_map"), myOptions);
 
     
     var map_style = [

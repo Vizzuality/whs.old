@@ -6,6 +6,7 @@ class FeaturesController < ApplicationController
   def index
     # you can use meta fields from your model instead (e.g. browser_title)
     # by swapping @page for @feature in the line below:
+    @random_features = @features.sample(9)
     present(@page)
   end
 

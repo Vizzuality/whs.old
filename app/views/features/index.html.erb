@@ -32,12 +32,18 @@
     <div id="mosaic">
       <ul id="image_list">
 
-        <% @features[0..8].each do |feature|%>
+        <% @random_features.each do |feature|%>
         <!--<li class="separator<%# cycle(' horizontal','','', :name => 'separator') %>"></li>-->
         <li class="mosaic_element<%= cycle('',' middle','', :name => 'mosaic') %>">
           <a href="/features/<%=feature.id%>">
           <div class="mosaic_element_div">
-            <img src="/images/test/test_small.jpg">
+            
+            <% if feature.gallery && feature.gallery.gallery_entries.any? %>  
+              <%= image_tag feature.gallery.gallery_entries.first.image.thumbnail(:small).url, :alt => feature.title %>            
+            <% else %>
+              <img src="/images/test/test_small.jpg">
+            <% end %>
+            
             <div class="mosaic_label">
               <p class="place"><%=feature.title%></p>
               <p class="distance">4 hours by car from Madrid</p>
@@ -99,13 +105,13 @@
     var marker;
     var latlng;
     
-    <% @features[0..8].each do |feature|%>
+    <% @random_features.each do |feature|%>
       latlng = new google.maps.LatLng(<%=feature.the_geom.y%>, <%=feature.the_geom.x%>);
       marker = new google.maps.Marker({
         position: latlng, 
         map: map, 
         title:"<%=feature.title%>",
-        icon: "/images/explore/marker_natural.png"
+        icon: "/images/explore/marker_<%=feature.type%>.png"
       });
       google.maps.event.addListener(marker, "click", function() {window.location = "/features/<%=feature.id%>"});
     <% end %>
