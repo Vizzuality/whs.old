@@ -14,7 +14,7 @@ module FeatureExtensions
       scope :with_gallery, where('gallery_id IS NOT NULL')
 
       # Returns features ordered by closest to specified point
-      scope :close_to, lambda{|point| order("ST_Distance(the_geom, GeomFromText('POINT(#{point.x} #{point.y})', 4326)) DESC")}
+      scope :close_to, lambda{|point| order("ST_Distance(the_geom, GeomFromText('POINT(#{point.x} #{point.y})', 4326))")}
     end
   end
 
