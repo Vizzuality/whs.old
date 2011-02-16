@@ -25,14 +25,16 @@ GIT
     refinerycms-galleries (0.4)
 
 GIT
-  remote: git://github.com/ferblape/postgis_adapter.git
-  revision: e85ca1be881e2df4396da5c4482337ab05f6a85d
+  remote: git://github.com/nofxx/postgis_adapter.git
+  revision: d4c6708daf382450578c03c1506669a3cbaa91e6
   specs:
-    ppe-postgis-adapter (0.7.8)
+    postgis_adapter (0.7.9)
+      GeoRuby
 
 GEM
   remote: http://rubygems.org/
   specs:
+    GeoRuby (1.3.4)
     abstract (1.0.0)
     actionmailer (3.0.1)
       actionpack (= 3.0.1)
@@ -178,8 +180,8 @@ DEPENDENCIES
   json
   nofxx-georuby
   pg (= 0.9.0)
+  postgis_adapter!
   ppe-panoramio
-  ppe-postgis-adapter!
   progressbar
   rails (= 3.0.1)
   refinerycms (= 0.9.8.5)
