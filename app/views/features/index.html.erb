@@ -1,11 +1,11 @@
-<div class="content_box" id="explore">	
+<div class="content_box" id="explore">
   <div class="top"></div>
   <div class="middle">
     <h1><span>More than 900 beautiful</span></h1>
     <h1 class="down"><span>places to see</span></h1>
     <div class="map_container"><div id="map"></div></div>
     <div id="filter">
-      <form>        
+      <form>
         <div class="input"><div class="input_left"></div><div class="input_center"><form><input id="searchText" type="text" size="20" value="Search..."/><input class="hidden" type="submit"/></form></div><div class="input_right"></div></div>
         <a id="all_selector" class="selected" href="#">All</a>
         <a id="natural_selector" href="#">Natural</a>
@@ -16,35 +16,34 @@
             <li><a href=""><%= I18n.t("feature.criteria.i") %></a></li>
             <li><a href=""><%= I18n.t("feature.criteria.ii") %></a></li>
             <li><a href=""><%= I18n.t("feature.criteria.iii") %></a></li>
-            <li><a href=""><%= I18n.t("feature.criteria.iv") %></a></li>                  
+            <li><a href=""><%= I18n.t("feature.criteria.iv") %></a></li>
             <li><a href=""><%= I18n.t("feature.criteria.v") %></a></li>
             <li><a href=""><%= I18n.t("feature.criteria.vi") %></a></li>
             <li><a href=""><%= I18n.t("feature.criteria.vii") %></a></li>
-            <li><a href=""><%= I18n.t("feature.criteria.viii") %></a></li>                                                
+            <li><a href=""><%= I18n.t("feature.criteria.viii") %></a></li>
             <li><a href=""><%= I18n.t("feature.criteria.ix") %></a></li>
-            <li><a href=""><%= I18n.t("feature.criteria.x") %></a></li>                                                
-          </ul>                                                                        
+            <li><a href=""><%= I18n.t("feature.criteria.x") %></a></li>
+          </ul>
         </div>
-        <a id="mosaic_selector" class="selected" href="#"></a>            
+        <a id="mosaic_selector" class="selected" href="#"></a>
         <a id="list_selector" href="#"></a>
       </form>
     </div>
     <div id="mosaic">
       <ul id="image_list">
-        <% @random_features.each do |feature|%>
+        <% @random_features.each do |feature, itinerary|%>
         <li class="mosaic_element<%= cycle('',' middle','', :name => 'mosaic') %>">
           <a href="/features/<%=feature.id%>">
           <div class="mosaic_element_div">
-            
-            <% if feature.gallery && feature.gallery.gallery_entries.any? %>  
-              <%= image_tag feature.gallery.gallery_entries.first.image.thumbnail(:small).url, :alt => feature.title %>            
+            <% if feature.gallery && feature.gallery.gallery_entries.any? %>
+              <%= image_tag feature.gallery.gallery_entries.first.image.thumbnail(:small).url, :alt => feature.title %>
             <% else %>
               <img src="/images/default_mosaic.png">
             <% end %>
-            
+
             <div class="mosaic_label">
-              <p class="place"><%=truncate(feature.title,:length=>60,:delimiter=>"...")%></p>
-              <p class="distance">4 hours by car from Madrid</p>
+              <p class="place"><%=truncate(feature.title,:length => 60, :delimiter => "...")%></p>
+              <p class="distance"><%= itinerary[:time] %> by <%= itinerary[:type] %> from <%= @user_city %></p>
             </div>
           </div>
           </a>
@@ -55,15 +54,15 @@
     </div>
     <div id="list">
       <ul id="result_list">
-        <% @random_features.each do |feature|%>        
+        <% @random_features.each do |feature, itinerary|%>
         <li>
           <h3><a href="/features/<%=feature.id%>"><%=truncate(feature.title,:length=>50,:delimiter=>"...") %></a></h3>
-          
+
           <span class="description">A <%=feature.type %> site at <%=feature.country%> (3 hours away from Madrid)</span>
           <!--
           <span class="distance">3 hours from Madrid</span>
           <span class="type"><%=feature.type %></span>
-          <span class="country"><%=feature.country %></span>          
+          <span class="country"><%=feature.country %></span>
         -->
         </li>
         <% end %>
@@ -79,49 +78,49 @@
 
   $(document).ready( function(){
 
-    $("a#all_selector").click(function(ev) {    
+    $("a#all_selector").click(function(ev) {
       ev.stopPropagation();
-      ev.preventDefault();      
+      ev.preventDefault();
       $("a#all_selector").addClass("selected");
       $("a#cultural_selector").removeClass("selected");
-      $("a#natural_selector").removeClass("selected");      
+      $("a#natural_selector").removeClass("selected");
     });
 
-    $("a#natural_selector").click(function(ev) {    
+    $("a#natural_selector").click(function(ev) {
       ev.stopPropagation();
-      ev.preventDefault();      
+      ev.preventDefault();
       $("a#all_selector").removeClass("selected");
       $("a#cultural_selector").removeClass("selected");
-      $("a#natural_selector").addClass("selected");      
+      $("a#natural_selector").addClass("selected");
     });
 
-    $("a#cultural_selector").click(function(ev) {    
+    $("a#cultural_selector").click(function(ev) {
       ev.stopPropagation();
-      ev.preventDefault();      
+      ev.preventDefault();
       $("a#all_selector").removeClass("selected");
       $("a#cultural_selector").addClass("selected");
-      $("a#natural_selector").removeClass("selected");      
+      $("a#natural_selector").removeClass("selected");
     });
 
-    $("a#mosaic_selector").click(function(ev) {    
+    $("a#mosaic_selector").click(function(ev) {
       ev.stopPropagation();
-      ev.preventDefault();      
+      ev.preventDefault();
       $("a#mosaic_selector").addClass("selected");
       $("a#list_selector").removeClass("selected");
 
       $("div#explore div.middle div#list").hide();
-      $("div#explore div.middle div#mosaic").show();      
+      $("div#explore div.middle div#mosaic").show();
     });
 
 
-    $("a#list_selector").click(function(ev) {    
+    $("a#list_selector").click(function(ev) {
       ev.stopPropagation();
-      ev.preventDefault();      
+      ev.preventDefault();
       $("a#mosaic_selector").removeClass("selected");
       $("a#list_selector").addClass("selected");
-      
+
       $("div#explore div.middle div#list").show();
-      $("div#explore div.middle div#mosaic").hide();      
+      $("div#explore div.middle div#mosaic").hide();
     });
 
 
@@ -129,7 +128,7 @@
       ev.stopPropagation();
       ev.preventDefault();
       if ($("div#criteria ul").is(":visible")) {
-        $("div#criteria span").css("backgroundPosition","-2px 0");        
+        $("div#criteria span").css("backgroundPosition","-2px 0");
       } else {
         $("div#criteria span").css("backgroundPosition","-2px -24px");
       }
@@ -138,8 +137,8 @@
 
     $("div#criteria ul a").click(function(ev) {
       ev.stopPropagation();
-      ev.preventDefault();      
-      $("div#criteria span").css("backgroundPosition","-2px 0");        
+      ev.preventDefault();
+      $("div#criteria span").css("backgroundPosition","-2px 0");
       $("div#criteria ul").toggle();
       $("a#criteria").text($(this).text());
     });
@@ -148,7 +147,7 @@
     $("div#map").mouseover(function() {
       $("h1").hide();
     });
-    
+
     $("div#map").mouseout(function() {
       $("h1").show();
     });
@@ -163,27 +162,27 @@
 
     var marker;
     var latlng;
-    
-    <% @random_features.each do |feature|%>
+
+    <% @random_features.each do |feature, itinerary|%>
       latlng = new google.maps.LatLng(<%=feature.the_geom.y%>, <%=feature.the_geom.x%>);
       marker = new google.maps.Marker({
-        position: latlng, 
-        map: map, 
+        position: latlng,
+        map: map,
         title:"<%=feature.title%>",
         icon: "/images/explore/marker_<%=feature.type%>.png"
       });
       google.maps.event.addListener(marker, "click", function() {window.location = "/features/<%=feature.id%>"});
     <% end %>
-    
+
     var map_style = [
       {featureType: "administrative",elementType: "geometry",stylers: [{ visibility: "off" }]},
-	    {featureType: "poi",elementType: "all",stylers: [{ visibility: "off" }]},
-	    {featureType: "road",elementType: "all",stylers: [{ visibility: "off" }]},
-	    {featureType: "transit",elementType: "all",stylers: [{ visibility: "off" }]},
-	    {featureType: "landscape.natural",elementType: "all",stylers: [{ visibility: "off" }]},
-	    {featureType: "water",elementType: "all",stylers: [{ lightness: 30 },{ saturation: -47 },{ gamma: 0.6 },{ hue: "#0088ff" }]}
+      {featureType: "poi",elementType: "all",stylers: [{ visibility: "off" }]},
+      {featureType: "road",elementType: "all",stylers: [{ visibility: "off" }]},
+      {featureType: "transit",elementType: "all",stylers: [{ visibility: "off" }]},
+      {featureType: "landscape.natural",elementType: "all",stylers: [{ visibility: "off" }]},
+      {featureType: "water",elementType: "all",stylers: [{ lightness: 30 },{ saturation: -47 },{ gamma: 0.6 },{ hue: "#0088ff" }]}
     ];
-    
+
     var styledMap =  new google.maps.StyledMapType(map_style,{map: map,name: "My Style"});
     map.mapTypes.set('my Style', styledMap);
     map.setMapTypeId('my Style');

@@ -59,7 +59,7 @@
         <% @closests_features.each do |feature, itinerary|%>
         <li <%= cycle('','','class=\'last\'', :name => 'classname') %> >
           <%= link_to truncate(feature.title,:length => 35, :delimiter => '...'), feature, :title => feature.title %>
-          <p><%= itinerary[:time] %> by <%= itinerary[:type] %> from Madrid</p>
+          <p><%= itinerary[:time] %> by <%= itinerary[:type] %> from <%= @user_city %></p>
         </li>
         <% end %>
       </ul>

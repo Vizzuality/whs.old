@@ -18,4 +18,18 @@ class ApplicationController < ActionController::Base
   end
   private :geolocate_user
 
+  def user_geolocated?
+    session[:user_location] && session[:user_location][:lon] && session[:user_location][:lat]
+  end
+
+  def user_city
+    city = ''
+    city = session[:user_location][:city].capitalize if user_geolocated? && session[:user_location][:city]
+    city
+  end
+
+  def user_latlong
+    Point.from_x_y(session[:user_location][:lon], session[:user_location][:lat]) if user_geolocated?
+  end
+
 end

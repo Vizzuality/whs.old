@@ -6,7 +6,7 @@
       <div id="feature_title">
         <p id="country"><span><img class="flag" src="/images/flags/<%=@feature.iso_code%>.png"/><%= @feature.country %></span></p>
         <h1><span><%= @feature.title %></span></h1>
-        <p class="distance"><span id="<%= @itinerary_type %>">Just <%= @itinerary_time %> away from <%= @user_location.capitalize %> by <%= @itinerary_type %></span></p>
+        <p class="distance"><span id="<%= @itinerary_type %>">Just <%= @itinerary_time %> away from <%= @user_city %> by <%= @itinerary_type %></span></p>
       </div>
 
       <% if @feature.gallery && @feature.gallery.gallery_entries.any? %>
@@ -15,7 +15,7 @@
             <%= image_tag gallery_entry.image.thumbnail(:large).url, :alt => @feature.title %>
           <% end %>
         </div>
-      <% else %>        
+      <% else %>
         <img id="default_image" src="/images/default_big.png"/>
       <% end %>
 
@@ -202,7 +202,7 @@
 
     var styledMap =  new google.maps.StyledMapType(map_style,{map: map,name: "My Style"});
     map.mapTypes.set('my Style', styledMap);
-    map.setMapTypeId('my Style');    
+    map.setMapTypeId('my Style');
 
   });
 
