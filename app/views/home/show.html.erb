@@ -5,14 +5,20 @@
   	  <h2>RethinkWHS.org</h2>
         <h1><span>Discovering the most</h1>
         <h1 class="down"><span>beautiful places in the world</span></h1>
-
+        <a href="/features/<%=@random_features[0].id%>">
         <div id="big_image">
             <% if @random_features[0].gallery && @random_features[0].gallery.gallery_entries.any? %>  
               <%= image_tag @random_features[0].gallery.gallery_entries.first.image.thumbnail(:large).url, :alt => @random_features[0].title %>            
+              <div class="big_label">
+                <p class="place"><%=truncate(@random_features[0].title,:length=>60,:delimiter=>"...")%></p>
+                <p class="distance">4 hours by car from Madrid</p>
+              </div>
+
             <% else %>
-              <img src="/images/test/test_big.jpg">
+              <img src="/images/default_big.png">
             <% end %>
         </div>
+        </a>
         
         <ul id="image_list">
         <% @random_features[1..6].each do |feature|%>

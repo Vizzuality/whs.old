@@ -28,12 +28,20 @@ $(document).ready(function(){
     $(this).children(".mosaic_label").show();
    },function(){
     $(this).children(".mosaic_label").hide();
-  });   
+  });
+
+	// FUNCTION FOR THE BIG IMAGE ON HOME
+  $('#big_image').hover(function() {
+    $(this).children(".big_label").show();
+   },function(){
+    $(this).children(".big_label").hide();
+  });
 
 });
 
 	//FUNCTION FOR THE IMAGE SLIDESHOW ON FEATURES PAGE
 	
+/*	
 	function changeOpac(opacity, id) {
 		var object = document.getElementById(id).style; 
 		object.opacity = (opacity / 100);
@@ -60,3 +68,4 @@ $(document).ready(function(){
 		}
 		document.getElementById("workLink"+workn+linkn).className = "current";
 	}
+	*/
