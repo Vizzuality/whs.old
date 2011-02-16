@@ -33,7 +33,7 @@ namespace :whs do
     puts 'Importing features data'
     puts '======================='
     # Hey, look at me!!
-    print "\a\a\a" # beep! beep! beep!
+    3.times{ sleep 0.2; print "\a" } # beep! beep! beep!
     puts 'Destroy previously created Features?'
     print '(yes/no*) >> '
     STDOUT.flush
