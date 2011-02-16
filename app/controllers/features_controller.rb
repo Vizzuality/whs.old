@@ -13,8 +13,11 @@ class FeaturesController < ApplicationController
   def show
     @feature        = Feature.find(params[:id])
     @random_feature = Feature.all.reject{|f| f.id == @features.id}.sample
-
-    @nearest_places =  Feature.close_to(@feature.the_geom).first(3)
+    @nearest_places = if session[:user_location] && session[:user_location][:lon] && session[:user_location][:lat]
+      Feature.close_to(Point.from_x_y(session[:user_location][:lon], session[:user_location][:lat])).first(3)
+    else
+      Feature.close_to(@feature.the_geom).first(3)
+    end
 
     # you can use meta fields from your model instead (e.g. browser_title)
     # by swapping @page for @feature in the line below:
