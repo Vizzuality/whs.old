@@ -9,6 +9,7 @@
         <p class="distance"><span id="walking">Just 13 hours away from Madrid by plane</span></p>
       </div>
 
+      <div id="black"></div>
       <% if @feature.gallery && @feature.gallery.gallery_entries.any? %>
       
         <ul class="image_selector">
@@ -170,18 +171,27 @@
     $("div.map_container div#darken a").click(function(ev) {
       ev.stopPropagation();
       ev.preventDefault();
+      
       if ($("div#img_thumb").is(":visible")) {
-        $("div#img_thumb").hide();
-        $("a#show_link").html("Show map");
-        $("div.images").show();
-        $("ul.image_selector").show();              
+        $("div#black").fadeIn(300, function() {
+          $("div#img_thumb").hide();
+          $("a#show_link").html("Show map");
+          $("div.images").show();
+          $("ul.image_selector").show();
+          $("div#black").fadeOut(300);
+        });
       } else {
-        $("div#img_thumb").show();
-        $("a#show_link").html("Show images");       
-        $("ul.image_selector").hide();              
-        $("div.images").hide();
+        $("div#black").fadeIn(300, function() {
+          $("div#img_thumb").show();
+          $("a#show_link").html("Show images");       
+          $("ul.image_selector").hide();              
+          $("div.images").hide();
+          $("div#black").fadeOut(300);
+        });
       } 
     });
+    
+    //$("h1").
     
     var myOptions = {
       zoom: 5,
