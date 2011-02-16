@@ -9,29 +9,12 @@
         <p class="distance"><span id="walking">Just 13 hours away from Madrid by plane</span></p>
       </div>
 
-      <div id="black"></div>
       <% if @feature.gallery && @feature.gallery.gallery_entries.any? %>
-      
-        <ul class="image_selector">
-        <% @feature.gallery.gallery_entries.each_with_index do |gallery_entry,i| %>
-          <li><a href="javascript:view_image('<%=i%>')"></a></li>
-        <% end %>
-        </ul>      
-      
-        <div class="images">
+        <div id="slider">
           <% @feature.gallery.gallery_entries.each_with_index do |gallery_entry,i| %>
-            <div class="image<% if (i == 0)%> first_image<% end%>" id="image_<%=i%>">
-              <%= image_tag gallery_entry.image.thumbnail(:large).url, :alt => @feature.title %>
-            </div>
-          <% end %>          
+            <%= image_tag gallery_entry.image.thumbnail(:large).url, :alt => @feature.title %>
+          <% end %>            
         </div>
-        
-      <% else %>
-        <div class="images">
-          <div class="image">
-            <img src="/images/test/test_big.jpg"/>
-          </div>
-        </div>          
       <% end %>
       
       <div id="big_map_container"><div id="big_map"></div></div>
@@ -150,12 +133,14 @@
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 
 <script type="text/javascript">
-  
-  function view_image(i) {
-    $("div.images div").css("z-index","5");
-    $("div.images div#image_"+i).css("z-index","6");
-  }
-  
+
+  $(window).load(function() {
+    $('#slider').nivoSlider({
+      effect: "fade",
+      directionNav: false
+    });
+  });
+
   $(document).ready( function(){
 
     $("div.map_container").mouseover(function() {
@@ -173,25 +158,17 @@
       ev.preventDefault();
       
       if ($("div#img_thumb").is(":visible")) {
-        $("div#black").fadeIn(300, function() {
+        // Swap big area to images
+          $("#slider").fadeIn();
           $("div#img_thumb").hide();
-          $("a#show_link").html("Show map");
-          $("div.images").show();
-          $("ul.image_selector").show();
-          $("div#black").fadeOut(300);
-        });
+          $("a#show_link").html("Show map"); 
       } else {
-        $("div#black").fadeIn(300, function() {
+        // Swap big area to map
+          $("#slider").fadeOut();
           $("div#img_thumb").show();
-          $("a#show_link").html("Show images");       
-          $("ul.image_selector").hide();              
-          $("div.images").hide();
-          $("div#black").fadeOut(300);
-        });
-      } 
+          $("a#show_link").html("Show images");           
+      }
     });
-    
-    //$("h1").
     
     var myOptions = {
       zoom: 5,

@@ -139,19 +139,17 @@ div.clear {clear: both;}
 /* FEATURES SPECIFIC -------------------------------------------- */
 
 div#feature_image {margin: 0 8px -4px 8px; height: 430px; position: relative;}
-div#feature_image div#black {position: absolute; display: none; width: 880px; height: 430px; background: url("/images/black.png") no-repeat 0 0; z-index: 10;}
-div#feature_image ul.image_selector {position: absolute; top: 20px; left: -15px; padding:10px 5px 10px 10px; z-index: 15; background-color: #000000;}
-div#feature_image ul.image_selector li {float: left; padding: 0 5px 0 0;}
-div#feature_image ul.image_selector li a {float: left; width: 8px; height: 8px; background: url("/images/image_selector.png") no-repeat 0 0;}
-div#feature_image ul.image_selector li a:hover {background-position: -9px 0px}
 div#feature_image div#big_map_container {position: absolute; top: 0px; width: 880px; height:430px;}
 div#feature_image div#big_map_container div#big_map {position: absolute; top: 0px; width: 880px; height:430px;}
-div#feature_image div.images {position: relative; z-index: 5;}
-div#feature_image div.images div.image {position: absolute;}
-div#feature_image div.images div.first_image {z-index: 6;}
+#slider {position:relative; width:880px; height:430px; background:url("/images/loading.gif") no-repeat 50% 50%; z-index:5;}
+#slider img {position:absolute;top:0px;left:0px;display:none;}
+#slider a {border:0;display:block;}
+#slider div.nivo-controlNav {position: absolute; top: 20px; left: -15px; padding: 0 0 0 15px; background: #000000;}
+#slider div.nivo-controlNav a {float: left; width: 13px; height: 26px; padding:0px 0px 0px 0px; background: url("/images/image_selector.png") no-repeat 0px -26px; background-color: #000000;}
+#slider div.nivo-controlNav a:hover {background-position: 0px 8px;}
+#slider div.nivo-controlNav a.active {background-position: 0px 8px;}
 div#feature_image div#endangered {position: absolute; top: -11px; right: -11px; width: 97px; height: 94px; z-index: 15; background: url("/images/endangered.png");}
 
-/* Image area */
 div#feature div.middle div.content {position: relative;}
 div#feature div.middle div.content {margin: 0 8px 0 8px; background: #FFFFFF;}
 div#feature_title {position: absolute; bottom: -30px; left: -15px; z-index: 15;}

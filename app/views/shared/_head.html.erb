@@ -14,6 +14,7 @@
   <%= "<meta name=\"keywords\" content=\"#{@meta.meta_keywords}\" />".html_safe if @meta.meta_keywords.present? %>
   <%= "<meta name=\"description\" content=\"#{@meta.meta_description}\" />".html_safe if @meta.meta_description.present? -%>
 	<%= javascript_include_tag 'jquery.min', 'application' %>  
+	<%= javascript_include_tag 'nivo-slider/jquery.nivo.slider.pack.js', 'application' %>  	
   <%= yield :head_libraries %>
   <%= yield :head %>
 </head>
