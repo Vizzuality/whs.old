@@ -12,11 +12,7 @@ puts '... done!'
 # in order to speed up data insertion.
 # These indexes are being created afterwards in the ipinfo.sql script
 drop_indexes_sentence = <<-SQL
-  DROP INDEX city_idx;
-  DROP INDEX country_name_idx;
   DROP INDEX index_geo_ips_on_ip_start;
-  DROP INDEX lower_city_idx;
-  DROP INDEX lower_country_name_idx;
 SQL
 
 begin
@@ -39,19 +35,9 @@ puts msg = "Loading geo_ips.pg_dump into #{current_database} database."
 puts msg.chars.map{'#'}.join
 `pg_restore -Upostgres -d #{current_database} -a -F c #{geo_ips_sql}`
 
-puts '###########################'
 puts 'Creating indexes for geo_ips table...'
 create_indexes_sentence = <<-SQL
-  CREATE INDEX city_idx ON geo_ips USING btree (city);
-  CREATE INDEX country_name_idx ON geo_ips USING btree (country_name);
   CREATE INDEX index_geo_ips_on_ip_start ON geo_ips USING btree (ip_start);
-  CREATE INDEX lower_city_idx ON geo_ips USING btree (lower((city)::text));
-  CREATE INDEX lower_country_name_idx ON geo_ips USING btree (lower((country_name)::text));
 SQL
 ActiveRecord::Base.connection.execute(create_indexes_sentence)
-puts '... done!'
-
-puts '###########################'
-puts 'Removing downloaded data...'
-`rm #{geo_ips_sql}`
 puts '... done!'
