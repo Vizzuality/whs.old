@@ -6,26 +6,26 @@
       <div id="feature_title">
         <p id="country"><span><img class="flag" src="/images/flags/<%=@feature.iso_code%>.png"/><%= @feature.country %></span></p>
         <h1><span><%= @feature.title %></span></h1>
-        <p class="distance"><span id="walking">Just 13 hours away from Madrid by plane</span></p>
+        <p class="distance"><span id="<%= @itinerary_type %>">Just <%= @itinerary_time %> away from <%= @user_location.capitalize %> by <%= @itinerary_type %></span></p>
       </div>
 
       <% if @feature.gallery && @feature.gallery.gallery_entries.any? %>
         <div id="slider">
           <% @feature.gallery.gallery_entries.each_with_index do |gallery_entry,i| %>
             <%= image_tag gallery_entry.image.thumbnail(:large).url, :alt => @feature.title %>
-          <% end %>            
+          <% end %>
         </div>
       <% else %>        
         <img id="default_image" src="/images/default_big.png"/>
       <% end %>
-      
+
       <div id="big_map_container"><div id="big_map"></div></div>
 
     <% if @feature.endangered_year %>
       <div id="endangered"></div>
     <% end %>
     </div>
-    
+
       <div class="content">
         <div id="main_area">
           <p><%= simple_format @feature.description %></p>
@@ -35,15 +35,15 @@
           <div class="map_container">
             <div id="map">
               <img src="http://maps.google.com/maps/api/staticmap?center=<%=@feature.the_geom.y%>,<%=@feature.the_geom.x%>&zoom=8&size=235x162&maptype=roadmap&markers=icon:/images/explore/marker_natural.png|<%=@feature.the_geom.y%>,<%=@feature.the_geom.x%>&sensor=false"/>
-            
+
             </div>
             <div id="img_thumb">
-              <% if @feature.gallery && @feature.gallery.gallery_entries.any? %>  
-                <%= image_tag @feature.gallery.gallery_entries.first.image.thumbnail(:tiny).url, :alt => @feature.title %>            
+              <% if @feature.gallery && @feature.gallery.gallery_entries.any? %>
+                <%= image_tag @feature.gallery.gallery_entries.first.image.thumbnail(:tiny).url, :alt => @feature.title %>
                 <% else %>
                 <img src="/images/test/test_small.jpg">
               <% end %>
-            
+
             </div>
             <div id="darken">
               <a href="#"><img src="/images/darken.png"/></a>
@@ -96,13 +96,13 @@
         <li class="mosaic_element<%= cycle('',' middle','', :name => 'mosaic') %>">
           <a href="/features/<%=feature.id%>">
           <div class="mosaic_element_div">
-            
-            <% if feature.gallery && feature.gallery.gallery_entries.any? %>  
-              <%= image_tag feature.gallery.gallery_entries.first.image.thumbnail(:small).url, :alt => feature.title %>            
+
+            <% if feature.gallery && feature.gallery.gallery_entries.any? %>
+              <%= image_tag feature.gallery.gallery_entries.first.image.thumbnail(:small).url, :alt => feature.title %>
             <% else %>
               <img src="/images/default_mosaic.png">
             <% end %>
-            
+
             <div class="mosaic_label">
               <p class="place"><%=truncate(feature.title,:length=>60,:delimiter=>"...")%></p>
               <p class="distance">4 hours by car from Madrid</p>
@@ -148,7 +148,7 @@
 
     $("div.map_container").mouseover(function() {
       $("div#darken").show();
-      $("a#show_link").show();      
+      $("a#show_link").show();
     });
 
     $("div.map_container").mouseout(function() {
@@ -159,21 +159,21 @@
     $("div.map_container div#darken a").click(function(ev) {
       ev.stopPropagation();
       ev.preventDefault();
-      
+
       if ($("div#img_thumb").is(":visible")) {
         // Swap big area to images
           $("#slider").fadeIn();
           $("div#img_thumb").hide();
-          $("a#show_link").html("Show map"); 
+          $("a#show_link").html("Show map");
       } else {
         // Swap big area to map
           $("div#big_map").css("visibility","visible");
           $("#slider").fadeOut();
           $("div#img_thumb").show();
-          $("a#show_link").html("Show images");           
+          $("a#show_link").html("Show images");
       }
     });
-    
+
     var myOptions = {
       zoom: 5,
       disableDefaultUI: true,
@@ -184,8 +184,8 @@
 
     latlng = new google.maps.LatLng(<%=@feature.the_geom.y%>, <%=@feature.the_geom.x%>);
     marker = new google.maps.Marker({
-      position: latlng, 
-      map: map, 
+      position: latlng,
+      map: map,
       title:"<%=@feature.title%>",
       icon: "/images/explore/marker_<%=@feature.type%>.png"
     });
@@ -193,13 +193,13 @@
 
     var map_style = [
       {featureType: "administrative",elementType: "geometry",stylers: [{ visibility: "off" }]},
-	    {featureType: "poi",elementType: "all",stylers: [{ visibility: "off" }]},
-	    {featureType: "road",elementType: "all",stylers: [{ visibility: "off" }]},
-	    {featureType: "transit",elementType: "all",stylers: [{ visibility: "off" }]},
-	    {featureType: "landscape.natural",elementType: "all",stylers: [{ visibility: "off" }]},
-	    {featureType: "water",elementType: "all",stylers: [{ lightness: 30 },{ saturation: -47 },{ gamma: 0.6 },{ hue: "#0088ff" }]}
+      {featureType: "poi",elementType: "all",stylers: [{ visibility: "off" }]},
+      {featureType: "road",elementType: "all",stylers: [{ visibility: "off" }]},
+      {featureType: "transit",elementType: "all",stylers: [{ visibility: "off" }]},
+      {featureType: "landscape.natural",elementType: "all",stylers: [{ visibility: "off" }]},
+      {featureType: "water",elementType: "all",stylers: [{ lightness: 30 },{ saturation: -47 },{ gamma: 0.6 },{ hue: "#0088ff" }]}
     ];
-    
+
     var styledMap =  new google.maps.StyledMapType(map_style,{map: map,name: "My Style"});
     map.mapTypes.set('my Style', styledMap);
     map.setMapTypeId('my Style');    

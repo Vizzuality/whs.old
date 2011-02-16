@@ -21,7 +21,6 @@ rescue Exception => e
 
 end
 
-
 if GeoIp.exists?
   puts '#########################'
   puts 'Emptying geo_ips table...'

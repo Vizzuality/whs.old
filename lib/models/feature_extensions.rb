@@ -53,6 +53,71 @@ module FeatureExtensions
       meta[:images_consolidated] = true
       save!
     end
+
+    def distance_to point
+      distance = 0
+      results = Feature.select("ST_Distance(the_geom::geography, GeomFromText('POINT(#{point.x} #{point.y})', 4326)) as distance").where(:id => self.id).first
+      distance = results.distance if results
+      distance.to_i
+    end
+
+    def calculate_itinerary_time_to(location)
+
+      itinerary = {:time => '0 hours'}
+
+      if location.present?
+        distance = distance_to location
+
+        case
+        # Distance is less than 500 meters, we're going by walking
+        when distance < 500
+          itinerary[:type] = 'walking'
+          directions = query_google_directions walking, itinerary[:type]
+
+          # If response is OK, we're using a car
+          if directions['status'].eql?('OK')
+            if directions.present? && directions['routes'].present? && directions['routes'].first['legs'].present? && directions['routes'].first['legs'].first['duration']
+              itinerary[:time] = directions['routes'].first['legs'].first['duration']['text']
+            end
+          end
+        # Distance is between 500 meters and 800 kilometers, we're going by car
+        when distance >= 500 && distance < 800_000
+          itinerary[:type] = 'car'
+
+          directions = query_google_directions location
+
+          # If response is OK, we're using a car
+          if directions['status'].eql?('OK')
+            if directions.present? && directions['routes'].present? && directions['routes'].first['legs'].present? && directions['routes'].first['legs'].first['duration']
+              itinerary[:time] = directions['routes'].first['legs'].first['duration']['text']
+            end
+          # If not, we assume, we're going by plane
+          else
+            itinerary[:type] = 'plane'
+            itinerary[:time] = "#{distance/700.to_i} hours"
+          end
+        # Distance is greater than 800 kilometers, we're going by plane
+        when distance >= 800_000
+          itinerary[:type] = 'plane'
+          itinerary[:time] = "#{distance/700_000.to_i} hours"
+        end
+      end
+
+      itinerary
+    end
+
+    # Query google directions to obtain itinerary from location to the feature
+    def query_google_directions(location, mode = 'driving')
+      require 'net/http'
+      origin = "#{the_geom.y},#{the_geom.x}"
+      destination = "#{location.y},#{location.x}"
+      url = "http://maps.google.com/maps/api/directions/json?mode=#{mode}&origin=#{origin}&destination=#{destination}&sensor=false".gsub(" ", "+")
+      response = Net::HTTP.get(::URI.parse(url))
+      directions = JSON.parse(response) if response
+      directions
+    end
+    private :query_google_directions
+
   end
 
 end
