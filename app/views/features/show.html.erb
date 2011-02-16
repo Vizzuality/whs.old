@@ -15,6 +15,8 @@
             <%= image_tag gallery_entry.image.thumbnail(:large).url, :alt => @feature.title %>
           <% end %>            
         </div>
+      <% else %>        
+        <img id="default_image" src="/images/default_big.png"/>
       <% end %>
       
       <div id="big_map_container"><div id="big_map"></div></div>
@@ -98,7 +100,7 @@
             <% if feature.gallery && feature.gallery.gallery_entries.any? %>  
               <%= image_tag feature.gallery.gallery_entries.first.image.thumbnail(:small).url, :alt => feature.title %>            
             <% else %>
-              <img src="/images/test/test_small.jpg">
+              <img src="/images/default_mosaic.png">
             <% end %>
             
             <div class="mosaic_label">
@@ -134,10 +136,16 @@
 
 <script type="text/javascript">
 
+  function loadMap() {
+    
+    
+  }
+
   $(window).load(function() {
     $('#slider').nivoSlider({
       effect: "fade",
-      directionNav: false
+      directionNav: false,
+      afterLoad: function(){loadMap()}
     });
   });
 
@@ -164,6 +172,7 @@
           $("a#show_link").html("Show map"); 
       } else {
         // Swap big area to map
+          $("div#big_map").css("visibility","visible");
           $("#slider").fadeOut();
           $("div#img_thumb").show();
           $("a#show_link").html("Show images");           
@@ -198,8 +207,7 @@
     
     var styledMap =  new google.maps.StyledMapType(map_style,{map: map,name: "My Style"});
     map.mapTypes.set('my Style', styledMap);
-    map.setMapTypeId('my Style');
-    
+    map.setMapTypeId('my Style');    
 
   });
 

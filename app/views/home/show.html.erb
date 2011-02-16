@@ -23,7 +23,7 @@
             <% if feature.gallery && feature.gallery.gallery_entries.any? %>  
               <%= image_tag feature.gallery.gallery_entries.first.image.thumbnail(:small).url, :alt => feature.title %>            
             <% else %>
-              <img src="/images/test/test_small.jpg">
+              <img src="/images/default_mosaic.png">
             <% end %>
             
             <div class="mosaic_label">
