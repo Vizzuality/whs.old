@@ -84,6 +84,11 @@
 
   $(document).ready( function(){
 
+    $('body').click(function() {
+      $("div#criteria ul").hide();      
+      $("div#criteria span").css("backgroundPosition","-2px 0");
+    });
+
     $("a#all_selector").click(function(ev) {
       ev.stopPropagation();
       ev.preventDefault();
