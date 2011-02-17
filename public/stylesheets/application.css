@@ -50,7 +50,7 @@ div.content_box div.bottom {height: 7px; margin: 0 0 0 0; background: url("/imag
 
 div#mosaic {position: relative;}
 div#mosaic a{text-decoration: none;}
-div#mosaic div#big_image {position: relative; width: 880px; height: 430px;}
+div#mosaic div#big_image {position: relative; width: 880px; height: 430px; border-bottom: 1px solid #000000;}
 div#mosaic div#big_image div.big_label {position: absolute; width: 300px; top: 20px; right: 20px; z-index: 3; display: none;}
 div#mosaic div#big_image div.big_label p.place {float: right; z-index: 5; padding: 4px 10px 4px 10px; background-color: #000000; color: #FFFFFF; font: normal 17px "PT Sans Bold"; text-align: right;}
 div#mosaic div#big_image div.big_label p.distance {float: right; clear: both; z-index: 4; padding: 3px 10px 5px 10px; background-color: #000000; color: #CCCCCC; font: normal 13px "Arial";}
@@ -69,13 +69,15 @@ ul#image_list li div.mosaic_label p {position:absolute; left: 14px; background-c
 ul#image_list li div.mosaic_label p.place { z-index:5; bottom: 38px; padding: 4px 10px 2px 10px;  font: bold 17px "PT Sans"; color: #FFFFFF}
 ul#image_list li div.mosaic_label p.distance { z-index:4; bottom: 16px; padding: 5px 10px 5px 10px;  font: normal 13px "Arial"; color: #CCCCCC}
 
-a#zoomin {width: 21px; height: 21px; background: url("/images/zoom_controls.png") no-repeat 0 0;}
-a#zoomin:hover {width: 21px; height: 21px; background: url("/images/zoom_controls.png") no-repeat 0 -21px;}
-a#zoomout {width: 21px; height: 21px; background: url("/images/zoom_controls.png") no-repeat 21px 0;}
-a#zoomout:hover {width: 21px; height: 21px; background: url("/images/zoom_controls.png") no-repeat 21px -21px;}
+div#zoomControl {position: absolute; top: 15px; left: 15px; width: 30px; }
+div#zoomControl a#zoomin {float: left; margin: 0 0 10px 0; width: 21px; height: 21px; background: url("/images/zoom_in.png")}
+div#zoomControl a#zoomin:hover {background-position: 0 21px;}
+div#zoomControl a#zoomout {float: left; width: 21px; height: 21px; background: url("/images/zoom_out.png")}
+div#zoomControl a#zoomout:hover {background-position: 0 21px;}
 
-div#layer_selector {background: url("/images/layer_selector.png") no-repeat 0 0; font: 15px normal "PT Sans"; color: #FFFFFF;}
+/*iv#layer_selector {background: url("/images/layer_selector.png") no-repeat 0 0; font: 15px normal "PT Sans"; color: #FFFFFF;}
 div#layers {background: url("/images/layers.png") no-repeat 0 0; font: 13px normal Arial; color: #999999;}
+*/
 
 /*HOME SPECIFIC  -------------------------------------------- */
 
@@ -148,10 +150,11 @@ div.clear {clear: both;}
 
 /* FEATURES SPECIFIC -------------------------------------------- */
 
-div#feature_image {margin: 0 8px -4px 8px; height: 430px; position: relative;}
-div#feature_image div#big_map_container {position: absolute; top: 0px; width: 880px; height:430px;}
-div#feature_image div#big_map_container div#big_map {position: absolute; visibility:hidden; top: 0px; width: 880px; height:430px;}
-div#feature_image #slider {position:relative; width:880px; height:430px; background:url("/images/loading.gif") no-repeat 50% 50%; z-index:5;}
+div#feature_image {margin: 0 8px -4px 8px; height: 430px; position: relative; border-bottom: 1px solid #000000;}
+div#feature_image div#big_map_container {position: absolute; top: 0px; width: 880px; height:430px; border-bottom: 1px solid #666666}
+div#feature_image div#big_map_container div#big_map {position: absolute; visibility:hidden; top: 0px; width: 880px; height:430px; }
+
+div#feature_image #slider {position:relative; width:880px; height:430px; background:url("/images/loading2.gif") no-repeat 50% 50%; z-index:5; border-bottom: 1px solid #666666}
 div#feature_image #slider img {position:absolute;top:0px;left:0px;display:none;}
 div#feature_image #slider a {border:0;display:block;}
 div#feature_image #slider div.nivo-controlNav {position: absolute; top: 20px; left: -15px; padding: 0 0 0 15px; background: #000000;}

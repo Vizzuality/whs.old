@@ -19,7 +19,13 @@
         <img id="default_image" src="/images/default_big.png"/>
       <% end %>
 
-      <div id="big_map_container"><div id="big_map"></div></div>
+      <div id="big_map_container">
+        <div id="big_map"></div>
+        <div id="zoomControl">
+          <a id="zoomin" href="#"></a>
+          <a id="zoomout" href="#"></a>
+        </div>
+      </div>
 
     <% if @feature.endangered_year %>
       <div id="endangered"></div>
@@ -34,7 +40,7 @@
         <div id="data_column">
           <div class="map_container">
             <div id="map">
-              <img src="http://maps.google.com/maps/api/staticmap?center=<%=@feature.the_geom.y%>,<%=@feature.the_geom.x%>&zoom=8&size=235x162&maptype=roadmap&markers=icon:/images/explore/marker_natural.png|<%=@feature.the_geom.y%>,<%=@feature.the_geom.x%>&sensor=false"/>
+              <img src="http://maps.google.com/maps/api/staticmap?center=<%=@feature.the_geom.y%>,<%=@feature.the_geom.x%>&zoom=8&size=235x162&maptype=terrain&markers=icon:/images/explore/marker_natural.png|<%=@feature.the_geom.y%>,<%=@feature.the_geom.x%>&sensor=false"/>
 
             </div>
             <div id="img_thumb">
@@ -139,12 +145,24 @@
   $(window).load(function() {
     $('#slider').nivoSlider({
       effect: "fade",
-      directionNav: false,
-      afterLoad: function(){loadMap()}
+      directionNav: false
     });
   });
 
   $(document).ready( function(){
+
+    $("a#zoomin").click(function(ev) {
+        ev.stopPropagation();
+        ev.preventDefault();
+        map.setZoom(map.getZoom()+1);
+    });
+
+    $("a#zoomout").click(function(ev) {
+        ev.stopPropagation();
+        ev.preventDefault();
+        map.setZoom(map.getZoom()-1);
+    });
+
 
     $("div.map_container").mouseover(function() {
       $("div#darken").show();
@@ -175,13 +193,14 @@
     });
 
     var myOptions = {
-      zoom: 5,
+      zoom: 8,
       disableDefaultUI: true,
       center: new google.maps.LatLng(<%=@feature.the_geom.y%>,<%=@feature.the_geom.x%>),
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      mapTypeId: google.maps.MapTypeId.TERRAIN
     };
     var map = new google.maps.Map(document.getElementById("big_map"), myOptions);
 
+  // Adding the marker  
     latlng = new google.maps.LatLng(<%=@feature.the_geom.y%>, <%=@feature.the_geom.x%>);
     marker = new google.maps.Marker({
       position: latlng,
@@ -189,21 +208,17 @@
       title:"<%=@feature.title%>",
       icon: "/images/explore/marker_<%=@feature.type%>.png"
     });
-    google.maps.event.addListener(marker, "click", function() {window.location = "/features/<%=@feature.id%>"});
 
-    var map_style = [
-      {featureType: "administrative",elementType: "geometry",stylers: [{ visibility: "off" }]},
-      {featureType: "poi",elementType: "all",stylers: [{ visibility: "off" }]},
-      {featureType: "road",elementType: "all",stylers: [{ visibility: "off" }]},
-      {featureType: "transit",elementType: "all",stylers: [{ visibility: "off" }]},
-      {featureType: "landscape.natural",elementType: "all",stylers: [{ visibility: "off" }]},
-      {featureType: "water",elementType: "all",stylers: [{ lightness: 30 },{ saturation: -47 },{ gamma: 0.6 },{ hue: "#0088ff" }]}
-    ];
-
-    var styledMap =  new google.maps.StyledMapType(map_style,{map: map,name: "My Style"});
-    map.mapTypes.set('my Style', styledMap);
-    map.setMapTypeId('my Style');    
-
+    <% @nearest_places.each_with_index do |near_feature, i|%>
+    var latlng_<%=i%> = new google.maps.LatLng(<%=near_feature.the_geom.y%>, <%=near_feature.the_geom.x%>);
+    var marker_<%=i%> = new google.maps.Marker({
+      position: latlng_<%=i%>,
+      map: map,
+      title:"<%=near_feature.title%>",
+      icon: "/images/explore/marker_small.png"
+    });
+    google.maps.event.addListener(marker_<%=i%>, "click", function() {window.location = "/features/<%=near_feature.id%>"});
+    <% end %>
   });
 
 </script>

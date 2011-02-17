@@ -3,7 +3,13 @@
   <div class="middle">
     <h1><span>More than 900 beautiful</span></h1>
     <h1 class="down"><span>places to see</span></h1>
-    <div class="map_container"><div id="map"></div></div>
+    <div class="map_container">
+      <div id="map"></div>
+      <div id="zoomControl">
+        <a id="zoomin" href="#"></a>
+        <a id="zoomout" href="#"></a>
+      </div>
+    </div>
     <div id="filter">
       <form>        
         <div class="input"><div class="input_left"></div><div class="input_center"><form><input id="searchText" type="text" size="20" value="Search..."/><input class="hidden" type="submit"/></form></div><div class="input_right"></div></div>
@@ -157,7 +163,7 @@
       zoom: 2,
       disableDefaultUI: true,
       center: new google.maps.LatLng(40,10),
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      mapTypeId: google.maps.MapTypeId.TERRAIN
     };
     var map = new google.maps.Map(document.getElementById("map"), myOptions);
 
@@ -175,19 +181,6 @@
       google.maps.event.addListener(marker, "click", function() {window.location = "/features/<%=feature.id%>"});
     <% end %>
     
-    var map_style = [
-      {featureType: "administrative",elementType: "geometry",stylers: [{ visibility: "off" }]},
-	    {featureType: "poi",elementType: "all",stylers: [{ visibility: "off" }]},
-	    {featureType: "road",elementType: "all",stylers: [{ visibility: "off" }]},
-	    {featureType: "transit",elementType: "all",stylers: [{ visibility: "off" }]},
-	    {featureType: "landscape.natural",elementType: "all",stylers: [{ visibility: "off" }]},
-	    {featureType: "water",elementType: "all",stylers: [{ lightness: 30 },{ saturation: -47 },{ gamma: 0.6 },{ hue: "#0088ff" }]}
-    ];
-    
-    var styledMap =  new google.maps.StyledMapType(map_style,{map: map,name: "My Style"});
-    map.mapTypes.set('my Style', styledMap);
-    map.setMapTypeId('my Style');
-
   });
 </script>
 
