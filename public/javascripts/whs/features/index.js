@@ -63,24 +63,31 @@ var map, marker, latlng, features;
     });
 
 
-    $("a#criteria").click(function(ev) {
+    $("a#criteria_label").click(function(ev) {
       ev.stopPropagation();
       ev.preventDefault();
-      if ($("div#criteria ul").is(":visible")) {
-        $("div#criteria span").css("backgroundPosition","-2px 0");
+      if ($("div#criteria_select ul").is(":visible")) {
+        $("div#criteria_select span").css("backgroundPosition","-2px 0");
       } else {
-        $("div#criteria span").css("backgroundPosition","-2px -24px");
+        $("div#criteria_select span").css("backgroundPosition","-2px -24px");
       }
-      $("div#criteria ul").toggle();
+      $("div#criteria_select ul").toggle();
     });
 
-    $("div#criteria ul a").click(function(ev) {
+    $("div#criteria_select ul a").click(function(ev) {
       ev.stopPropagation();
       ev.preventDefault();
-      $("div#criteria span").css("backgroundPosition","-2px 0");
-      $("div#criteria ul").toggle();
-      $("a#criteria").text($(this).text());
+      $("div#criteria_select span").css("backgroundPosition","-2px 0");
+      $("div#criteria_select ul").toggle();
+      $("a#criteria_label").text($(this).text());
     });
+
+    $('a.criteria').click(function(ev){
+      ev.stopPropagation();
+      ev.preventDefault();
+      $('input#criteria').val($(this).attr('id'));
+      form.submit();
+    })
 
 
     $("div#map").mouseover(function() {

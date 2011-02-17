@@ -19,7 +19,7 @@
         <img id="default_image" src="/images/default_big.png"/>
       <% end %>
       <div id="photo_credits"></div>
-      
+
       <div id="big_map_container">
         <div id="big_map"></div>
         <div id="zoomControl">
@@ -65,7 +65,7 @@
           <p class="label">Why it is a World Heritage Site</p>
           <% @feature.criteria.split(",").each do |criteria|%>
           <ul>
-            <li><%= I18n.t("feature.criteria.#{criteria}") %></li>
+            <li><%= I18n.t("feature.criteria.#{criteria.delete('[]')}") %></li>
           </ul>
           <% end %>
           <% end %>
@@ -150,7 +150,7 @@
       imageInfo[<%=i%>] = {author:"author<%=i%>",sourceName: "source<%=i%>",link: "link<%=i%>"}
     <% end %>
   <% end %>
-  
+
   var selectedImageIndex = 0;
   function updateCredits() {
     if (selectedImageIndex >= imageInfo.length) selectedImageIndex = 0;
@@ -165,7 +165,7 @@
       directionNav: false,
       //directionNavHide: true,
       controlNav: true,
-      beforeChange: function() {$('#photo_credits').fadeOut("fast")},      
+      beforeChange: function() {$('#photo_credits').fadeOut("fast")},
       afterChange: updateCredits,
       afterLoad: updateCredits
     });

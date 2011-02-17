@@ -41,11 +41,21 @@ protected
     end
 
     # Search features by specified type
-    @features = @features.send(params[:type]) if params && params[:type] && %w(cultural natural).include?(params[:type])
+    @features = @features.send(params[:type]) if valid_type?
+
+    # Search features by specified criteria
+    @features = @features.by_criteria(params[:criteria]) if valid_criteria?
   end
 
   def find_page
     @page = Page.find_by_link_url("/features")
   end
 
+  def valid_type?
+    params && params[:type] && %w(cultural natural).include?(params[:type])
+  end
+
+  def valid_criteria?
+    params && params[:criteria] && %w(i ii iii iv v vi vii viii ix x).include?(params[:criteria])
+  end
 end

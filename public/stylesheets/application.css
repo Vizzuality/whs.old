@@ -127,13 +127,13 @@ div#filter a#natural_selector{width: 78px; background-image: url("/images/explor
 div#filter a#cultural_selector{width: 74px; background-image: url("/images/explore/right_filter.png")}
 div#filter a.selected#all_selector, a.selected#natural_selector, a.selected#cultural_selector {color: #4C2401; text-shadow: #FFD8B4 0px 1px; background-position: 0 0px}
 
-div#filter div#criteria {float: left; margin: 0 10px 0 15px; }
-div#filter div#criteria span {float: left; width: 212px; height: 24px; ; background: url("/images/explore/criteria_select.png") no-repeat -2px 0;}
-div#filter div#criteria span a{display: block; width: 212px; height: 24px; padding: 5px 0 0 10px; color: #333333; font: normal 13px "PT Sans Bold"; text-decoration: none;}
-div#filter div#criteria ul{position: absolute; display: none; top: 36px; width: 215px; height: 264px; padding: 4px 0 0 0; z-index: 5; background: url("/images/explore/criteria_select.png") no-repeat -2px -47px;}
-div#filter div#criteria ul li{padding: 4px 10px 4px 10px; font: normal 13px "Arial";}
-div#filter div#criteria ul li a{text-decoration: none; color: #333333;}
-div#filter div#criteria ul li a:hover{color: #FF9900;}
+div#filter div#criteria_select {float: left; margin: 0 10px 0 15px; }
+div#filter div#criteria_select span {float: left; width: 212px; height: 24px; ; background: url("/images/explore/criteria_select.png") no-repeat -2px 0;}
+div#filter div#criteria_select span a{display: block; width: 212px; height: 24px; padding: 5px 0 0 10px; color: #333333; font: normal 13px "PT Sans Bold"; text-decoration: none;}
+div#filter div#criteria_select ul{position: absolute; display: none; top: 36px; width: 215px; height: 264px; padding: 4px 0 0 0; z-index: 5; background: url("/images/explore/criteria_select.png") no-repeat -2px -47px;}
+div#filter div#criteria_select ul li{padding: 4px 10px 4px 10px; font: normal 13px "Arial";}
+div#filter div#criteria_select ul li a{text-decoration: none; color: #333333;}
+div#filter div#criteria_select ul li a:hover{color: #FF9900;}
 
 div#filter a#mosaic_selector, a#list_selector{float: left; width: 45px; height: 19px; padding: 5px 0 0 0; text-align: center; font: normal 13px "PT Sans"; text-decoration: none; color: #000000; color: #333333; background-position: 0 24px; font: normal 13px "PT Sans Bold"; text-shadow: #FFFFFF }
 div#filter a#mosaic_selector{margin: 0 0 0 0px; background-image: url("/images/explore/mosaic_filter.png")}
