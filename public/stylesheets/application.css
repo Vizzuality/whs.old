@@ -211,7 +211,7 @@ div#feature_mosaic div#big_image { width: 880px; height: 430px; }
 div#feature_mosaic div#big_image p {display: none;}
 div#feature_mosaic div.middle div.content {margin: 0 8px 0 8px; background: #FFFFFF;}
 div#feature_mosaic div.middle div.content ul#image_list {height: 214px;}
-div#feature_mosaic div.middle div.content h3 {position: absolute; top: 25px; left: -15px; z-index: 6;padding: 5px; font: 23px normal "PT Sans Bold"; color: #FFFFFF; background-color: #000000;}
+div#feature_mosaic div.middle div.content h3 {position: absolute; top: 25px; left: -15px; z-index: 6;padding: 5px 10px; font: 23px normal "PT Sans Bold"; color: #FFFFFF; background-color: #000000;}
 
 /* Teleport */
 div.content_box#teleport div.middle div.content{position: relative; width: 830px; height: 20px;  margin: 0px 8px 0px 8px; padding: 25px; background-color: white; font: normal 17px "PT Sans";}

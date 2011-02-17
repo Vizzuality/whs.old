@@ -218,6 +218,8 @@
           $("a#show_link").html("Show images");
       }
     });
+    
+    // Map customization
 
     var myOptions = {
       zoom: 8,
@@ -226,6 +228,18 @@
       mapTypeId: google.maps.MapTypeId.TERRAIN
     };
     var map = new google.maps.Map(document.getElementById("big_map"), myOptions);
+
+    // Adding markers for nearest sites
+    <% @nearest_places.each_with_index do |near_feature, i|%>
+    var latlng_<%=i%> = new google.maps.LatLng(<%=near_feature.lat%>, <%=near_feature.lon%>);
+    var marker_<%=i%> = new google.maps.Marker({
+      position: latlng_<%=i%>,
+      map: map,
+      title:"<%=near_feature.title%>",
+      icon: "/images/marker_<%=@feature.type%>_mini.png"
+    });
+    google.maps.event.addListener(marker_<%=i%>, "click", function() {window.location = "/features/<%=near_feature.id%>"});
+    <% end %>
 
   // Adding the marker  
     latlng = new google.maps.LatLng(<%=@feature.the_geom.y%>, <%=@feature.the_geom.x%>);
@@ -236,16 +250,7 @@
       icon: "/images/explore/marker_<%=@feature.type%>.png"
     });
 
-    <% @nearest_places.each_with_index do |near_feature, i|%>
-    var latlng_<%=i%> = new google.maps.LatLng(<%=near_feature.lat%>, <%=near_feature.lon%>);
-    var marker_<%=i%> = new google.maps.Marker({
-      position: latlng_<%=i%>,
-      map: map,
-      title:"<%=near_feature.title%>",
-      icon: "/images/explore/marker_small.png"
-    });
-    google.maps.event.addListener(marker_<%=i%>, "click", function() {window.location = "/features/<%=near_feature.id%>"});
-    <% end %>
+
   });
 
 </script>
