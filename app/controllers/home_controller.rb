@@ -3,12 +3,14 @@ class HomeController < ApplicationController
   before_filter :find_all_features
 
   def show
-    @random_features = @features.sample(9)
-    @closests_features = @random_features
+    @closests_features = nil
+    @user_city         = user_city
+    @user_latlong      = user_latlong
 
-    if session[:user_location] && session[:user_location][:lon] && session[:user_location][:lat]
-      user_location = Point.from_x_y(session[:user_location][:lon], session[:user_location][:lat])
-      @closests_features = Feature.close_to(user_location).first(9).map{|f| [f, f.calculate_itinerary_time_to(user_location)]}
+    if user_geolocated?
+      @features          = @features.with_distance_to(user_latlong)
+      user_latlong       = Point.from_x_y(session[:user_location][:lon], session[:user_location][:lat])
+      @closests_features = Feature.with_distance_to(user_latlong).close_to(user_latlong).limit(9)
     end
 
     render :action=>"show",:layout=>"home_layout"
@@ -17,7 +19,7 @@ class HomeController < ApplicationController
 protected
 
   def find_all_features
-    @features = Feature.find(:all, :order => "position ASC")
+    @features = Feature.random.limit(9)
   end
 
 

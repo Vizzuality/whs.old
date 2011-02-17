@@ -6,7 +6,7 @@
       <div id="feature_title">
         <p id="country"><span><img class="flag" src="/images/flags/<%=@feature.iso_code%>.png"/><%= @feature.country %></span></p>
         <h1><span><%= @feature.title %></span></h1>
-        <p class="distance"><span id="<%= @itinerary_type %>">Just <%= @itinerary_time %> away from <%= @user_location.capitalize %> by <%= @itinerary_type %></span></p>
+        <p class="distance"><span id="<%= @itinerary_type %>">Just <%= distance_of_time_in_words_to_now(@itinerary_time) %> away from <%= @user_city %> by <%= @itinerary_type %></span></p>
       </div>
 
       <% if @feature.gallery && @feature.gallery.gallery_entries.any? %>
@@ -15,7 +15,7 @@
             <%= image_tag gallery_entry.image.thumbnail(:large).url, :alt => @feature.title %>
           <% end %>
         </div>
-      <% else %>        
+      <% else %>
         <img id="default_image" src="/images/default_big.png"/>
       <% end %>
 
@@ -111,7 +111,7 @@
 
             <div class="mosaic_label">
               <p class="place"><%=truncate(feature.title,:length=>60,:delimiter=>"...")%></p>
-              <p class="distance">4 hours by car from Madrid</p>
+              <p class="distance"><%= distance_of_time_in_words_to_now(feature.distance_in_time[:time]) %> by <%= feature.distance_in_time[:type] %> from <%= @user_city %></p>
             </div>
           </div>
           </a>
