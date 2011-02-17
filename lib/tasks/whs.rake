@@ -59,7 +59,7 @@ namespace :whs do
         whs.wikipedia_link      = row.wikipedia_link
         whs.country             = row.country
         whs.iso_code            = row.iso_code
-        whs.criteria            = row.criteria
+        whs.criteria            = row.criteria.split(',').map{|c| "[#{c}]"}.join(',') if row.criteria
         whs.date_of_inscription = row.date_of_inscription
         whs.size                = row.size_has.to_f.hectare.to.square_meters.value if row.size_has.present?
         whs.region              = row.region
