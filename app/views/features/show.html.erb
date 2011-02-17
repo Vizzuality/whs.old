@@ -12,13 +12,14 @@
       <% if @feature.gallery && @feature.gallery.gallery_entries.any? %>
         <div id="slider">
           <% @feature.gallery.gallery_entries.each_with_index do |gallery_entry,i| %>
-            <%= image_tag gallery_entry.image.thumbnail(:large).url, :alt => @feature.title %>
+            <%= image_tag gallery_entry.image.thumbnail(:large).url, :alt => @feature.title, :id =>i %>
           <% end %>
         </div>
       <% else %>
         <img id="default_image" src="/images/default_big.png"/>
       <% end %>
-
+      <div id="photo_credits"></div>
+      
       <div id="big_map_container">
         <div id="big_map"></div>
         <div id="zoomControl">
@@ -142,10 +143,31 @@
 
 <script type="text/javascript">
 
+  var imageInfo;
+  <% if @feature.gallery && @feature.gallery.gallery_entries.any? %>
+    imageInfo = new Array();
+    <% @feature.gallery.gallery_entries.each_with_index do |gallery_entry,i| %>
+      imageInfo[<%=i%>] = {author:"author<%=i%>",sourceName: "source<%=i%>",link: "link<%=i%>"}
+    <% end %>
+  <% end %>
+  
+  var selectedImageIndex = 0;
+  function updateCredits() {
+    if (selectedImageIndex >= imageInfo.length) selectedImageIndex = 0;
+    $("#photo_credits").html("Photo by "+imageInfo[selectedImageIndex].author+" published in <a href='"+imageInfo[selectedImageIndex].link+"'>"+imageInfo[selectedImageIndex].sourceName+"</a>");
+    $('#photo_credits').fadeIn();
+    selectedImageIndex++;
+  }
+
   $(window).load(function() {
     $('#slider').nivoSlider({
       effect: "fade",
-      directionNav: false
+      directionNav: false,
+      //directionNavHide: true,
+      controlNav: true,
+      beforeChange: function() {$('#photo_credits').fadeOut()},      
+      afterChange: updateCredits,
+      afterLoad: updateCredits
     });
   });
 
@@ -210,7 +232,7 @@
     });
 
     <% @nearest_places.each_with_index do |near_feature, i|%>
-    var latlng_<%=i%> = new google.maps.LatLng(<%=near_feature.the_geom.y%>, <%=near_feature.the_geom.x%>);
+    var latlng_<%=i%> = new google.maps.LatLng(<%=near_feature.lat%>, <%=near_feature.lon%>);
     var marker_<%=i%> = new google.maps.Marker({
       position: latlng_<%=i%>,
       map: map,
