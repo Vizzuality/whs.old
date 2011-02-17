@@ -145,7 +145,7 @@ div#explore div.middle div#mosaic ul#image_list {height: 645px;}
 /* List */
 div#explore div.middle div#list {position: relative; display:none; margin: 0 8px 0 8px; background-color: #FFFFFF; color: #000000;}
 div#explore div.middle div#list ul {}
-div#explore div.middle div#list ul li {padding: 25px 25px 25px 25px; border-bottom: 1px solid #999999;}
+div#explore div.middle div#list ul li {height: 31px; padding: 20px 25px 20px 25px; border-bottom: 1px solid #999999;}
 div#explore div.middle div#list ul li h3 a {font: normal 18px "PT Sans Bold"; color: #FF9900; text-decoration: none;}
 div#explore div.middle div#list ul li span.description {font: normal 13px "Arial"; color: #666666}
 
