@@ -1,4 +1,31 @@
-var map, marker, latlng, features;
+var map,
+    marker,
+    latlng,
+    features,
+    markers = [],
+    addMarkers = function(){
+      clearMarkers();
+      $.each(features, function(index, feature){
+        latlng = new google.maps.LatLng(feature['lat'], feature['lon']);
+
+        marker = new google.maps.Marker({
+          position: latlng,
+          map: map,
+          title: feature['title'],
+          icon: "/images/explore/marker_" + feature['type'] + ".png"
+        });
+
+        markers.push(marker);
+
+        google.maps.event.addListener(marker, "click", function() {window.location = "/features/" + feature['id']});
+      });
+    },
+    clearMarkers = function(){
+      $.each(markers, function(index, marker){
+        marker.setMap(null);
+      });
+    };
+
 
   $(document).ready( function(){
     var form = $('#ajaxSearch');
@@ -7,6 +34,7 @@ var map, marker, latlng, features;
       evt.preventDefault();
       $.get(form.attr('action'), form.serialize(), function(html){
         $('#results').html(html);
+        addMarkers()
       });
     });
 
@@ -107,17 +135,6 @@ var map, marker, latlng, features;
 
     map = new google.maps.Map(document.getElementById("map"), myOptions);
 
-    $.each(features, function(index, feature){
-      latlng = new google.maps.LatLng(feature['lat'], feature['lon']);
-
-      marker = new google.maps.Marker({
-        position: latlng,
-        map: map,
-        title: feature['title'],
-        icon: "/images/explore/marker_" + feature['type'] + ".png"
-      });
-
-      google.maps.event.addListener(marker, "click", function() {window.location = "/features/" + feature['id']});
-    });
-
+    addMarkers();
   });
+
