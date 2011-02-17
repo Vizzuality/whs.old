@@ -41,7 +41,7 @@
         <div id="data_column">
           <div class="map_container">
             <div id="map">
-              <img src="http://maps.google.com/maps/api/staticmap?center=<%=@feature.the_geom.y%>,<%=@feature.the_geom.x%>&zoom=8&size=235x162&maptype=terrain&markers=icon:/images/explore/marker_natural.png|<%=@feature.the_geom.y%>,<%=@feature.the_geom.x%>&sensor=false"/>
+              <img src="http://maps.google.com/maps/api/staticmap?center=<%= @feature.the_geom.y %>,<%= @feature.the_geom.x %>&zoom=8&size=235x162&maptype=terrain&markers=icon:/images/explore/marker_natural.png|<%= @feature.the_geom.y %>,<%= @feature.the_geom.x %>&sensor=false"/>
 
             </div>
             <div id="img_thumb">
@@ -121,7 +121,7 @@
         <% end %>
       </ul>
   </div>
-  
+
       <h3>Near to this site</h3>
     </div>
   </div>
@@ -155,7 +155,7 @@
   function updateCredits() {
     if (selectedImageIndex >= imageInfo.length) selectedImageIndex = 0;
     $("#photo_credits").html("Photo by "+imageInfo[selectedImageIndex].author+" published in <a href='"+imageInfo[selectedImageIndex].link+"'>"+imageInfo[selectedImageIndex].sourceName+"</a>");
-    
+
     // In slider mode, show the photo credits
     if (!$("div#img_thumb").is(":visible")) {
         $('#photo_credits').fadeIn("fast");
@@ -218,19 +218,19 @@
           $("a#show_link").html("Show images");
       }
     });
-    
+
     // Map customization
 
     var myOptions = {
       zoom: 8,
       disableDefaultUI: true,
-      center: new google.maps.LatLng(<%=@feature.lat%>,<%=@feature.lon%>),
+      center: new google.maps.LatLng(<%= @feature.the_geom.y %>,<%= @feature.the_geom.x %>),
       mapTypeId: google.maps.MapTypeId.TERRAIN
     };
     var map = new google.maps.Map(document.getElementById("big_map"), myOptions);
 
     <% @nearest_places.each_with_index do |near_feature, i|%>
-    var latlng_<%=i%> = new google.maps.LatLng(<%=near_feature.the_geom.x%>, <%=near_feature.the_geom.y%>);
+    var latlng_<%=i%> = new google.maps.LatLng(<%= near_feature.lat %>, <%= near_feature.lon %>);
     var marker_<%=i%> = new google.maps.Marker({
       position: latlng_<%=i%>,
       map: map,
@@ -240,8 +240,8 @@
     google.maps.event.addListener(marker_<%=i%>, "click", function() {window.location = "/features/<%=near_feature.id%>"});
     <% end %>
 
-  // Adding the marker  
-    latlng = new google.maps.LatLng(<%=@feature.the_geom.y%>, <%=@feature.the_geom.x%>);
+  // Adding the marker
+    latlng = new google.maps.LatLng(<%= @feature.the_geom.y %>, <%= @feature.the_geom.x %>);
     marker = new google.maps.Marker({
       position: latlng,
       map: map,
