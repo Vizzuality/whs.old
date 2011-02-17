@@ -28,7 +28,11 @@ class FeaturesController < ApplicationController
 protected
 
   def find_all_features
-    @features = Feature.limit(9)
+    if params && params[:q]
+      @features = Feature.search(params[:q]).limit(9)
+    else
+      @features = Feature.limit(9)
+    end
   end
 
   def find_page
