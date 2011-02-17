@@ -15,9 +15,12 @@ div#header_content div#header_constraint .menu li{display:inline; list-style-typ
 div#header_content div#header_constraint .menu li.form{margin: 0 0 0 20px;}
 div#header_content div#header_constraint .menu li a, div#header_content div#header_constraint .menu li a:visited{color:#FF9900; font-weight:bold; text-decoration:none; font-size:15px; }
 div#header_content div#header_constraint .menu li a:hover{color:#FFFFFF;}
-div#header_content div#header_constraint .menu li div.input #searchText{border-style:hidden; border-width: 0px; color:#666666; margin: 0; padding: 1px 0; height: 21px; font-family: Helvetica, Arial; font-size:13px; outline:none;}
+div#header_content div#header_constraint .menu li div.input{ position: relative;}
 div#header_content div#header_constraint .menu li div.input div.input_left{float:left; background: url(/images/header/input_left.png) no-repeat; height:24px; width:10px;}
 div#header_content div#header_constraint .menu li div.input div.input_center{float:left; background: url(/images/header/input_center.png) repeat-x; height:24px; width:150px;}
+div#header_content div#header_constraint .menu li div.input div.input_center label{ position: absolute; font-family: Helvetica, Arial; font-size:13px; color: #666666; line-height: 24px;}
+div#header_content div#header_constraint .menu li div.input div.input_center label.hidden{ display: none;}
+div#header_content div#header_constraint .menu li div.input div.input_center #searchText{border-style:hidden; border-width: 0px; color:#666666; margin: 0; padding: 1px 0; height: 21px; font-family: Helvetica, Arial; font-size:13px; outline:none; width: 100%;}
 div#header_content div#header_constraint .menu li div.input div.input_right{float:left; background: url(/images/header/input_right.png) no-repeat; height:24px; width:27px;}
 
 
@@ -81,7 +84,7 @@ div#layers {background: url("/images/layers.png") no-repeat 0 0; font: 13px norm
 
 /*HOME SPECIFIC  -------------------------------------------- */
 
-div#mosaic h1 {position: absolute; z-index: 5; top: 340px; left: -15px; font: normal 50px "PT Sans Bold"; color: white;} 
+div#mosaic h1 {position: absolute; z-index: 5; top: 340px; left: -15px; font: normal 50px "PT Sans Bold"; color: white;}
 div#mosaic h2 {position: absolute; z-index: 6; top: 305px; left: -15px; padding: 10px 20px 0 20px; font: normal 19px "PT Sans"; color: white; background-color: black;}
 div#mosaic h1 span{padding:12px 20px 20px 20px; background-color: black;}
 div#mosaic h1.down {top:402px;}
@@ -191,7 +194,7 @@ div#data_column div.map_container {position: absolute; padding: 5px; top: -25px;
 div#data_column div.map_container div#map { width: 235px; height:162px; background-color: #F9F9F9; z-index: 15;}
 div#data_column div.map_container div#darken {position:absolute; display: none; top:5px; width: 235px; height:162px; z-index: 25;}
 div#data_column div.map_container div#darken a#show_link {position:absolute; top: 120px; left: -10px; z-index: 35; padding: 7px 7px 7px 30px; background: url("/images/expand_icon.png") no-repeat 8px 8px; background-color: #000000; color: #999999; font: normal 13px Arial; text-decoration: none;}
-div#data_column div.map_container div#img_thumb {position: absolute; display:none; top: 5px;	width: 235px; height:162px; z-index: 15;}
+div#data_column div.map_container div#img_thumb {position: absolute; display:none; top: 5px;  width: 235px; height:162px; z-index: 15;}
 
 div#data_column p.label {margin: 0 0 0 5px; font: normal 13px "PT Sans Bold"; color: #333333;}
 div#data_column p.label#first {margin: 130px 0 0 5px;}

@@ -3,6 +3,13 @@ module FeatureExtensions
 
   included  do
     class_eval do
+      include PgSearch
+      pg_search_scope :search, :against => {
+        :title => 'A',
+        :meta => 'B',
+        :description => 'C'
+      }
+
       # Returns all features without consolidated images
       scope :without_consolidated_images, where('meta not like ?', "%:images_consolidated: true%")
 
@@ -30,8 +37,9 @@ module FeatureExtensions
 
     # By default, removes 'the_geom' from the default select columns
     def custom_fields
-      lat_long = ['ST_Y(the_geom) as lat', 'ST_X(the_geom) as lon']
-      (columns.map{ |c| c.name } - ['the_geom']).map{ |c| "#{self.table_name}.#{c}" } + lat_long
+      lat_long       = ['ST_Y(the_geom) as lat', 'ST_X(the_geom) as lon']
+      pg_search_rank = ["(ts_rank((setweight(to_tsvector( coalesce(\"features\".\"meta\", '')), 'B') || setweight(to_tsvector( coalesce(\"features\".\"title\", '')), 'A') || setweight(to_tsvector( coalesce(\"features\".\"description\", '')), 'C')), (to_tsquery( ''' ' || 'Spain' || ' ''')))) AS pg_search_rank"]
+      (columns.map{ |c| c.name } - ['the_geom']).map{ |c| "#{self.table_name}.#{c}" } + lat_long + pg_search_rank
     end
 
     # Returns all heritage sites with the specified whs site id (must be only one ALWAYS)

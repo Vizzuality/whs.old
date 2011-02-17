@@ -1,20 +1,32 @@
 <div id="header_content">
   <div id="header_constraint">
     <div class="logo">
-      <h3><a href="/">RethinkWHS.org</a></h3>
+      <h3>
+        <%= link_to 'RethinkWHS.org', root_path %>
+      </h3>
     </div>
-
     <div class="menu">
       <ul>
-        <li><a href="<%=features_path%>">Explore</a></li>
-        <li><a href="/about">About</a></li>
-        <li class="form"><div class="input"><div class="input_left"></div><div class="input_center"><form><input id="searchText" type="text" size="20" value="Search..."/><input class="hidden" type="submit"/></form></div><div class="input_right"></div></div></li>
+        <li>
+          <%= link_to 'Explore', features_path %>
+        </li>
+        <li>
+          <%= link_to 'About', about_path %>
+        </li>
+        <li class="form">
+          <div class="input">
+            <div class="input_left"></div>
+            <div class="input_center">
+              <%= form_tag features_path, :method => :get do %>
+                <%= label_tag 'searchText', 'Search...', :class => params[:q] ? 'hidden' : '' %>
+                <%= text_field_tag 'searchText', params[:q], :name => 'q', :size => 20 %>
+              <% end %>
+            </div>
+            <div class="input_right"></div>
+          </div>
+        </li>
       </ul>
     </div>
-  </div>
-  
-<!-- <%= link_to RefinerySetting[:site_name], root_url(:only_path => true) %> -->
-
-<!--  <%= render :partial => "/shared/menu", :locals => { :dom_id => 'menu', :css => 'menu' } -%>-->
-
+  </div><!-- <%= link_to RefinerySetting[:site_name], root_url(:only_path => true) %> -->
+  <!--  <%= render :partial => "/shared/menu", :locals => { :dom_id => 'menu', :css => 'menu' } -%>-->
 </div>
