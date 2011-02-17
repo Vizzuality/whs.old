@@ -16,6 +16,8 @@ gem 'ppe-panoramio'
 gem 'progressbar'
 gem 'alchemist'
 
+gem 'pg_search'
+
 group :development do
   gem 'capistrano'
   gem 'capistrano-ext'
