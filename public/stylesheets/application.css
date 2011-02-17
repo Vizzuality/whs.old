@@ -150,17 +150,20 @@ div.clear {clear: both;}
 
 /* FEATURES SPECIFIC -------------------------------------------- */
 
-div#feature_image {margin: 0 8px -4px 8px; height: 430px; position: relative; border-bottom: 1px solid #000000;}
-div#feature_image div#big_map_container {position: absolute; top: 0px; width: 880px; height:430px; border-bottom: 1px solid #666666}
+div#feature_image {margin: 0 8px -4px 8px; height: 434px; position: relative; border-bottom: 1px solid #000000;}
+div#feature_image div#big_map_container {position: absolute; visibility:hidden; top: 0px; width: 880px; height:430px; border-bottom: 1px solid #666666}
 div#feature_image div#big_map_container div#big_map {position: absolute; visibility:hidden; top: 0px; width: 880px; height:430px; }
 
-div#feature_image #slider {position:relative; width:880px; height:430px; background:url("/images/loading2.gif") no-repeat 50% 50%; z-index:5; border-bottom: 1px solid #666666}
+div#feature_image #slider {position:relative; width:880px; height:430px; background:url("/images/loading.gif") no-repeat 50% 50%; z-index:5; border-bottom: 1px solid #666666}
 div#feature_image #slider img {position:absolute;top:0px;left:0px;display:none;}
 div#feature_image #slider a {border:0;display:block;}
 div#feature_image #slider div.nivo-controlNav {position: absolute; top: 20px; left: -15px; padding: 0 0 0 15px; background: #000000;}
 div#feature_image #slider div.nivo-controlNav a {float: left; width: 13px; height: 26px; padding:0px 0px 0px 0px; background: url("/images/image_selector.png") no-repeat 0px -25px; background-color: #000000; text-indent: -9000px; cursor:hand;}
 div#feature_image #slider div.nivo-controlNav a:hover {background-position: 0px 9px;}
 div#feature_image #slider div.nivo-controlNav a.active {background-position: 0px 9px;}
+
+div#feature_image #photo_credits {position: absolute; display: none; bottom: 35px; left: 610px; z-index: 6; padding: 5px; font: 10px normal "Arial"; color: #DDDDDD; background: url("/images/transparent.png") repeat}
+div#feature_image #photo_credits a {color: #FFFFFF}
 
 div#feature_image img.default_image {position: absolute; width: 880px; height: 430px;}
 
