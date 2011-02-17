@@ -48,16 +48,6 @@ var map,
       };
     });
 
-    $("a#all_selector").click(function(ev){
-      $('#type').val('');
-    });
-    $("a#natural_selector").click(function(ev){
-      $('#type').val('natural');
-    });
-    $("a#cultural_selector").click(function(ev){
-      $('#type').val('cultural');
-    });
-
     $("a.type_selector").click(function(ev) {
       ev.stopPropagation();
       ev.preventDefault();
@@ -66,8 +56,29 @@ var map,
       if ($.inArray('selected', classes) < 0) {
         $(this).addClass('selected');
       };
+    });
+
+    $("a#all_selector").click(function(ev){
+      $('#type').val('');
+    });
+    $("a#natural_selector").click(function(ev){
+      $('#type').val('');
+      if ($(this).hasClass('selected')) {
+        $('#type').val('natural');
+      };
+    });
+
+    $("a#cultural_selector").click(function(ev){
+      $('#type').val('');
+      if ($(this).hasClass('selected')) {
+        $('#type').val('cultural');
+      };
+    });
+
+    $("a.type_selector").click(function(ev) {
       form.submit();
     });
+
 
     $("a#mosaic_selector").click(function(ev) {
       ev.stopPropagation();
