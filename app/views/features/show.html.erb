@@ -111,7 +111,7 @@
 
             <div class="mosaic_label">
               <p class="place"><%=truncate(feature.title,:length=>60,:delimiter=>"...")%></p>
-              <p class="distance"><%= distance_of_time_in_words_to_now(feature.distance_in_time[:time]) %> by <%= feature.distance_in_time[:type] %> from <%= @user_city %></p>
+              <p class="distance"><%= itinerary_time_and_type(feature.distance_in_time, @user_city) %></p>
             </div>
           </div>
           </a>
