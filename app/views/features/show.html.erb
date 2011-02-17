@@ -121,8 +121,8 @@
         <% end %>
       </ul>
   </div>
-
-
+  
+      <h3>Near to this site</h3>
     </div>
   </div>
   <div class="bottom"></div>
@@ -155,7 +155,11 @@
   function updateCredits() {
     if (selectedImageIndex >= imageInfo.length) selectedImageIndex = 0;
     $("#photo_credits").html("Photo by "+imageInfo[selectedImageIndex].author+" published in <a href='"+imageInfo[selectedImageIndex].link+"'>"+imageInfo[selectedImageIndex].sourceName+"</a>");
-    $('#photo_credits').fadeIn("fast");
+    
+    // In slider mode, show the photo credits
+    if (!$("div#img_thumb").is(":visible")) {
+        $('#photo_credits').fadeIn("fast");
+    }
     selectedImageIndex++;
   }
 
@@ -163,7 +167,6 @@
     $('#slider').nivoSlider({
       effect: "fade",
       directionNav: false,
-      //directionNavHide: true,
       controlNav: true,
       beforeChange: function() {$('#photo_credits').fadeOut("fast")},      
       afterChange: updateCredits,
@@ -203,12 +206,14 @@
       if ($("div#img_thumb").is(":visible")) {
         // Swap big area to images
           $("#slider").fadeIn();
+          $("#photo_credits").fadeIn();
           $("div#img_thumb").hide();
           $("a#show_link").html("Show map");
       } else {
         // Swap big area to map
           $("div#big_map_container").css("visibility","visible");
           $("#slider").fadeOut();
+          $("#photo_credits").fadeOut();
           $("div#img_thumb").show();
           $("a#show_link").html("Show images");
       }
