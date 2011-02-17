@@ -20,7 +20,7 @@ class FeaturesController < ApplicationController
 
     @feature        = Feature.find(params[:id])
     @random_feature = Feature.random_one_distinct_from @feature
-    @nearest_places = Feature.with_distance_to(location_point).close_to(@feature.the_geom).limit(3)
+    @nearest_places = Feature.with_distance_to(location_point).close_to(@feature.the_geom).where('id != ?', @feature.id).limit(3)
 
     itinerary       = @feature.itinerary_time_to location_point
     @itinerary_time = itinerary[:time]
