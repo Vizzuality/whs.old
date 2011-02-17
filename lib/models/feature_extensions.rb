@@ -10,6 +10,8 @@ module FeatureExtensions
         :description => 'C'
       }
 
+      pg_search_scope :search_meta, :against => :meta
+
       # Returns all features without consolidated images
       scope :without_consolidated_images, where('meta not like ?', "%:images_consolidated: true%")
 
@@ -30,6 +32,16 @@ module FeatureExtensions
 
       # Adds the geom to the list of selected fields (removed by default to improve performance)
       scope :with_the_geom, select('the_geom')
+
+      # Gets all natural features
+      scope :natural, search_meta('type: natural')
+
+      # Gets all cultural features
+      scope :cultural, search_meta('type: cultural')
+
+      # Filters query by feature criteria
+      scope :by_criteria, lambda{|criteria| search_meta("criteria: #{criteria}")}
+
     end
   end
 

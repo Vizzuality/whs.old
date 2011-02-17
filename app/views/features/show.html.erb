@@ -19,7 +19,7 @@
         <img id="default_image" src="/images/default_big.png"/>
       <% end %>
       <div id="photo_credits"></div>
-      
+
       <div id="big_map_container">
         <div id="big_map"></div>
         <div id="zoomControl">
@@ -65,7 +65,7 @@
           <p class="label">Why it is a World Heritage Site</p>
           <% @feature.criteria.split(",").each do |criteria|%>
           <ul>
-            <li><%= I18n.t("feature.criteria.#{criteria}") %></li>
+            <li><%= I18n.t("feature.criteria.#{criteria.delete('[]')}") %></li>
           </ul>
           <% end %>
           <% end %>
@@ -150,7 +150,7 @@
       imageInfo[<%=i%>] = {author:"author<%=i%>",sourceName: "source<%=i%>",link: "link<%=i%>"}
     <% end %>
   <% end %>
-  
+
   var selectedImageIndex = 0;
   function updateCredits() {
     if (selectedImageIndex >= imageInfo.length) selectedImageIndex = 0;
@@ -168,7 +168,7 @@
       effect: "fade",
       directionNav: false,
       controlNav: true,
-      beforeChange: function() {$('#photo_credits').fadeOut("fast")},      
+      beforeChange: function() {$('#photo_credits').fadeOut("fast")},
       afterChange: updateCredits,
       afterLoad: updateCredits
     });
@@ -224,14 +224,13 @@
     var myOptions = {
       zoom: 8,
       disableDefaultUI: true,
-      center: new google.maps.LatLng(<%=@feature.the_geom.y%>,<%=@feature.the_geom.x%>),
+      center: new google.maps.LatLng(<%=@feature.lat%>,<%=@feature.lon%>),
       mapTypeId: google.maps.MapTypeId.TERRAIN
     };
     var map = new google.maps.Map(document.getElementById("big_map"), myOptions);
 
-    // Adding markers for nearest sites
     <% @nearest_places.each_with_index do |near_feature, i|%>
-    var latlng_<%=i%> = new google.maps.LatLng(<%=near_feature.lat%>, <%=near_feature.lon%>);
+    var latlng_<%=i%> = new google.maps.LatLng(<%=near_feature.the_geom.x%>, <%=near_feature.the_geom.y%>);
     var marker_<%=i%> = new google.maps.Marker({
       position: latlng_<%=i%>,
       map: map,
