@@ -63,13 +63,7 @@
         <% @features.each do |feature, itinerary|%>
         <li>
           <h3><a href="/features/<%=feature.id%>"><%=truncate(feature.title,:length=>50,:delimiter=>"...") %></a></h3>
-
           <span class="description">A <%=feature.type %> site at <%=feature.country%> (3 hours away from Madrid)</span>
-          <!--
-          <span class="distance">3 hours from Madrid</span>
-          <span class="type"><%=feature.type %></span>
-          <span class="country"><%=feature.country %></span>
-        -->
         </li>
         <% end %>
       </ul>
@@ -85,11 +79,13 @@
   $(document).ready( function(){
 
     $('body').click(function() {
+      // Closes the criteria selector      
       $("div#criteria ul").hide();      
       $("div#criteria span").css("backgroundPosition","-2px 0");
     });
 
     $("a#all_selector").click(function(ev) {
+      // Launches the no-filtering      
       ev.stopPropagation();
       ev.preventDefault();
       $("a#all_selector").addClass("selected");
@@ -98,6 +94,7 @@
     });
 
     $("a#natural_selector").click(function(ev) {
+      // Launches the natural filtering      
       ev.stopPropagation();
       ev.preventDefault();
       $("a#all_selector").removeClass("selected");
@@ -106,6 +103,7 @@
     });
 
     $("a#cultural_selector").click(function(ev) {
+      // Launches the cultural filtering      
       ev.stopPropagation();
       ev.preventDefault();
       $("a#all_selector").removeClass("selected");
@@ -114,6 +112,7 @@
     });
 
     $("a#mosaic_selector").click(function(ev) {
+      // Switches to mosaic view      
       ev.stopPropagation();
       ev.preventDefault();
       $("a#mosaic_selector").addClass("selected");
@@ -123,19 +122,18 @@
       $("div#explore div.middle div#mosaic").show();
     });
 
-
     $("a#list_selector").click(function(ev) {
+      // Switches to list view      
       ev.stopPropagation();
       ev.preventDefault();
       $("a#mosaic_selector").removeClass("selected");
       $("a#list_selector").addClass("selected");
-
       $("div#explore div.middle div#list").show();
       $("div#explore div.middle div#mosaic").hide();
     });
 
-
     $("a#criteria").click(function(ev) {
+      // Opens the criteria selection and filtering      
       ev.stopPropagation();
       ev.preventDefault();
       if ($("div#criteria ul").is(":visible")) {
@@ -147,22 +145,25 @@
     });
 
     $("div#criteria ul a").click(function(ev) {
+      // Launches the criteria filtering      
       ev.stopPropagation();
       ev.preventDefault();
       $("div#criteria span").css("backgroundPosition","-2px 0");
       $("div#criteria ul").toggle();
       $("a#criteria").text($(this).text());
     });
-
-
+    
     $("div#map").mouseover(function() {
+      // Hides the map title
       $("h1").hide();
     });
 
     $("div#map").mouseout(function() {
+      // Shows the map title
       $("h1").show();
     });
 
+    // Main map configuration
     var myOptions = {
       zoom: 2,
       disableDefaultUI: true,
