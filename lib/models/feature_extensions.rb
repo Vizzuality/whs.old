@@ -33,14 +33,15 @@ module FeatureExtensions
       # Adds the geom to the list of selected fields (removed by default to improve performance)
       scope :with_the_geom, select('the_geom')
 
-      # Filters query by feature type (cultural/natural)
-      scope :with_type, lambda{|type| where('meta like ?', "%:type: #{type}%")}
-
       # Gets all natural features
       scope :natural, search_meta('type: natural')
 
       # Gets all cultural features
       scope :cultural, search_meta('type: cultural')
+
+      # Filters query by feature criteria
+      scope :by_criteria, lambda{|criteria| search_meta("criteria: #{criteria}")}
+
     end
   end
 
