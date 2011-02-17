@@ -5,12 +5,12 @@
       <h2>RethinkWHS.org</h2>
         <h1><span>Discovering the most</h1>
         <h1 class="down"><span>beautiful places in the world</span></h1>
-        <a href="/features/<%=@random_features[0].id%>">
+        <a href="/features/<%=@features.first.id%>">
         <div id="big_image">
-            <% if @random_features[0].gallery && @random_features[0].gallery.gallery_entries.any? %>
-              <%= image_tag @random_features[0].gallery.gallery_entries.first.image.thumbnail(:large).url, :alt => @random_features[0].title %>
+            <% if @features.first.gallery && @features.first.gallery.gallery_entries.any? %>
+              <%= image_tag @features.first.gallery.gallery_entries.first.image.thumbnail(:large).url, :alt => @features.first.title %>
               <div class="big_label">
-                <p class="place"><%=truncate(@random_features[0].title,:length=>60,:delimiter=>"...")%></p>
+                <p class="place"><%=truncate(@features.first.title,:length=>60,:delimiter=>"...")%></p>
                 <p class="distance">4 hours by car from Madrid</p>
               </div>
 
@@ -21,7 +21,7 @@
         </a>
 
         <ul id="image_list">
-        <% @random_features[1..6].each do |feature|%>
+        <% @features.first(6).each do |feature|%>
         <li class="mosaic_element<%= cycle('',' middle','', :name => 'mosaic') %>">
           <a href="/features/<%=feature.id%>">
           <div class="mosaic_element_div">
@@ -34,7 +34,7 @@
 
             <div class="mosaic_label">
               <p class="place"><%=truncate(feature.title,:length=>60,:delimiter=>"...")%></p>
-              <p class="distance">4 hours by car from Madrid</p>
+              <p class="distance"><%= distance_of_time_in_words_to_now(feature.distance_in_time[:time]) %> by <%= feature.distance_in_time[:type] %> from <%= @user_city %></p>
             </div>
           </div>
           </a>
@@ -56,10 +56,10 @@
     <div class="content">
     <h2>Browse more sites around you</h2>
       <ul>
-        <% @closests_features.each do |feature, itinerary|%>
+        <% @closests_features.each do |feature|%>
         <li <%= cycle('','','class=\'last\'', :name => 'classname') %> >
           <%= link_to truncate(feature.title,:length => 35, :delimiter => '...'), feature, :title => feature.title %>
-          <p><%= itinerary[:time] %> by <%= itinerary[:type] %> from <%= @user_city %></p>
+          <p><%= distance_of_time_in_words_to_now(feature.distance_in_time[:time]) %> by <%= feature.distance_in_time[:type] %> from <%= @user_city %></p>
         </li>
         <% end %>
       </ul>

@@ -31,7 +31,7 @@
     </div>
     <div id="mosaic">
       <ul id="image_list">
-        <% @random_features.each do |feature, itinerary|%>
+        <% @features.each do |feature|%>
         <li class="mosaic_element<%= cycle('',' middle','', :name => 'mosaic') %>">
           <a href="/features/<%=feature.id%>">
           <div class="mosaic_element_div">
@@ -43,7 +43,7 @@
 
             <div class="mosaic_label">
               <p class="place"><%=truncate(feature.title,:length => 60, :delimiter => "...")%></p>
-              <p class="distance"><%= itinerary[:time] %> by <%= itinerary[:type] %> from <%= @user_city %></p>
+              <p class="distance"><%= distance_of_time_in_words_to_now(feature.distance_in_time[:time]) %> by <%= feature.distance_in_time[:type] %> from <%= @user_city %></p>
             </div>
           </div>
           </a>
@@ -54,7 +54,7 @@
     </div>
     <div id="list">
       <ul id="result_list">
-        <% @random_features.each do |feature, itinerary|%>
+        <% @features.each do |feature, itinerary|%>
         <li>
           <h3><a href="/features/<%=feature.id%>"><%=truncate(feature.title,:length=>50,:delimiter=>"...") %></a></h3>
 
@@ -163,8 +163,8 @@
     var marker;
     var latlng;
 
-    <% @random_features.each do |feature, itinerary|%>
-      latlng = new google.maps.LatLng(<%=feature.the_geom.y%>, <%=feature.the_geom.x%>);
+    <% @features.each do |feature|%>
+      latlng = new google.maps.LatLng(<%= feature.lat %>, <%= feature.lon %>);
       marker = new google.maps.Marker({
         position: latlng,
         map: map,
