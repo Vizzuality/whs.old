@@ -114,9 +114,11 @@ div.content_box#explore div.middle div.map_container div#map {margin: 0 8px 0 8p
 
 /* Filtro */
 div#filter {position: relative; left: -15px; top: 0px; height: 25px; width: 885px; padding: 13px 20px 13px 20px; background-color: #000000;}
-div#filter div.input #searchText{border-style:hidden; border-width: 0px; color:#666666; margin: 0; height: 21px; font-family: Helvetica, Arial; font-size:13px; outline:none;}
 div#filter div.input div.input_left{float:left; background: url(/images/header/input_left.png) no-repeat; height:24px; width:10px;}
-div#filter div.input div.input_center{float:left; background: url(/images/header/input_center.png) repeat-x; height:24px; width:280px;}
+div#filter div.input div.input_center{float:left; position: relative; background: url(/images/header/input_center.png) repeat-x; height:24px; width:280px;}
+div#filter div.input div.input_center label{position: absolute; color:#666666; font-family: Helvetica, Arial; font-size:13px; line-height: 24px;}
+div#filter div.input div.input_center label.hidden{display: none;}
+div#filter div.input div.input_center #q{border-style:hidden; border-width: 0px; color:#666666; margin: 0; height: 21px; font-family: Helvetica, Arial; font-size:13px; outline:none; width: 100%;}
 div#filter div.input div.input_right{float:left; background: url(/images/header/input_right.png) no-repeat; height:24px; width:27px;}
 
 div#filter a#all_selector, a#natural_selector, a#cultural_selector{float: left; height: 19px; padding: 5px 0 0 0; text-align: center; font: normal 13px "PT Sans"; text-decoration: none; color: #333333; font: normal 13px "PT Sans Bold"; text-shadow: #FFFFFF 0px 1px; background-position: 0 24px}

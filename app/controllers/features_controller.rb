@@ -3,9 +3,15 @@ class FeaturesController < ApplicationController
   before_filter :find_page
 
   def index
-    @features  = @features.with_distance_to user_latlong if user_geolocated?
-    @user_city = user_city
-    present(@page)
+    @features      = @features.with_distance_to user_latlong if user_geolocated?
+    @features_json = @features.map{|f| {:lat => f.lat, :lon => f.lon, :title => f.title, :id => f.id, :type => f.type} }.to_json.html_safe
+    @user_city     = user_city
+
+    if request.xhr?
+      render :partial => 'features'
+    else
+      present(@page)
+    end
   end
 
   def show
@@ -28,11 +34,14 @@ class FeaturesController < ApplicationController
 protected
 
   def find_all_features
-    if params && params[:q]
+    if params && params[:q].present?
       @features = Feature.search(params[:q]).limit(9)
     else
       @features = Feature.limit(9)
     end
+
+    # Search features by specified type
+    @features = @features.send(params[:type]) if params && params[:type] && %w(cultural natural).include?(params[:type])
   end
 
   def find_page

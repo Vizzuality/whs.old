@@ -222,7 +222,7 @@
     };
     var map = new google.maps.Map(document.getElementById("big_map"), myOptions);
 
-  // Adding the marker  
+  // Adding the marker
     latlng = new google.maps.LatLng(<%=@feature.the_geom.y%>, <%=@feature.the_geom.x%>);
     marker = new google.maps.Marker({
       position: latlng,

@@ -20,17 +20,23 @@ $(document).ready(function(){
   });
 
   //FUNCTION FOR THE MOSAIC's ELEMENTS
-  $('.mosaic_element_div').hover(function() {
-    $(this).children(".mosaic_label").show();
-   },function(){
-    $(this).children(".mosaic_label").hide();
+  $('.mosaic_element_div').live({
+    mouseover: function() {
+      $(this).children(".mosaic_label").show();
+    },
+    mouseout: function(){
+      $(this).children(".mosaic_label").hide();
+    }
   });
 
   // FUNCTION FOR THE BIG IMAGE ON HOME
-  $('#big_image').hover(function() {
-    $(this).children(".big_label").show();
-   },function(){
-    $(this).children(".big_label").hide();
+  $('#big_image').live({
+    mouseover: function() {
+      $(this).children(".big_label").show();
+    },
+    mouseout: function(){
+      $(this).children(".big_label").hide();
+    }
   });
 
 });

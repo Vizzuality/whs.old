@@ -1,0 +1,42 @@
+<script type="text/javascript" charset="utf-8">
+  features = JSON.parse('<%= @features_json %>');
+</script>
+<div id="mosaic">
+  <ul id="image_list">
+    <% @features.each do |feature|%>
+    <li class="mosaic_element<%= cycle('',' middle','', :name => 'mosaic') %>">
+      <a href="/features/<%=feature.id%>">
+      <div class="mosaic_element_div">
+        <% if feature.gallery && feature.gallery.gallery_entries.any? %>
+          <%= image_tag feature.gallery.gallery_entries.first.image.thumbnail(:small).url, :alt => feature.title %>
+        <% else %>
+          <img src="/images/default_mosaic.png">
+        <% end %>
+
+        <div class="mosaic_label">
+          <p class="place"><%=truncate(feature.title,:length => 60, :delimiter => "...")%></p>
+          <p class="distance"><%= itinerary_time_and_type(feature.distance_in_time, @user_city) %></p>
+        </div>
+      </div>
+      </a>
+    </li>
+    <li class="separator<%= cycle('','',' horizontal', :name => 'separator') %>"></li>
+    <% end %>
+  </ul>
+</div>
+<div id="list">
+  <ul id="result_list">
+    <% @features.each do |feature, itinerary|%>
+    <li>
+      <h3><a href="/features/<%=feature.id%>"><%=truncate(feature.title,:length=>50,:delimiter=>"...") %></a></h3>
+
+      <span class="description">A <%=feature.type %> site at <%=feature.country%> (3 hours away from Madrid)</span>
+      <!--
+      <span class="distance">3 hours from Madrid</span>
+      <span class="type"><%=feature.type %></span>
+      <span class="country"><%=feature.country %></span>
+    -->
+    </li>
+    <% end %>
+  </ul>
+</div>
