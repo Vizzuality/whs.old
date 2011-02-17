@@ -155,7 +155,7 @@ div.clear {clear: both;}
 
 div#feature_image {margin: 0 8px -4px 8px; height: 434px; position: relative; border-bottom: 1px solid #000000;}
 div#feature_image div#big_map_container {position: absolute; visibility:hidden; top: 0px; width: 880px; height:430px; border-bottom: 1px solid #666666}
-div#feature_image div#big_map_container div#big_map {position: absolute; visibility:hidden; top: 0px; width: 880px; height:430px; }
+div#feature_image div#big_map_container div#big_map {position: absolute; top: 0px; width: 880px; height:430px; }
 
 div#feature_image #slider {position:relative; width:880px; height:430px; background:url("/images/loading.gif") no-repeat 50% 50%; z-index:5; border-bottom: 1px solid #666666}
 div#feature_image #slider img {position:absolute;top:0px;left:0px;display:none;}

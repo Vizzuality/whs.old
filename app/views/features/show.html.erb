@@ -155,7 +155,7 @@
   function updateCredits() {
     if (selectedImageIndex >= imageInfo.length) selectedImageIndex = 0;
     $("#photo_credits").html("Photo by "+imageInfo[selectedImageIndex].author+" published in <a href='"+imageInfo[selectedImageIndex].link+"'>"+imageInfo[selectedImageIndex].sourceName+"</a>");
-    $('#photo_credits').fadeIn();
+    $('#photo_credits').fadeIn("fast");
     selectedImageIndex++;
   }
 
@@ -165,7 +165,7 @@
       directionNav: false,
       //directionNavHide: true,
       controlNav: true,
-      beforeChange: function() {$('#photo_credits').fadeOut()},      
+      beforeChange: function() {$('#photo_credits').fadeOut("fast")},      
       afterChange: updateCredits,
       afterLoad: updateCredits
     });
@@ -207,7 +207,7 @@
           $("a#show_link").html("Show map");
       } else {
         // Swap big area to map
-          $("div#big_map").css("visibility","visible");
+          $("div#big_map_container").css("visibility","visible");
           $("#slider").fadeOut();
           $("div#img_thumb").show();
           $("a#show_link").html("Show images");
