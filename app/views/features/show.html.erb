@@ -151,16 +151,14 @@
     <% end %>
   <% end %>
 
-  var selectedImageIndex = 0;
   function updateCredits() {
-    if (selectedImageIndex >= imageInfo.length) selectedImageIndex = 0;
+    // Update the photo credits
+    var selectedImageIndex = $("div.nivo-controlNav a.active").attr("rel");
     $("#photo_credits").html("Photo by "+imageInfo[selectedImageIndex].author+" published in <a href='"+imageInfo[selectedImageIndex].link+"'>"+imageInfo[selectedImageIndex].sourceName+"</a>");
-
     // In slider mode, show the photo credits
     if (!$("div#img_thumb").is(":visible")) {
         $('#photo_credits').fadeIn("fast");
     }
-    selectedImageIndex++;
   }
 
   $(window).load(function() {
