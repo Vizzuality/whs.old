@@ -224,13 +224,13 @@
     var myOptions = {
       zoom: 8,
       disableDefaultUI: true,
-      center: new google.maps.LatLng(<%=@feature.lat%>,<%=@feature.lon%>),
+      center: new google.maps.LatLng(<%=@feature.the_geom.y%>,<%=@feature.the_geom.x%>),
       mapTypeId: google.maps.MapTypeId.TERRAIN
     };
     var map = new google.maps.Map(document.getElementById("big_map"), myOptions);
 
     <% @nearest_places.each_with_index do |near_feature, i|%>
-    var latlng_<%=i%> = new google.maps.LatLng(<%=near_feature.the_geom.x%>, <%=near_feature.the_geom.y%>);
+    var latlng_<%=i%> = new google.maps.LatLng(<%=near_feature.lat%>, <%=near_feature.lon%>);
     var marker_<%=i%> = new google.maps.Marker({
       position: latlng_<%=i%>,
       map: map,
