@@ -17,6 +17,7 @@ gem 'progressbar'
 gem 'alchemist'
 
 gem 'pg_search'
+gem 'kaminari'
 
 group :development do
   gem 'capistrano'

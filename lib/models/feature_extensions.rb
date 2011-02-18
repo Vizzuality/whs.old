@@ -9,6 +9,7 @@ module FeatureExtensions
         :meta => 'B',
         :description => 'C'
       }
+      paginates_per 9
 
       pg_search_scope :search_meta, :against => :meta
 
