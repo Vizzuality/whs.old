@@ -186,7 +186,8 @@ div#feature_title p.distance span#walking {background-position: 20px -60px;}
 
 div#main_area { float: left; width: 535px; padding: 60px 25px 0 25px; color: #333333; background-color: #FFFFFF; font: 15px normal "LiberationSerifRegular";}
 div#main_area h3 {margin-top: 25px; margin-bottom: 10px; color: #333333; font: normal 23px "PT Sans Bold";}
-div#main_area div#wikipedia {position: absolute; bottom: 0; width: 535px; margin: 20px 0 0 0;  padding: 20px 0 20px 0; border-top: 1px solid #CCCCCC; color: #999999; background: url("/images/wikipedia.png") no-repeat right bottom;}
+div#main_area p{margin: 15px 0;}
+div#main_area div#wikipedia {width: 535px; margin: 20px 0 0 0;  padding: 20px 0 20px 0; border-top: 1px solid #CCCCCC; color: #999999; background: url("/images/wikipedia.png") no-repeat right bottom;}
 div#main_area div#wikipedia a {color: #999999; }
 
 div#data_column {float: right; width: 245px; padding: 25px; background-color: #EDEDED;}

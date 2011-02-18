@@ -111,6 +111,7 @@ GEM
       net-ssh (>= 1.99.1)
     nofxx-georuby (1.9.0)
       json_pure (>= 1.4.6)
+    nokogiri (1.4.4)
     pg (0.9.0)
     pg_search (0.1.1)
     polyglot (0.3.1)
@@ -184,6 +185,7 @@ DEPENDENCIES
   json
   kaminari
   nofxx-georuby
+  nokogiri
   pg (= 0.9.0)
   pg_search
   ppe-panoramio

@@ -24,7 +24,8 @@ namespace :whs do
       %w(size float),
       %w(region string),
       %w(edited_region string),
-      %w(type string)
+      %w(type string),
+      %w(external_links string)
     ]
     RefinerySetting.set(:feature_attributes, feature_attributes.map{|a| a.join(':')}.join("\r\n"))
 
@@ -256,5 +257,52 @@ namespace :whs do
     puts '... done!'
     puts '#######################'
     puts "Process terminated. #{invalid_images.count} files deleted."
+  end
+
+  desc "Gets wikipedia description and related links for each feature"
+  task :import_wikipedia_data => :environment do
+    require 'open-uri'
+
+    puts 'Importing data from wikipedia'
+    puts '============================='
+
+    pg = ProgressBar.new("Importing...", Feature.count)
+    errors = []
+    scrapped = 0
+
+    Feature.all.each do |feature|
+      begin
+        doc = Nokogiri::HTML(open(feature.wikipedia_link))
+
+        feature.description    = doc.css('div#bodyContent > p')
+        feature.external_links = doc.css('#bodyContent ul li a.external, #bodyContent ul li a.extiw').map{|a| "[#{a.text}|#{a['href']}]"}.join(',')
+
+        feature.save!
+        pg.inc
+        scrapped += 1
+      rescue Exception => e
+        errors << ["Errors importing wikipedia data for #{feature.title}", e]
+      end
+    end
+
+    pg.finish
+
+    errors_report errors
+
+    puts '#####################################################'
+    puts "#{scrapped} wikipedia pages scrapped from #{Feature.count}"
+
+  end
+
+  def errors_report(errors)
+    if errors.present?
+      puts '############################################'
+      puts 'There were some errors in the import process'
+      puts '============================================'
+      errors.each do |error|
+        puts "- #{error.first}"
+        puts "  error message: #{error.last.message}"
+      end
+    end
   end
 end

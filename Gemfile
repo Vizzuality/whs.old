@@ -19,6 +19,8 @@ gem 'alchemist'
 gem 'pg_search'
 gem 'kaminari'
 
+gem 'nokogiri'
+
 group :development do
   gem 'capistrano'
   gem 'capistrano-ext'
