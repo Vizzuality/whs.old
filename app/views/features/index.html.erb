@@ -15,38 +15,37 @@
       </div>
     </div>
     <div id="filter">
-      <%= form_tag features_path, :method => :get, :id => 'ajaxSearch' do %>
-        <%= hidden_field_tag :type, params[:type] %>
-        <%= hidden_field_tag :criteria, params[:criteria] %>
-        <div class="input">
-          <div class="input_left"></div>
-          <div class="input_center">
+      <div class="input">
+        <div class="input_left"></div>
+        <div class="input_center">
+          <%= form_tag search_path, :method => :get, :id => 'ajaxSearch' do %>
             <%= label_tag :q, 'Search...', :class => params[:q] ? 'hidden' : '' %>
             <%= text_field_tag :q, params[:q], :size => 20 %>
-          </div>
-          <div class="input_right"></div>
+          <% end %>
         </div>
-        <a id="all_selector" class="type_selector <%= all_selected? %>" href="<%= features_path :type => '' %>">All</a>
-        <a id="natural_selector" class="type_selector <%= natural_selected? %>" href="<%= features_path :type => 'natural' %>">Natural</a>
-        <a id="cultural_selector" class="type_selector <%= cultural_selected? %>" href="<%= features_path :type => 'cultural' %>">Cultural</a>
-        <div id="criteria_select">
-          <span><a id="criteria_label" href="#">Search by criteria</a></span>
-          <ul>
-            <li><a id="i"    class="criteria" href="<%= features_path :criteria => '[i]' %>"><%= I18n.t("feature.criteria.i") %></a></li>
-            <li><a id="ii"   class="criteria" href="<%= features_path :criteria => '[ii]' %>"><%= I18n.t("feature.criteria.ii") %></a></li>
-            <li><a id="iii"  class="criteria" href="<%= features_path :criteria => '[iii]' %>"><%= I18n.t("feature.criteria.iii") %></a></li>
-            <li><a id="iv"   class="criteria" href="<%= features_path :criteria => '[iv]' %>"><%= I18n.t("feature.criteria.iv") %></a></li>
-            <li><a id="v"    class="criteria" href="<%= features_path :criteria => '[v]' %>"><%= I18n.t("feature.criteria.v") %></a></li>
-            <li><a id="vi"   class="criteria" href="<%= features_path :criteria => '[vi]' %>"><%= I18n.t("feature.criteria.vi") %></a></li>
-            <li><a id="vii"  class="criteria" href="<%= features_path :criteria => '[vii]' %>"><%= I18n.t("feature.criteria.vii") %></a></li>
-            <li><a id="viii" class="criteria" href="<%= features_path :criteria => '[viii]' %>"><%= I18n.t("feature.criteria.viii") %></a></li>
-            <li><a id="ix"   class="criteria" href="<%= features_path :criteria => '[ix]' %>"><%= I18n.t("feature.criteria.ix") %></a></li>
-            <li><a id="x"    class="criteria" href="<%= features_path :criteria => '[x]' %>"><%= I18n.t("feature.criteria.x") %></a></li>
-          </ul>
-        </div>
-        <a id="mosaic_selector" class="selected" href="#"></a>
-        <a id="list_selector" href="#"></a>
-      <% end %>
+        <div class="input_right"></div>
+      </div>
+      <a id="all_selector"      class="type_selector <%= all_selected? %>"      href="<%= search_path :type => ''         %>">All</a>
+      <a id="natural_selector"  class="type_selector <%= natural_selected? %>"  href="<%= search_path :type => 'natural'  %>">Natural</a>
+      <a id="cultural_selector" class="type_selector <%= cultural_selected? %>" href="<%= search_path :type => 'cultural' %>">Cultural</a>
+      <div id="criteria_select">
+        <span><a id="criteria_label" href="#">Search by criteria</a></span>
+        <ul>
+          <li><a class="criteria" href="<%= search_path :criteria => ''    %>"><%= I18n.t("feature.criteria.all") %></a></li>
+          <li><a class="criteria" href="<%= search_path :criteria => 'i'    %>"><%= I18n.t("feature.criteria.i") %></a></li>
+          <li><a class="criteria" href="<%= search_path :criteria => 'ii'   %>"><%= I18n.t("feature.criteria.ii") %></a></li>
+          <li><a class="criteria" href="<%= search_path :criteria => 'iii'  %>"><%= I18n.t("feature.criteria.iii") %></a></li>
+          <li><a class="criteria" href="<%= search_path :criteria => 'iv'   %>"><%= I18n.t("feature.criteria.iv") %></a></li>
+          <li><a class="criteria" href="<%= search_path :criteria => 'v'    %>"><%= I18n.t("feature.criteria.v") %></a></li>
+          <li><a class="criteria" href="<%= search_path :criteria => 'vi'   %>"><%= I18n.t("feature.criteria.vi") %></a></li>
+          <li><a class="criteria" href="<%= search_path :criteria => 'vii'  %>"><%= I18n.t("feature.criteria.vii") %></a></li>
+          <li><a class="criteria" href="<%= search_path :criteria => 'viii' %>"><%= I18n.t("feature.criteria.viii") %></a></li>
+          <li><a class="criteria" href="<%= search_path :criteria => 'ix'   %>"><%= I18n.t("feature.criteria.ix") %></a></li>
+          <li><a class="criteria" href="<%= search_path :criteria => 'x'    %>"><%= I18n.t("feature.criteria.x") %></a></li>
+        </ul>
+      </div>
+      <a id="mosaic_selector" class="selected" href="#"></a>
+      <a id="list_selector" href="#"></a>
     </div>
     <div id="results">
       <%= render :partial => 'features' %>

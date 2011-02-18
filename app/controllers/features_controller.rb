@@ -20,7 +20,7 @@ class FeaturesController < ApplicationController
 
     @feature        = Feature.find(params[:id])
     @random_feature = Feature.random_one_distinct_from @feature
-    @nearest_places = Feature.with_distance_to(location_point).close_to(@feature.the_geom).limit(3)
+    @nearest_places = Feature.with_distance_to(location_point).close_to(@feature.the_geom).where('id != ?', @feature.id).limit(3)
 
     itinerary       = @feature.itinerary_time_to location_point
     @itinerary_time = itinerary[:time]
@@ -35,9 +35,9 @@ protected
 
   def find_all_features
     if params && params[:q].present?
-      @features = Feature.search(params[:q]).limit(9)
+      @features = Feature.search(params[:q])
     else
-      @features = Feature.limit(9)
+      @features = Feature.scoped
     end
 
     # Search features by specified type
@@ -45,6 +45,8 @@ protected
 
     # Search features by specified criteria
     @features = @features.by_criteria(params[:criteria]) if valid_criteria?
+
+    @features = @features.page current_page
   end
 
   def find_page
@@ -57,5 +59,9 @@ protected
 
   def valid_criteria?
     params && params[:criteria] && %w(i ii iii iv v vi vii viii ix x).include?(params[:criteria])
+  end
+
+  def current_page
+    params[:page] || 1
   end
 end

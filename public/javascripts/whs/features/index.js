@@ -1,33 +1,81 @@
-var map, marker, latlng, features;
+var
+    form,
+    search_url,
+    map,
+    marker,
+    latlng,
+    features,
+    markers = [],
+    search_params = {},
+    showSearchLabel = function(){
+      var q = $('#q');
+      if (!q.val() || q.val() == '') {
+        q.prev('label').fadeIn(200);
+      };
+    },
+    addMarkers = function(){
+      clearMarkers();
+      $.each(features, function(index, feature){
+        latlng = new google.maps.LatLng(feature['lat'], feature['lon']);
+
+        marker = new google.maps.Marker({
+          position: latlng,
+          map: map,
+          title: feature['title'],
+          icon: "/images/explore/marker_" + feature['type'] + ".png"
+        });
+
+        markers.push(marker);
+
+        google.maps.event.addListener(marker, "click", function() {window.location = "/features/" + feature['id']});
+      });
+      centerOnMarkers();
+    },
+    clearMarkers = function(){
+      $.each(markers, function(index, marker){
+        marker.setMap(null);
+      });
+      markers = [];
+    },
+    centerOnMarkers = function(){
+
+      var lats  = $.map(markers, function(marker, index){ return marker.position.lat() }),
+          longs = $.map(markers, function(marker, index){ return marker.position.lng() }),
+          south_west = new google.maps.LatLng(Array.min(lats), Array.min(longs)),
+          north_east = new google.maps.LatLng(Array.max(lats), Array.max(longs)),
+          markers_bounds = new google.maps.LatLngBounds(south_west, north_east);
+
+      map.fitBounds(markers_bounds);
+    },
+    getResults = function(){
+      $.get(search_url, search_params, function(html){
+        $('#results').html(html);
+        addMarkers();
+      });
+    },
+    urlParam = function(url, name){
+      var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(url);
+      return results[1];
+    };
 
   $(document).ready( function(){
-    var form = $('#ajaxSearch');
+    form       = $('#ajaxSearch'),
+    search_url = form.attr('action');
 
-    form.submit(function(evt){
-      evt.preventDefault();
-      $.get(form.attr('action'), form.serialize(), function(html){
-        $('#results').html(html);
-      });
+    showSearchLabel();
+
+    form.submit(function(ev){
+      ev.preventDefault();
+      $('#searchText').val('');
+      search_params['q'] = $('#q').val();
+      getResults();
     });
 
     $('#q').focus(function(){
       $(this).prev('label').fadeOut(200);
     })
     .blur(function(){
-      var q = $(this).val();
-      if (!q || q == '') {
-        $(this).prev('label').fadeIn(200);
-      };
-    });
-
-    $("a#all_selector").click(function(ev){
-      $('#type').val('');
-    });
-    $("a#natural_selector").click(function(ev){
-      $('#type').val('natural');
-    });
-    $("a#cultural_selector").click(function(ev){
-      $('#type').val('cultural');
+      showSearchLabel();
     });
 
     $("a.type_selector").click(function(ev) {
@@ -38,7 +86,23 @@ var map, marker, latlng, features;
       if ($.inArray('selected', classes) < 0) {
         $(this).addClass('selected');
       };
-      form.submit();
+    });
+
+    $("a#all_selector").click(function(ev){
+      $('#type').val('');
+    });
+    $("a#natural_selector").click(function(ev){
+      $('#type').val('');
+      if ($(this).hasClass('selected')) {
+        $('#type').val('natural');
+      };
+    });
+
+    $("a#cultural_selector").click(function(ev){
+      $('#type').val('');
+      if ($(this).hasClass('selected')) {
+        $('#type').val('cultural');
+      };
     });
 
     $("a#mosaic_selector").click(function(ev) {
@@ -85,10 +149,16 @@ var map, marker, latlng, features;
     $('a.criteria').click(function(ev){
       ev.stopPropagation();
       ev.preventDefault();
-      $('input#criteria').val($(this).attr('id'));
-      form.submit();
-    })
+      search_params['q'] = $('#q').val();
+      search_params['criteria'] = urlParam($(this).attr('href'), 'criteria');
+      getResults();
+    });
 
+    $("a.type_selector").click(function(ev) {
+      search_params['q'] = $('#q').val();
+      search_params['type'] = urlParam($(this).attr('href'), 'type');
+      getResults();
+    });
 
     $("div#map").mouseover(function() {
       $("h1").hide();
@@ -107,17 +177,12 @@ var map, marker, latlng, features;
 
     map = new google.maps.Map(document.getElementById("map"), myOptions);
 
-    $.each(features, function(index, feature){
-      latlng = new google.maps.LatLng(feature['lat'], feature['lon']);
-
-      marker = new google.maps.Marker({
-        position: latlng,
-        map: map,
-        title: feature['title'],
-        icon: "/images/explore/marker_" + feature['type'] + ".png"
-      });
-
-      google.maps.event.addListener(marker, "click", function() {window.location = "/features/" + feature['id']});
-    });
-
+    addMarkers();
   });
+
+Array.max = function( array ){
+    return Math.max.apply( Math, array );
+};
+Array.min = function( array ){
+    return Math.min.apply( Math, array );
+};

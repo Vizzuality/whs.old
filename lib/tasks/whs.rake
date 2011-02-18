@@ -238,7 +238,8 @@ namespace :whs do
 
     invalid_images = []
     image_files_paths.each do |p|
-      invalid_images << p if `file --mime -b #{p}`.match(/text\/html/)
+      mime = `file --mime -b #{p}`
+      invalid_images << p unless mime.match(/image\/.+/) || mime.match(/application\/x-directory/)
       pg.inc
     end
     pg.finish
