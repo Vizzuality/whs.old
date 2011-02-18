@@ -19,6 +19,7 @@ class FeaturesController < ApplicationController
     @user_city      = user_city
 
     @feature        = Feature.find(params[:id])
+    @feature_type   = @feature.type
     @random_feature = Feature.random_one_distinct_from @feature
     @nearest_places = Feature.with_distance_to(location_point).close_to(@feature.the_geom).where('id != ?', @feature.id).limit(3)
 
