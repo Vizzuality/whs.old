@@ -273,9 +273,13 @@ namespace :whs do
     Feature.all.each do |feature|
       begin
         doc = Nokogiri::HTML(open(feature.wikipedia_link))
+        description = doc.css('div#bodyContent > p')
 
-        feature.description    = doc.css('div#bodyContent > p')
-        feature.external_links = doc.css('#bodyContent ul li a.external, #bodyContent ul li a.extiw').map{|a| "[#{a.text}|#{a['href']}]"}.join(',')
+        # Removes cites links
+        description.css('a[href^="#cite_note"]').remove
+
+        feature.description    = description.map(&:text).join("\n\n")
+        feature.external_links = doc.css('#bodyContent ul li a.external.text').map{|a| "[#{a.text}|#{a['href']}]"}.join(',')
 
         feature.save!
         pg.inc
