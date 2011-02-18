@@ -75,7 +75,7 @@
           <p class="label">Size</p>
 
           <% %>
-          <p class="value"><%= number_with_precision(@feature.size.to_f, :precision => 2) %> Ha</p>
+          <p class="value"><%= number_with_delimiter(number_with_precision(@feature.size.to_f, :precision => 2)) %> Ha</p>
           <% end %>
 
           <span class="line"></span>
