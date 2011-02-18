@@ -6,9 +6,9 @@
   {:name => "analytics_page_code", :value => "UA-xxxxxx-x"},
   # todo: remove these and use dragonfly better instead.
   {:name => "image_thumbnails", :value => {
-    :small => '110x110>',
-    :medium => '225x255>',
-    :large => '450x450>'
+    :large => '880x430#',
+    :small => '293x214#',
+    :tiny  => '234x162#'
     }
   }
 ].each do |setting|
