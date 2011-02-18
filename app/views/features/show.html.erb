@@ -82,8 +82,10 @@
           <p class="label">External links</p>
           <ul>
             <li><a href="<%=@feature.whs_source_page%>">Official Unesco WHS Site</a></li>
-            <% @feature.external_links.split(',').each do |link| %>
-            <li><%= external link %></li>
+            <% if @feature.external_links.present? %>
+              <% @feature.external_links.split(',').each do |link| %>
+                <li><%= external link %></li>
+              <% end %>
             <% end %>
           </ul>
         </div>
