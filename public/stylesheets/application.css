@@ -1,6 +1,10 @@
 body{background: url("/images/blue_texture.png") repeat; padding: 0; margin:0;}
+body#natural{background: url("/images/green_texture.png") repeat;}
+body#cultural{background: url("/images/orange_texture.png") repeat;}
 
-div#body {margin: 0; background: url("/images/general_bg.png") no-repeat center 0;}
+body div#body {margin: 0; background: url("/images/general_bg.png") no-repeat center 0;}
+body#natural div#body {background: url("/images/natural_bg.jpg") no-repeat center 0;}
+body#cultural div#body {background: url("/images/cultural_bg.jpg") no-repeat center 0;}
 
 div#page{margin: 0 auto; padding:0; margin:0; }
 
