@@ -7,8 +7,6 @@ class FeaturesController < ApplicationController
     @features_json = @features.map{|f| {:lat => f.lat, :lon => f.lon, :title => f.title, :id => f.id, :type => f.type} }.to_json.html_safe
     @user_city     = user_city
 
-    @features = @features.page params[:page]
-
     if request.xhr?
       render :partial => 'features'
     else
@@ -47,6 +45,8 @@ protected
 
     # Search features by specified criteria
     @features = @features.by_criteria(params[:criteria]) if valid_criteria?
+
+    @features = @features.page current_page
   end
 
   def find_page
@@ -59,5 +59,9 @@ protected
 
   def valid_criteria?
     params && params[:criteria] && %w(i ii iii iv v vi vii viii ix x).include?(params[:criteria])
+  end
+
+  def current_page
+    params[:page] || 1
   end
 end
