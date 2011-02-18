@@ -52,7 +52,7 @@ span.line {float: left; width: 100%; height: 2px; background: url("/images/foote
 
 
 /*GENERIC STYLES  -------------------------------------------- */
-div.content_box {margin: 36px auto; width: 896px;}
+div.content_box {margin: 0 auto; padding: 36px 0; width: 896px;}
 div.content_box div.top {height: 7px; background: url("/images/content_top_background.png");}
 div.content_box div.middle {background: url("/images/content_middle_background.png"); padding: 1px 0 0 0;}
 div.content_box div.bottom {height: 7px; margin: 0 0 0 0; background: url("/images/content_bottom_background.png"); clear:both;}
@@ -177,7 +177,7 @@ div#feature_image img.default_image {position: absolute; width: 880px; height: 4
 div#feature_image div#endangered {position: absolute; top: -11px; right: -11px; width: 97px; height: 94px; z-index: 15; background: url("/images/endangered.png");}
 
 div#feature div.middle div.content {position: relative;}
-div#feature div.middle div.content {margin: 0 8px 0 8px; background: #FFFFFF;}
+div#feature div.middle div.content {margin: 0 8px 0 8px; background: #EDEDED;}
 div#feature_title {position: absolute; bottom: -30px; left: -15px; z-index: 15;}
 div#feature_title p#country span{padding: 8px 20px 0px 20px; color: #FFFFFF; background-color: #000000; font: normal 15px "PT Sans";}
 div#feature_title p#country span img {margin: 0 8px 0 0;}
@@ -188,10 +188,10 @@ div#feature_title p.distance span#plane {background-position: 20px 7px;}
 div#feature_title p.distance span#car {background-position: 20px -24px;}
 div#feature_title p.distance span#walking {background-position: 20px -60px;}
 
-div#main_area { float: left; width: 535px; padding: 60px 25px 0 25px; color: #333333; background-color: #FFFFFF; font: 15px normal "LiberationSerifRegular";}
+div#main_area { float: left; width: 535px; padding: 60px 25px; color: #333333; background-color: #FFFFFF; font: 15px normal "LiberationSerifRegular";}
 div#main_area h3 {margin-top: 25px; margin-bottom: 10px; color: #333333; font: normal 23px "PT Sans Bold";}
 div#main_area p{margin: 15px 0;}
-div#main_area div#wikipedia {width: 535px; margin: 20px 0 0 0;  padding: 20px 0 20px 0; border-top: 1px solid #CCCCCC; color: #999999; background: url("/images/wikipedia.png") no-repeat right bottom;}
+div#main_area div#wikipedia {position: absolute; bottom: 0; width: 535px; margin: 20px 0 0 0;  padding: 20px 0 20px 0; border-top: 1px solid #CCCCCC; color: #999999; background: url("/images/wikipedia.png") no-repeat right bottom;}
 div#main_area div#wikipedia a {color: #999999; }
 
 div#data_column {float: right; width: 245px; padding: 25px; background-color: #EDEDED;}

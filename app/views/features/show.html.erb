@@ -35,7 +35,7 @@
 
       <div class="content">
         <div id="main_area">
-          <p><%= simple_format @feature.description %></p>
+          <%= simple_format truncate(@feature.description, :length => 2000) %>
           <div id="wikipedia">You can find more information at <a href="<%=@feature.wikipedia_link%>">Wikipedia</a>.</div>
         </div>
         <div id="data_column">
@@ -75,7 +75,7 @@
           <p class="label">Size</p>
 
           <% %>
-          <p class="value"><%= number_with_precision(@feature.size.to_f, :precision => 2) %> Ha</p>
+          <p class="value"><%= number_with_delimiter(number_with_precision(@feature.size.to_f, :precision => 2)) %> Ha</p>
           <% end %>
 
           <span class="line"></span>
