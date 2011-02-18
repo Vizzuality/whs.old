@@ -1,5 +1,12 @@
+var showHeaderSearchLabel = function(){
+  var q = $('#searchText');
+  if (!q.val() || q.val() == '') {
+    q.prev('label').fadeIn(200);
+  };
+};
 
 $(document).ready(function(){
+  showHeaderSearchLabel();
 
   //FUNCTIONS FOR THE SEARCHBOX BEHAVIOUR
   $('#searchText').focus(function() {
@@ -9,11 +16,7 @@ $(document).ready(function(){
     },200);
   });
   $('#searchText').blur(function() {
-    var q = $(this).val();
-    if (!q || q == '') {
-      $(this).prev('label').fadeIn(200);
-    };
-
+    showHeaderSearchLabel();
     $(this).closest('.input_center').animate({
       width: 150
     },200);

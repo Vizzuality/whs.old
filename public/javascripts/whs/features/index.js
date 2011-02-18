@@ -1,8 +1,18 @@
-var map,
+var
+    form,
+    search_url,
+    map,
     marker,
     latlng,
     features,
     markers = [],
+    search_params = {},
+    showSearchLabel = function(){
+      var q = $('#q');
+      if (!q.val() || q.val() == '') {
+        q.prev('label').fadeIn(200);
+      };
+    },
     addMarkers = function(){
       clearMarkers();
       $.each(features, function(index, feature){
@@ -19,33 +29,44 @@ var map,
 
         google.maps.event.addListener(marker, "click", function() {window.location = "/features/" + feature['id']});
       });
+      centerOnMarkers();
     },
     clearMarkers = function(){
       $.each(markers, function(index, marker){
         marker.setMap(null);
       });
+    },
+    centerOnMarkers = function(){
+
+    },
+    getResults = function(){
+      $.get(search_url, search_params, function(html){
+        $('#results').html(html);
+        addMarkers();
+      });
+    },
+    urlParam = function(url, name){
+      var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(url);
+      return results[1] || 0;
     };
 
-
   $(document).ready( function(){
-    var form = $('#ajaxSearch');
+    form       = $('#ajaxSearch'),
+    search_url = form.attr('action');
 
-    form.submit(function(evt){
-      evt.preventDefault();
-      $.get(form.attr('action'), form.serialize(), function(html){
-        $('#results').html(html);
-        addMarkers()
-      });
+    showSearchLabel();
+
+    form.submit(function(ev){
+      ev.preventDefault();
+      search_params['q'] = $('#q').val();
+      getResults();
     });
 
     $('#q').focus(function(){
       $(this).prev('label').fadeOut(200);
     })
     .blur(function(){
-      var q = $(this).val();
-      if (!q || q == '') {
-        $(this).prev('label').fadeIn(200);
-      };
+      showSearchLabel();
     });
 
     $("a.type_selector").click(function(ev) {
@@ -74,11 +95,6 @@ var map,
         $('#type').val('cultural');
       };
     });
-
-    $("a.type_selector").click(function(ev) {
-      form.submit();
-    });
-
 
     $("a#mosaic_selector").click(function(ev) {
       ev.stopPropagation();
@@ -124,10 +140,16 @@ var map,
     $('a.criteria').click(function(ev){
       ev.stopPropagation();
       ev.preventDefault();
-      $('input#criteria').val($(this).attr('id'));
-      form.submit();
-    })
+      search_params['q'] = $('#q').val();
+      search_params['criteria'] = urlParam($(this).attr('href'), 'criteria');
+      getResults();
+    });
 
+    $("a.type_selector").click(function(ev) {
+      search_params['q'] = $('#q').val();
+      search_params['type'] = urlParam($(this).attr('href'), 'type');
+      getResults();
+    });
 
     $("div#map").mouseover(function() {
       $("h1").hide();
