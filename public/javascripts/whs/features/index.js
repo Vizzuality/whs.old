@@ -35,9 +35,17 @@ var
       $.each(markers, function(index, marker){
         marker.setMap(null);
       });
+      markers = [];
     },
     centerOnMarkers = function(){
 
+      var lats  = $.map(markers, function(marker, index){ return marker.position.lat() }),
+          longs = $.map(markers, function(marker, index){ return marker.position.lng() }),
+          south_west = new google.maps.LatLng(Array.min(lats), Array.min(longs)),
+          north_east = new google.maps.LatLng(Array.max(lats), Array.max(longs)),
+          markers_bounds = new google.maps.LatLngBounds(south_west, north_east);
+
+      map.fitBounds(markers_bounds);
     },
     getResults = function(){
       $.get(search_url, search_params, function(html){
@@ -47,7 +55,7 @@ var
     },
     urlParam = function(url, name){
       var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(url);
-      return results[1] || 0;
+      return results[1];
     };
 
   $(document).ready( function(){
@@ -58,6 +66,7 @@ var
 
     form.submit(function(ev){
       ev.preventDefault();
+      $('#searchText').val('');
       search_params['q'] = $('#q').val();
       getResults();
     });
@@ -171,3 +180,9 @@ var
     addMarkers();
   });
 
+Array.max = function( array ){
+    return Math.max.apply( Math, array );
+};
+Array.min = function( array ){
+    return Math.min.apply( Math, array );
+};
