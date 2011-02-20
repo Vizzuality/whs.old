@@ -1,5 +1,8 @@
 namespace :whs do
 
+  desc "Setup all data for the site"
+  task :setup => ['db:reset', :import_data, :import_wikipedia_data, :import_panoramio_photos]
+
   desc "Imports initial data from csv files"
   task :import_data => :environment do
 
@@ -35,7 +38,7 @@ namespace :whs do
     puts '======================='
     # Hey, look at me!!
     3.times{ sleep 0.2; print "\a" } # beep! beep! beep!
-    puts 'Destroy previously created Features?'
+    puts 'Destroy previously created features?'
     print '(yes/no*) >> '
     STDOUT.flush
     destroy_features = STDIN.gets.chomp
@@ -87,20 +90,37 @@ namespace :whs do
   end
 
   desc "Imports panoramio images for each feature"
-  task :import_features_images => :environment do
+  task :import_panoramio_photos => :environment do
     require 'panoramio'
     require 'net/http'
     require 'uri'
+
+    include ActionView::Helpers::DateHelper
 
     feature_count = Feature.count
 
     puts 'Downloading panoramio photos'
     puts '============================'
+
+    # Hey, look at me!!
+    3.times{ sleep 0.2; print "\a" } # beep! beep! beep!
+    puts 'Destroy previously created galleries and images?'
+    print '(yes/no*) >> '
+    STDOUT.flush
+    destroy_images = STDIN.gets.chomp
+    if destroy_images == 'yes'
+      puts 'Destroying galleries and images...'
+      Gallery.destroy_all
+      Image.destroy_all
+      puts '... done!'
+    end
+
     features_pg = ProgressBar.new("Features", feature_count)
 
-    errors = []
+    errors     = []
+    start_time = Time.now
+    counter    = 1
 
-    counter = 0
     Feature.find_each do |feature|
       radius = feature.size.blank? || feature.size <= 0 ? 100 : Math.sqrt(feature.size) / 2
 
@@ -112,7 +132,9 @@ namespace :whs do
                                 :maxy => bounding_box.last.y,
                                 :size => 'original')
 
-      puts "Downloading photos for #{feature.title} (#{counter} feature of #{feature_count} - #{counter * 100 / feature_count}%)"
+      time_to_finish = ((Time.now - start_time) * feature_count / counter).seconds
+      time_left = distance_of_time_in_words(start_time, start_time + time_to_finish)
+      puts "Downloading photos for #{feature.title} (feature #{counter} of #{feature_count} - #{counter * 100 / feature_count}% - #{time_left} left)"
       if photos.present?
         begin
 
@@ -122,17 +144,14 @@ namespace :whs do
           FileUtils.mkdir_p(Rails.root.join("tmp/panoramio/features/#{feature.whs_site_id}")) unless File.directory?(Rails.root.join("tmp/panoramio/features/#{feature.whs_site_id}"))
 
           photos_pg = ProgressBar.new("Feature ##{feature.whs_site_id}", photos.count)
-
-          photos.each_with_index do |photo, index|
+          photos.each do |photo|
             begin
-              next if File.exists? Rails.root.join("tmp/panoramio/features/#{feature.whs_site_id}/", "#{index}.jpg")
+              image_file_path = Rails.root.join("tmp/panoramio/features/#{feature.whs_site_id}/", "#{photo.photo_id}.jpg")
 
-              Net::HTTP.get_response(URI.parse(photo.photo_file_url)) do |response|
-                File.open(Rails.root.join("tmp/panoramio/features/#{feature.whs_site_id}/#{index}.jpg"), "a+") do |f|
-                  f.write(response.body)
-                  image = Image.create! :image => f
-                  feature.gallery.gallery_entries.create! :name => "Image for gallery #{feature.gallery.name} #{photo.photo_title}", :image_id => image.id
-                end
+              unless File.exists? image_file_path
+                download_and_save_image photo.photo_file_url, photo.photo_title, photo.photo_id, image_file_path, photo.owner_name, photo.owner_url, feature
+              else
+                save_image feature, File.open(image_file_path), photo.photo_title, photo.photo_id, photo.owner_name, photo.owner_url
               end
 
             rescue Exception => e
@@ -161,118 +180,26 @@ namespace :whs do
     end
   end
 
-  desc "Loads into database images from tmp/panoramio"
-  task :import_images => :environment do
-
-    puts 'Importing images into database'
-    puts '=============================='
-
-    errors = []
-    total_images = 0
-    imported_images = 0
-
-    features_folders = Dir[Rails.root.join("tmp/panoramio/features/*")]
-    features_folders.each_with_index do |feature_folder, index|
-
-      whs_site_id = feature_folder.match(/.*\/(\d+)$/)[1]
-
-      if whs_site_id
-        feature = Feature.by_whs_site_id(whs_site_id)
-
-        next if feature.nil?
-
-        feature.gallery = Gallery.find_or_create_by_name feature.title
-        feature.gallery.gallery_entries.clear
-
-        puts "Importing photos for #{feature.title} (#{index} feature of #{features_folders.size} - #{index * 100 / features_folders.size}%)"
-
-        feature_images = Dir["#{feature_folder}/*"]
-        photos_pg = ProgressBar.new("Feature ##{feature.whs_site_id}", feature_images.count)
-
-        total_images += feature_images.count
-
-        feature_images.each_with_index do |feature_image, image_index|
-          begin
-            File.open(feature_image) do |f|
-              image = Image.create! :image => f
-              feature.gallery.gallery_entries.create! :name => "Image #{image_index} for gallery #{feature.gallery.name}", :image_id => image.id
-            end
-
-            imported_images += 1
-          rescue Exception => e
-            errors << ["Errors importing images for #{feature.title}", e]
-          end
-
-          photos_pg.inc
-        end
-
-        feature.meta[:images_consolidated] = false
-        feature.save!
-
-        photos_pg.finish
-
-      end
-    end
-
-    if errors.present?
-      puts '############################################'
-      puts 'There were some errors in the import process'
-      puts '============================================'
-      errors.each do |error|
-        puts "- #{error.first}"
-        puts "  error message: #{error.last.message}"
-      end
-    end
-    puts '#####################################################'
-    puts "#{imported_images} images imported of #{total_images}"
-  end
-
-  desc "Clean invalid image files from tmp/panoramio"
-  task :clean_invalid_image_files do
-    puts '#########################'
-    puts 'Cleaning invalid image files'
-    puts '-------------------------'
-    puts 'Detecting invalid files...'
-
-    image_files_paths = Dir[Rails.root.join("tmp/panoramio/features/**/*")]
-    pg = ProgressBar.new("Detecting...", image_files_paths.count)
-
-    invalid_images = []
-    image_files_paths.each do |p|
-      mime = `file --mime -b #{p}`
-      invalid_images << p unless mime.match(/image\/.+/) || mime.match(/application\/x-directory/)
-      pg.inc
-    end
-    pg.finish
-    puts '... done!'
-
-    puts '-------------------------'
-    puts 'Deleting invalid files...'
-    pg = ProgressBar.new("Deleting...", invalid_images.count)
-    invalid_images.each do |image_path|
-      FileUtils.rm(image_path)
-      pg.inc
-    end
-    pg.finish
-    puts '... done!'
-    puts '#######################'
-    puts "Process terminated. #{invalid_images.count} files deleted."
-  end
-
   desc "Gets wikipedia description and related links for each feature"
   task :import_wikipedia_data => :environment do
-    require 'open-uri'
+    require 'net/http'
+    require 'uri'
 
     puts 'Importing data from wikipedia'
     puts '============================='
 
-    pg = ProgressBar.new("Importing...", Feature.count)
+    features_without_description = Feature.where(:description => nil)
+    pg = ProgressBar.new("Importing...", features_without_description.count)
     errors = []
     scrapped = 0
 
-    Feature.all.each do |feature|
+    features_without_description.each do |feature|
       begin
-        doc = Nokogiri::HTML(open(feature.wikipedia_link))
+        # Percentages are bad encoded as '%25' in original data import
+        wikipedia_url = URI.parse(CGI::unescape(feature.wikipedia_link.gsub('%25', '%')))
+
+        doc = Nokogiri::HTML(Net::HTTP.get_response(wikipedia_url).body)
+
         description = doc.css('div#bodyContent > p')
 
         # Removes cites links
@@ -294,7 +221,7 @@ namespace :whs do
     errors_report errors
 
     puts '#####################################################'
-    puts "#{scrapped} wikipedia pages scrapped from #{Feature.count}"
+    puts "#{scrapped} wikipedia pages scrapped from #{features_without_description.count}"
 
   end
 
@@ -308,5 +235,26 @@ namespace :whs do
         puts "  error message: #{error.last.message}"
       end
     end
+  end
+
+  def download_and_save_image(photo_url, photo_title, photo_id, file_path, owner_name, owner_url, feature)
+    Net::HTTP.get_response(URI.parse(photo_url)) do |response|
+      # Photo moved
+      if response.code == '302'
+        # Gets the new photo url
+        moved_photo_url = Nokogiri::HTML(response.body).css('a').first['href']
+        download_and_save_image moved_photo_url, photo_title, photo_id, file_path, owner_name, owner_url, feature
+      else
+        open(file_path, "w+") do |f|
+          f.write(response.body)
+          save_image feature, f, photo_title, photo_id, owner_name, owner_url
+        end
+      end
+    end
+  end
+
+  def save_image(feature, file, photo_title, photo_id, owner_name, owner_url)
+    image = Image.create! :image => file, :author => owner_name, :author_url => owner_url
+    feature.gallery.gallery_entries.create! :name => "Image for gallery #{feature.gallery.name}. #{photo_title} ##{photo_id}", :image_id => image.id
   end
 end

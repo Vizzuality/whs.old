@@ -152,14 +152,18 @@
   <% if @feature.gallery && @feature.gallery.gallery_entries.any? %>
     imageInfo = new Array();
     <% @feature.gallery.gallery_entries.each_with_index do |gallery_entry,i| %>
-      imageInfo[<%=i%>] = {author:"author<%=i%>",sourceName: "source<%=i%>",link: "link<%=i%>"}
+      imageInfo[<%=i%>] = {
+        'author': "<%= gallery_entry.image.author %>",
+        'author_url': "<%= gallery_entry.image.author_url %>"
+      }
     <% end %>
   <% end %>
 
   function updateCredits() {
     // Update the photo credits
     var selectedImageIndex = $("div.nivo-controlNav a.active").attr("rel");
-    $("#photo_credits").html("Photo by "+imageInfo[selectedImageIndex].author+" published in <a href='"+imageInfo[selectedImageIndex].link+"'>"+imageInfo[selectedImageIndex].sourceName+"</a>");
+    var link = $('<a/>', {href: imageInfo[selectedImageIndex]['author_url']}).text(imageInfo[selectedImageIndex]['author']);
+    $("#photo_credits").html('').append("Photo by ").append(link);
     // In slider mode, show the photo credits
     if (!$("div#img_thumb").is(":visible")) {
         $('#photo_credits').fadeIn("fast");
