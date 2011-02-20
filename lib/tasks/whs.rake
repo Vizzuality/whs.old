@@ -36,17 +36,21 @@ namespace :whs do
 
     puts 'Importing features data'
     puts '======================='
-    # Hey, look at me!!
-    3.times{ sleep 0.2; print "\a" } # beep! beep! beep!
-    puts 'Destroy previously created features?'
-    print '(yes/no*) >> '
-    STDOUT.flush
-    destroy_features = STDIN.gets.chomp
-    if destroy_features == 'yes'
-      puts 'Destroying features...'
-      Feature.destroy_all
-      puts '... done!'
+
+    if Rails.env.development?
+      # Hey, look at me!!
+      3.times{ sleep 0.2; print "\a" } # beep! beep! beep!
+      puts 'Destroy previously created features?'
+      print '(yes/no*) >> '
+      STDOUT.flush
+      destroy_features = STDIN.gets.chomp
+      if destroy_features == 'yes'
+        puts 'Destroying features...'
+        Feature.destroy_all
+        puts '... done!'
+      end
     end
+
     progressbar = ProgressBar.new("Importing...", csv.count)
     csv.each do |row|
 
@@ -102,17 +106,19 @@ namespace :whs do
     puts 'Downloading panoramio photos'
     puts '============================'
 
-    # Hey, look at me!!
-    3.times{ sleep 0.2; print "\a" } # beep! beep! beep!
-    puts 'Destroy previously created galleries and images?'
-    print '(yes/no*) >> '
-    STDOUT.flush
-    destroy_images = STDIN.gets.chomp
-    if destroy_images == 'yes'
-      puts 'Destroying galleries and images...'
-      Gallery.destroy_all
-      Image.destroy_all
-      puts '... done!'
+    if Rails.env.development?
+      # Hey, look at me!!
+      3.times{ sleep 0.2; print "\a" } # beep! beep! beep!
+      puts 'Destroy previously created galleries and images?'
+      print '(yes/no*) >> '
+      STDOUT.flush
+      destroy_images = STDIN.gets.chomp
+      if destroy_images == 'yes'
+        puts 'Destroying galleries and images...'
+        Gallery.destroy_all
+        Image.destroy_all
+        puts '... done!'
+      end
     end
 
     features_pg = ProgressBar.new("Features", feature_count)
@@ -132,16 +138,16 @@ namespace :whs do
                                 :maxy => bounding_box.last.y,
                                 :size => 'original')
 
-      progress_so_far = counter * 100 / feature_count
-      left = 100 - progress_so_far
+      progress_so_far = counter * 100.0 / feature_count
+      left = 100.0 - progress_so_far
       elapsed_time = Time.now - start_time
-      time_to_finish = (elapsed * left / progress_so_far).seconds
+      time_to_finish = (elapsed_time * left / progress_so_far).seconds
       time_left = distance_of_time_in_words(start_time, start_time + time_to_finish)
-      puts "Downloading photos for #{feature.title} (feature #{counter} of #{feature_count} - #{progress_so_far}% - #{time_left} left)"
+      puts "Downloading photos for #{feature.title} (feature #{counter} of #{feature_count} - #{progress_so_far.to_i}% - #{time_left} left)"
       if photos.present?
         begin
 
-          feature.gallery = Gallery.find_or_create_by_name feature.title
+          feature.gallery = Gallery.find_or_create_by_name feature.title.truncate(255)
           feature.gallery.gallery_entries.clear
 
           FileUtils.mkdir_p(Rails.root.join("tmp/panoramio/features/#{feature.whs_site_id}")) unless File.directory?(Rails.root.join("tmp/panoramio/features/#{feature.whs_site_id}"))
@@ -158,7 +164,7 @@ namespace :whs do
               end
 
             rescue Exception => e
-              errors << ["Errors downloading image for #{photo.photo_title}", e]
+              errors << ["Errors downloading image for feature ##{feature.id}, photo => #{photo.photo_file_url}", e]
             end
 
             photos_pg.inc
@@ -166,7 +172,7 @@ namespace :whs do
           feature.save!
           photos_pg.finish
         rescue Exception => e
-          errors << ["Errors downloading images for #{feature.title}", e]
+          errors << ["Errors downloading images for feature ##{feature.id} - #{feature.title}", e]
         end
       end
       features_pg.inc
@@ -241,17 +247,21 @@ namespace :whs do
   end
 
   def download_and_save_image(photo_url, photo_title, photo_id, file_path, owner_name, owner_url, feature)
-    Net::HTTP.get_response(URI.parse(photo_url)) do |response|
-      # Photo moved
-      if response.code == '302'
+    response = Net::HTTP.get_response(URI.parse(photo_url))
+    # Photo moved
+    if response.code == '302'
+      begin
         # Gets the new photo url
-        moved_photo_url = Nokogiri::HTML(response.body).css('a').first['href']
+        moved_photo_url = response['Location'] || response.body.scan(/<A HREF=\"(.*)\">here<\/A>/).to_s
         download_and_save_image moved_photo_url, photo_title, photo_id, file_path, owner_name, owner_url, feature
-      else
-        open(file_path, "w+") do |f|
-          f.write(response.body)
-          save_image feature, f, photo_title, photo_id, owner_name, owner_url
-        end
+      rescue Exception => e
+        puts e
+      end
+
+    else
+      open(file_path, "w+") do |f|
+        f.write(response.body)
+        save_image feature, f, photo_title, photo_id, owner_name, owner_url
       end
     end
   end
