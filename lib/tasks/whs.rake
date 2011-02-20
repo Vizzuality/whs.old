@@ -132,9 +132,12 @@ namespace :whs do
                                 :maxy => bounding_box.last.y,
                                 :size => 'original')
 
-      time_to_finish = ((Time.now - start_time) * feature_count / counter).seconds
+      progress_so_far = counter * 100 / feature_count
+      left = 100 - progress_so_far
+      elapsed_time = Time.now - start_time
+      time_to_finish = (elapsed * left / progress_so_far).seconds
       time_left = distance_of_time_in_words(start_time, start_time + time_to_finish)
-      puts "Downloading photos for #{feature.title} (feature #{counter} of #{feature_count} - #{counter * 100 / feature_count}% - #{time_left} left)"
+      puts "Downloading photos for #{feature.title} (feature #{counter} of #{feature_count} - #{progress_so_far}% - #{time_left} left)"
       if photos.present?
         begin
 
@@ -188,15 +191,15 @@ namespace :whs do
     puts 'Importing data from wikipedia'
     puts '============================='
 
-    features_without_description = Feature.where(:description => nil)
-    pg = ProgressBar.new("Importing...", features_without_description.count)
+    amount_without_description = Feature.where(:description => nil).count
+    pg = ProgressBar.new("Importing...", amount_without_description)
     errors = []
     scrapped = 0
 
-    features_without_description.each do |feature|
+    Feature.where(:description => nil).each do |feature|
       begin
         # Percentages are bad encoded as '%25' in original data import
-        wikipedia_url = URI.parse(CGI::unescape(feature.wikipedia_link.gsub('%25', '%')))
+        wikipedia_url = URI.parse(feature.wikipedia_link.gsub('%25', '%'))
 
         doc = Nokogiri::HTML(Net::HTTP.get_response(wikipedia_url).body)
 
@@ -221,7 +224,7 @@ namespace :whs do
     errors_report errors
 
     puts '#####################################################'
-    puts "#{scrapped} wikipedia pages scrapped from #{features_without_description.count}"
+    puts "#{scrapped} wikipedia pages scrapped from #{amount_without_description}"
 
   end
 
