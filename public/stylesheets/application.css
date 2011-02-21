@@ -54,11 +54,7 @@ div.cultural#footer_second p#second_claim a {color: #4D3316}
 div#footer_second a.button {float: right; width: 274px; height: 34px; margin: 30px 0 22px 0; text-align: center; padding: 14px 0 0 0; font: bold 17px "PT Sans"; text-decoration: none; text-shadow: #57767F 0px 1px; color: #1F3036; background: transparent url("/images/footer/button_back.png") no-repeat;}
 div.natural#footer_second a.button {text-shadow: #9AAF77 0px 1px; color: #323928;}
 div.cultural#footer_second a.button {text-shadow: #C78B48 0px 1px; color: #4D3316;}
-
 div#footer_second a.button:hover {color: #000000;}
-
-
-
 div#subfooter {float: left; width: 100%; height:30px; color: #999999; background-color: #000000; font: normal 12px Arial; text-align: right; margin: 0 0 -14px 0;}
 div#subfooter a {color: #FFFFFF;}
 div#subfooter div#inner {height: 22px; margin: 8px auto 0 auto; width: 880px; padding: 0 6px 0 0;}
@@ -68,7 +64,7 @@ span.line {float: left; width: 100%; height: 2px; background: url("/images/foote
 div.content_box {margin: 0 auto; padding: 36px 0 0 0; width: 896px;}
 div.content_box div.top {height: 7px; background: url("/images/content_top_background.png");}
 div.content_box div.middle {background: url("/images/content_middle_background.png"); padding: 1px 0 0 0;}
-div.content_box div.bottom {height: 7px; margin: 0 0 0 0; background: url("/images/content_bottom_background.png"); clear:both;}
+div.content_box div.bottom {height: 9px; margin: 0 0 0 0; background: url("/images/content_bottom_background.png"); clear:both;}
 
 div#mosaic {position: relative;}
 div#mosaic a{text-decoration: none;}
