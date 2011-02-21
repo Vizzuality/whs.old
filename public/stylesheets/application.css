@@ -70,6 +70,7 @@ ul#image_list li{float:left;  display: inline; width: 293px; height: 214px;}
 ul#image_list li.middle{width:292px;}
 ul#image_list li.separator{position:relative; float:left;  width: 1px; height: 214px; background-color: #000000;}
 ul#image_list li.horizontal{float:left;  width: 880px; height: 1px;}
+ul#image_list li.invisible{display:none;}
 ul#image_list li a {text-decoration: none;}
 
 ul#image_list li div.mosaic_element_div{position:relative; }
@@ -161,7 +162,7 @@ div#feature_image {margin: 0 8px -4px 8px; height: 434px; position: relative; bo
 div#feature_image div#big_map_container {position: absolute; visibility:hidden; top: 0px; width: 880px; height:430px; border-bottom: 1px solid #666666}
 div#feature_image div#big_map_container div#big_map {position: absolute; top: 0px; width: 880px; height:430px; }
 
-div#feature_image #slider {position:relative; width:880px; height:430px; background:url("/images/loading.gif") no-repeat 50% 50%; z-index:5; border-bottom: 1px solid #666666}
+div#feature_image #slider {position:relative; width:880px; height:430px; background:url("/images/loading2.gif") no-repeat 50% 50%; z-index:5; border-bottom: 1px solid #666666}
 div#feature_image #slider img {position:absolute;top:0px;left:0px;display:none;}
 div#feature_image #slider a {border:0;display:block;}
 div#feature_image #slider div.nivo-controlNav {position: absolute; top: 20px; left: -15px; padding: 0 0 0 15px; background: #000000;}
@@ -220,9 +221,8 @@ div#feature_mosaic div.middle div.content h3 {position: absolute; top: 25px; lef
 
 /* Teleport */
 div.content_box#teleport div.middle div.content{position: relative; width: 830px; height: 20px;  margin: 0px 8px 0px 8px; padding: 25px; background-color: white; font: normal 17px "PT Sans";}
-a.teleport {position: absolute; top: 13px; right: 13px; margin: 0px 0px 0px 0; padding: 10px 0 0 0; width: 195px; height: 44px; text-align: center; font: bold 17px "PT Sans"; text-decoration: none; color: #333333;}
-a.teleport#orange {background: transparent url("/images/teleport_orange.png") no-repeat;}
-a.teleport#green {background: transparent url("/images/teleport_green.png") no-repeat;}
+a.teleport_cultural {position: absolute; top: 13px; right: 13px; margin: 0px 0px 0px 0; padding: 10px 0 0 0; width: 195px; height: 44px; text-align: center; font: bold 17px "PT Sans"; text-decoration: none; color: #333333; background: transparent url("/images/teleport_orange.png") no-repeat;}
+a.teleport_natural {position: absolute; top: 13px; right: 13px; margin: 0px 0px 0px 0; padding: 10px 0 0 0; width: 195px; height: 44px; text-align: center; font: bold 17px "PT Sans"; text-decoration: none; color: #333333; background: transparent url("/images/teleport_green.png") no-repeat;}
 a.teleport:hover {color: #000000;}
 
 div.horizontal{float:left;  width: 880px; height: 1px;}

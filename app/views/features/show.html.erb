@@ -138,7 +138,7 @@
   <div class="middle">
     <div class="content">
       <div id="message">Or would you rather be randomly teleported to a new beautiful site?</div>
-      <%= link_to '"Bean me up, Scotty!"', feature_path(@random_feature), :class => "teleport"  , :id => 'green'%>
+      <%= link_to '"Bean me up, Scotty!"', feature_path(@random_feature), :class => "teleport_#{feature_type}"  , :id => 'green'%>
     </div>
   </div>
   <div class="bottom"></div>
