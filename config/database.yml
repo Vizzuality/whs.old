@@ -13,3 +13,19 @@ test:
   database: whs_test
   username: postgres
   password:
+
+staging:
+  adapter: postgresql
+  template: template_postgis
+  encoding: unicode
+  database: whs_staging
+  username: postgres
+  password:
+
+production:
+  adapter: postgresql
+  template: template_postgis
+  encoding: unicode
+  database: whs_production
+  username: postgres
+  password:
