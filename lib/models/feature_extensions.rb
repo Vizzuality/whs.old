@@ -11,6 +11,8 @@ module FeatureExtensions
       }
       paginates_per 9
 
+      attr_writer :lat, :lng
+
       pg_search_scope :search_meta, :against => :meta
 
       # Returns all features without consolidated images
@@ -144,6 +146,18 @@ module FeatureExtensions
     end
     private :query_google_directions
 
+  end
+
+  def lat
+    self.the_geom? && self.the_geom.y ? self.the_geom.y : @lat
+  end
+
+  def lon
+    self.the_geom? && self.the_geom.x ? self.the_geom.x : @lon
+  end
+
+  def to_json
+    super(:methods => [:lat, :lon])
   end
 
 end
