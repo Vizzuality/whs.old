@@ -215,7 +215,7 @@ namespace :whs do
         description.css('a[href^="#cite_note"]').remove
 
         feature.description    = description.map(&:text).join("\n\n")
-        feature.external_links = doc.css('#bodyContent ul li a.external.text').map{|a| "[#{a.text}|#{a['href']}]"}.join(',').first(5)
+        feature.external_links = doc.css('#bodyContent ul li a.external.text').map{|a| "[#{a.text}|#{a['href']}]"}.join('#').first(5)
 
         feature.save!
         pg.inc
