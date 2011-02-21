@@ -29,7 +29,7 @@ div#header_content div#header_constraint .menu li div.input div.input_center #se
 div#header_content div#header_constraint .menu li div.input div.input_right{float:left; background: url(/images/header/input_right.png) no-repeat; height:24px; width:27px;}
 
 /*FOOTER STYLES  -------------------------------------------- */
-div#footer_first {margin: 0 auto; width: 880px;}
+div#footer_first {margin: 36px auto 0 auto; width: 880px;}
 div#footer_first p#first_claim {float: left; color: white; font: bold 27px "PT Sans";padding: 0 0 18px 0;}
 div#footer_first p#first_claim a {font: bold 27px "PT Sans"; color: #ffffff;}
 div#footer_first ul {float: left; width: 100%; list-style-type: none; padding: 0 0 20px 0; }
@@ -65,7 +65,7 @@ div#subfooter div#inner {height: 22px; margin: 8px auto 0 auto; width: 880px; pa
 span.line {float: left; width: 100%; height: 2px; background: url("/images/footer/line_background.png") repeat-x;}
 
 /*GENERIC STYLES  -------------------------------------------- */
-div.content_box {margin: 0 auto; padding: 36px 0; width: 896px;}
+div.content_box {margin: 0 auto; padding: 36px 0 0 0; width: 896px;}
 div.content_box div.top {height: 7px; background: url("/images/content_top_background.png");}
 div.content_box div.middle {background: url("/images/content_middle_background.png"); padding: 1px 0 0 0;}
 div.content_box div.bottom {height: 7px; margin: 0 0 0 0; background: url("/images/content_bottom_background.png"); clear:both;}
