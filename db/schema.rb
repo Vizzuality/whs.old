@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110218180427) do
+ActiveRecord::Schema.define(:version => 20110221144511) do
 
   create_table "blog_categories", :force => true do |t|
     t.column "title", :string
@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(:version => 20110218180427) do
     t.column "image_ext", :string
     t.column "author", :string
     t.column "author_url", :string
+    t.column "source", :string
   end
 
   create_table "inquiries", :force => true do |t|
