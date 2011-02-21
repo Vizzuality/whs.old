@@ -29,7 +29,9 @@ div#header_content div#header_constraint .menu li div.input div.input_center #se
 div#header_content div#header_constraint .menu li div.input div.input_right{float:left; background: url(/images/header/input_right.png) no-repeat; height:24px; width:27px;}
 
 /*FOOTER STYLES  -------------------------------------------- */
-div#footer_first {margin: 36px auto 0 auto; width: 880px;}
+div#footer {position: relative; top: -40px; float: left; width: 100%; z-index: -1; background: url("/images/footer/footer_background.png") repeat;}
+
+div#footer_first {margin: 66px auto 0 auto; width: 880px; background: url("/images/footer/footer_background.png") repeat;}
 div#footer_first p#first_claim {float: left; color: white; font: bold 27px "PT Sans";padding: 0 0 18px 0;}
 div#footer_first p#first_claim a {font: bold 27px "PT Sans"; color: #ffffff;}
 div#footer_first ul {float: left; width: 100%; list-style-type: none; padding: 0 0 20px 0; }
@@ -49,13 +51,14 @@ div#footer_second {margin: 0 auto; width: 880px;}
 div#footer_second p#second_claim {float: left;  width: 582px; margin: 30px 0 30px 0; padding: 4px 0; color: #1F3036; font: normal 16px Arial; line-height: 20px;}
 div.natural#footer_second p#second_claim {color: #323928; text-shadow: #9AAF77 0px 1px; }
 div.cultural#footer_second p#second_claim {color: #4D3316; text-shadow: #C78B48 0px 1px; }
+div#footer_second p#second_claim a {color: #1F3036}
 div.natural#footer_second p#second_claim a {color: #323928}
 div.cultural#footer_second p#second_claim a {color: #4D3316}
 div#footer_second a.button {float: right; width: 274px; height: 34px; margin: 30px 0 22px 0; text-align: center; padding: 14px 0 0 0; font: bold 17px "PT Sans"; text-decoration: none; text-shadow: #57767F 0px 1px; color: #1F3036; background: transparent url("/images/footer/button_back.png") no-repeat;}
 div.natural#footer_second a.button {text-shadow: #9AAF77 0px 1px; color: #323928;}
 div.cultural#footer_second a.button {text-shadow: #C78B48 0px 1px; color: #4D3316;}
 div#footer_second a.button:hover {color: #000000;}
-div#subfooter {float: left; width: 100%; height:30px; color: #999999; background-color: #000000; font: normal 12px Arial; text-align: right; margin: 0 0 -14px 0;}
+div#subfooter {float: left; clear: both; width: 100%; height:30px; color: #999999; background-color: #000000; font: normal 12px Arial; text-align: right; margin: 0 0 -14px 0;}
 div#subfooter a {color: #FFFFFF;}
 div#subfooter div#inner {height: 22px; margin: 8px auto 0 auto; width: 880px; padding: 0 6px 0 0;}
 span.line {float: left; width: 100%; height: 2px; background: url("/images/footer/line_background.png") repeat-x;}
