@@ -28,7 +28,6 @@ div#header_content div#header_constraint .menu li div.input div.input_center lab
 div#header_content div#header_constraint .menu li div.input div.input_center #searchText{border-style:hidden; border-width: 0px; color:#666666; margin: 0; padding: 1px 0; height: 21px; font-family: Helvetica, Arial; font-size:13px; outline:none; width: 100%;}
 div#header_content div#header_constraint .menu li div.input div.input_right{float:left; background: url(/images/header/input_right.png) no-repeat; height:24px; width:27px;}
 
-
 /*FOOTER STYLES  -------------------------------------------- */
 div#footer_first {margin: 0 auto; width: 880px;}
 div#footer_first p#first_claim {float: left; color: white; font: bold 27px "PT Sans";padding: 0 0 18px 0;}
@@ -36,20 +35,34 @@ div#footer_first p#first_claim a {font: bold 27px "PT Sans"; color: #ffffff;}
 div#footer_first ul {float: left; width: 100%; list-style-type: none; padding: 0 0 20px 0; }
 div#footer_first ul li {float: left; width: 203px;font: bold 15px Arial; color: #ffffff; padding: 0 0 0 70px; margin: 0 30px 0 0; height: 70px}
 div#footer_first ul li.last{margin: 0;}
-div#footer_first ul li#icon1_blue {background: url("/images/footer/icon1_blue.png") no-repeat 0 0;}
-div#footer_first ul li#icon2_blue {background: url("/images/footer/icon2_blue.png") no-repeat 0 0;}
-div#footer_first ul li#icon3_blue {background: url("/images/footer/icon3_blue.png") no-repeat 0 0;}
+div#footer_first ul li#icon1_ {background: url("/images/footer/icon1_blue.png") no-repeat 0 0;}
+div#footer_first ul li#icon2_ {background: url("/images/footer/icon2_blue.png") no-repeat 0 0;}
+div#footer_first ul li#icon3_  {background: url("/images/footer/icon3_blue.png") no-repeat 0 0;}
+div#footer_first ul li#icon1_cultural {background: url("/images/footer/icon1_cultural.png") no-repeat 0 0;}
+div#footer_first ul li#icon2_cultural {background: url("/images/footer/icon2_cultural.png") no-repeat 0 0;}
+div#footer_first ul li#icon3_cultural {background: url("/images/footer/icon3_cultural.png") no-repeat 0 0;}
+div#footer_first ul li#icon1_natural {background: url("/images/footer/icon1_natural.png") no-repeat 0 0;}
+div#footer_first ul li#icon2_natural {background: url("/images/footer/icon2_natural.png") no-repeat 0 0;}
+div#footer_first ul li#icon3_natural {background: url("/images/footer/icon3_natural.png") no-repeat 0 0;}
+
 div#footer_second {margin: 0 auto; width: 880px;}
-div#footer_second p#second_claim {float: left;  width: 582px; margin: 30px 0 30px 0; padding: 4px 0; color: #1F3036; text-shadow: #668D9A 0px 1px; font: normal 16px Arial; line-height: 20px;}
-div#footer_second p#second_claim a {color: #1F3036}
+div#footer_second p#second_claim {float: left;  width: 582px; margin: 30px 0 30px 0; padding: 4px 0; color: #1F3036; font: normal 16px Arial; line-height: 20px;}
+div.natural#footer_second p#second_claim {color: #323928; text-shadow: #9AAF77 0px 1px; }
+div.cultural#footer_second p#second_claim {color: #4D3316; text-shadow: #C78B48 0px 1px; }
+div.natural#footer_second p#second_claim a {color: #323928}
+div.cultural#footer_second p#second_claim a {color: #4D3316}
 div#footer_second a.button {float: right; width: 274px; height: 34px; margin: 30px 0 22px 0; text-align: center; padding: 14px 0 0 0; font: bold 17px "PT Sans"; text-decoration: none; text-shadow: #57767F 0px 1px; color: #1F3036; background: transparent url("/images/footer/button_back.png") no-repeat;}
+div.natural#footer_second a.button {text-shadow: #9AAF77 0px 1px; color: #323928;}
+div.cultural#footer_second a.button {text-shadow: #C78B48 0px 1px; color: #4D3316;}
+
 div#footer_second a.button:hover {color: #000000;}
+
+
+
 div#subfooter {float: left; width: 100%; height:30px; color: #999999; background-color: #000000; font: normal 12px Arial; text-align: right; margin: 0 0 -14px 0;}
 div#subfooter a {color: #FFFFFF;}
 div#subfooter div#inner {height: 22px; margin: 8px auto 0 auto; width: 880px; padding: 0 6px 0 0;}
-
 span.line {float: left; width: 100%; height: 2px; background: url("/images/footer/line_background.png") repeat-x;}
-
 
 /*GENERIC STYLES  -------------------------------------------- */
 div.content_box {margin: 0 auto; padding: 36px 0; width: 896px;}
