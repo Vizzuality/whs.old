@@ -131,9 +131,9 @@ var
       ev.stopPropagation();
       ev.preventDefault();
       if ($("div#criteria_select ul").is(":visible")) {
-        $("div#criteria_select span").css("backgroundPosition","-2px 0");
+        $("div#criteria_select span").css("backgroundPosition","0px 0");
       } else {
-        $("div#criteria_select span").css("backgroundPosition","-2px -24px");
+        $("div#criteria_select span").css("backgroundPosition","0px -24px");
       }
       $("div#criteria_select ul").toggle();
     });
