@@ -24,7 +24,6 @@ set :deploy_to, "/home/ubuntu/www/#{application}"
 
 after "deploy:update_code", :run_migrations, :symlinks
 after "deploy", "deploy:cleanup"
-after "deploy:cold", "whs:import_data"
 
 desc "Restart Application"
 deploy.task :restart, :roles => [:app] do
@@ -51,7 +50,7 @@ namespace :whs do
   task :import_data, :roles => [:app] do
     run <<-CMD
       export RAILS_ENV=#{stage} &&
-      cd #{release_path} &&
+      cd #{current_path} &&
       rake whs:setup
     CMD
   end
