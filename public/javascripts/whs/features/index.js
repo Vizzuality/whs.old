@@ -6,7 +6,9 @@ var
     latlng,
     features,
     markers = [],
-    search_params = {},
+    search_params = {
+      'page': 1
+    },
     showSearchLabel = function(){
       var q = $('#q');
       if (!q.val() || q.val() == '') {
@@ -29,7 +31,6 @@ var
 
         google.maps.event.addListener(marker, "click", function() {window.location = "/features/" + feature['id']});
       });
-      centerOnMarkers();
     },
     clearMarkers = function(){
       $.each(markers, function(index, marker){
@@ -37,19 +38,16 @@ var
       });
       markers = [];
     },
-    centerOnMarkers = function(){
-
-      var lats  = $.map(markers, function(marker, index){ return marker.position.lat() }),
-          longs = $.map(markers, function(marker, index){ return marker.position.lng() }),
-          south_west = new google.maps.LatLng(Array.min(lats), Array.min(longs)),
-          north_east = new google.maps.LatLng(Array.max(lats), Array.max(longs)),
-          markers_bounds = new google.maps.LatLngBounds(south_west, north_east);
-
-      map.fitBounds(markers_bounds);
-    },
-    getResults = function(){
+    getResults = function(next_page){
+      search_params['page'] = 1;
+      if (next_page) {
+        search_params['page'] = next_page;
+      };
       $.get(search_url, search_params, function(html){
-        $('#results').html(html);
+        if (next_page == null) {
+          $('#results').empty();
+        };
+        $('#results').append(html);
         addMarkers();
       });
     },
@@ -111,8 +109,8 @@ var
       $("a#mosaic_selector").addClass("selected");
       $("a#list_selector").removeClass("selected");
 
-      $("div#explore div.middle div#list").hide();
-      $("div#explore div.middle div#mosaic").show();
+      $("div#explore div.middle div.list").hide();
+      $("div#explore div.middle div.mosaic").show();
     });
 
 
@@ -122,8 +120,8 @@ var
       $("a#mosaic_selector").removeClass("selected");
       $("a#list_selector").addClass("selected");
 
-      $("div#explore div.middle div#list").show();
-      $("div#explore div.middle div#mosaic").hide();
+      $("div#explore div.middle div.list").show();
+      $("div#explore div.middle div.mosaic").hide();
     });
 
 
@@ -158,6 +156,11 @@ var
       search_params['q'] = $('#q').val();
       search_params['type'] = urlParam($(this).attr('href'), 'type');
       getResults();
+    });
+
+    $('a#pagination').click(function(ev){
+      ev.preventDefault();
+      getResults(search_params['page'] + 1);
     });
 
     $("div#map").mouseover(function() {
