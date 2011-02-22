@@ -101,6 +101,7 @@ namespace :whs do
 
     include ActionView::Helpers::DateHelper
 
+    feature_count = destroy_images = features_pg = errors = start_time = counter = radius = bounding_box = photos = progress_so_far = left = elapsed_time = time_to_finish = time_left = photos_pg = image_file_path = nil
     feature_count = Feature.count
 
     puts 'Downloading panoramio photos'
@@ -158,7 +159,7 @@ namespace :whs do
               image_file_path = Rails.root.join("tmp/panoramio/features/#{feature.whs_site_id}/", "#{photo.photo_id}.jpg")
 
               unless File.exists? image_file_path
-                download_and_save_image photo.photo_file_url, photo.photo_title, photo.photo_id, image_file_path, photo.owner_name, photo.owner_url, feature, 'panoramio'
+                # download_and_save_image photo.photo_file_url, photo.photo_title, photo.photo_id, image_file_path, photo.owner_name, photo.owner_url, feature, 'panoramio'
               else
                 save_image feature, File.open(image_file_path), photo.photo_title, photo.photo_id, photo.owner_name, photo.owner_url, 'panoramio'
               end
@@ -269,5 +270,8 @@ namespace :whs do
   def save_image(feature, file, photo_title, photo_id, owner_name, owner_url, image_source)
     image = Image.create! :image => file, :author => owner_name, :author_url => owner_url, :source => image_source
     feature.gallery.gallery_entries.create! :name => "Image for gallery #{feature.gallery.name}. #{photo_title} ##{photo_id}", :image_id => image.id
+    file.flush
+    file.close
+    file = nil
   end
 end

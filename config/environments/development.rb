@@ -1,4 +1,4 @@
-Refinery::Application.configure do
+Whs::Application.configure do
   # Settings specified here will take precedence over those in config/environment.rb
 
   # In the development environment your application's code is reloaded on
@@ -17,6 +17,8 @@ Refinery::Application.configure do
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
 
+  config.log_level = :debug
+
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 
@@ -24,3 +26,4 @@ Refinery::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
 end
 
+Refinery.rescue_not_found = false

@@ -1,3 +1,3 @@
-class Admin::BaseController < Refinery::AdminBaseController
+class Admin::BaseController < ActionController::Base
 
 end

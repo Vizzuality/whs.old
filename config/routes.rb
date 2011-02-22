@@ -1,4 +1,4 @@
-Refinery::Application.routes.draw do
+Whs::Application.routes.draw do
 
   filter(:refinery_locales) if defined?(RoutingFilter::RefineryLocales) # optionally use i18n.
 

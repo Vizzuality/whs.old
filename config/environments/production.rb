@@ -1,4 +1,4 @@
-Refinery::Application.configure do
+Whs::Application.configure do
   # Settings specified here will take precedence over those in config/environment.rb
 
   # The production environment is meant for finished, "live" apps.
@@ -55,3 +55,4 @@ end
 # instead of the default file system for resources and images
 # Make sure to your bucket info is correct in amazon_s3.yml
 Refinery.s3_backend = !(ENV['S3_KEY'].nil? || ENV['S3_SECRET'].nil?)
+Refinery.rescue_not_found = true

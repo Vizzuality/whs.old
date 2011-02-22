@@ -1,17 +1,16 @@
-load 'user.rb'
-
 r = Role.create :title => 'Refinery'
 
 u = User.new
-u.login = 'admin'
-u.email = 'change-me@example.com'
-u.password = 'admin'
+u.username              = 'admin'
+u.email                 = 'change-me@example.com'
+u.password              = 'admin'
 u.password_confirmation = 'admin'
-u.save
+u.save!
 
 
 # Refinery settings
-Dir[Rails.root.join('db', 'seeds','*.rb').to_s].each do |file|
+Dir[Rails.root.join('db', 'seeds', '*.rb').to_s].each do |file|
+  puts "Loading db/seeds/#{file.split(File::SEPARATOR).last}"
   load(file)
 end
 
