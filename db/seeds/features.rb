@@ -13,5 +13,3 @@ page = Page.create(
 Page.default_parts.each do |default_page_part|
   page.parts.create(:title => default_page_part, :body => nil)
 end
-
-RefinerySetting.find_or_set(:feature_srid, '4326')

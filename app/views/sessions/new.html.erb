@@ -1,8 +1,8 @@
-<%= form_for(@session, :as => :session, :url => session_path) do |f| -%>
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| -%>
 
   <%= render :partial => "/shared/admin/error_messages",
              :locals => {
-               :object => @session,
+               :object => resource,
                :include_object_name => true
              } %>
 
@@ -20,7 +20,7 @@
       <%= f.label :remember_me %>
     </div>
     <div class='field forgot_password'>
-      <%= link_to t('.forgot_password'), forgot_users_url %>
+      <%= link_to t('.forgot_password'), new_password_path(resource_name) %>
     </div>
   </div>
   <%= render :partial => "/shared/admin/form_actions", :locals => {:f => f, :submit_button_text => t('.sign_in'), :hide_cancel => true} %>

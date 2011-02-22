@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.1'
+gem 'rails', '= 3.0.4'
 
 # PostgreSQL
 gem 'pg',                       '0.9.0'
@@ -8,7 +8,6 @@ gem 'nofxx-georuby',                          :require => 'geo_ruby'
 gem 'ppe-postgis-adapter',                    :require => 'postgis_adapter', :git => 'git://github.com/ferblape/postgis_adapter.git'
 
 gem 'ruby-debug'
-gem 'rmagick',                  '~> 2.12.0',  :require => false
 
 gem 'csv-mapper'
 gem 'json'
@@ -28,8 +27,8 @@ end
 
 # REFINERY CMS ================================================================
 
-gem 'dragonfly',                '0.7.7'
-gem 'refinerycms',              '= 0.9.8.5'
+gem 'dragonfly',                '= 0.8.2'
+gem 'refinerycms',              '= 0.9.9.3'
 
 gem 'refinerycms-inquiries',    '= 0.9.8.4', :require => 'inquiries'
 gem 'refinerycms-blog',         '~> 1.0.rc12',                               :git => 'git://github.com/Vizzuality/refinerycms-blog.git'

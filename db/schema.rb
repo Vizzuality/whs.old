@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110221144511) do
+ActiveRecord::Schema.define(:version => 20110222124247) do
 
   create_table "blog_categories", :force => true do |t|
     t.column "title", :string
@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(:version => 20110221144511) do
   add_index "geo_ips", ["ip_start"], :name => "index_geo_ips_on_ip_start"
 
 # Could not dump table "geography_columns" because of following StandardError
-#   Unknown type 'name' for column 'f_table_catalog' /Users/fer/.rvm/gems/ruby-1.8.7-p330@whs/bundler/gems/postgis_adapter-e85ca1be881e/lib/postgis_adapter/common_spatial_adapter.rb:52:in `table'/Users/fer/.rvm/gems/ruby-1.8.7-p330@whs/bundler/gems/postgis_adapter-e85ca1be881e/lib/postgis_adapter/common_spatial_adapter.rb:50:in `each'/Users/fer/.rvm/gems/ruby-1.8.7-p330@whs/bundler/gems/postgis_adapter-e85ca1be881e/lib/postgis_adapter/common_spatial_adapter.rb:50:in `table'/Users/fer/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.1/lib/active_record/schema_dumper.rb:75:in `tables'/Users/fer/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.1/lib/active_record/schema_dumper.rb:66:in `each'/Users/fer/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.1/lib/active_record/schema_dumper.rb:66:in `tables'/Users/fer/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.1/lib/active_record/schema_dumper.rb:27:in `dump'/Users/fer/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.1/lib/active_record/schema_dumper.rb:21:in `dump'/Users/fer/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.1/lib/active_record/railties/databases.rake:327/Users/fer/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.1/lib/active_record/railties/databases.rake:326:in `open'/Users/fer/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.1/lib/active_record/railties/databases.rake:326/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:636:in `call'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:636:in `execute'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:631:in `each'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:631:in `execute'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:597:in `invoke_with_call_chain'/Users/fer/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/monitor.rb:242:in `synchronize'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:590:in `invoke_with_call_chain'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:583:in `invoke'/Users/fer/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.1/lib/active_record/railties/databases.rake:143/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:636:in `call'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:636:in `execute'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:631:in `each'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:631:in `execute'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:597:in `invoke_with_call_chain'/Users/fer/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/monitor.rb:242:in `synchronize'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:590:in `invoke_with_call_chain'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:583:in `invoke'/Users/fer/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.1/lib/active_record/railties/databases.rake:154/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:636:in `call'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:636:in `execute'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:631:in `each'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:631:in `execute'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:597:in `invoke_with_call_chain'/Users/fer/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/monitor.rb:242:in `synchronize'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:590:in `invoke_with_call_chain'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:583:in `invoke'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:2051:in `invoke_task'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:2029:in `top_level'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:2029:in `each'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:2029:in `top_level'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:2068:in `standard_exception_handling'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:2023:in `top_level'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:2001:in `run'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:2068:in `standard_exception_handling'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:1998:in `run'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/bin/rake:31/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/bin/rake:19:in `load'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/bin/rake:19
+#   Unknown type 'name' for column 'f_table_catalog' /Users/fer/.rvm/gems/ruby-1.8.7-p330@whs/bundler/gems/postgis_adapter-e85ca1be881e/lib/postgis_adapter/common_spatial_adapter.rb:52:in `table'/Users/fer/.rvm/gems/ruby-1.8.7-p330@whs/bundler/gems/postgis_adapter-e85ca1be881e/lib/postgis_adapter/common_spatial_adapter.rb:50:in `each'/Users/fer/.rvm/gems/ruby-1.8.7-p330@whs/bundler/gems/postgis_adapter-e85ca1be881e/lib/postgis_adapter/common_spatial_adapter.rb:50:in `table'/Users/fer/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.4/lib/active_record/schema_dumper.rb:75:in `tables'/Users/fer/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.4/lib/active_record/schema_dumper.rb:66:in `each'/Users/fer/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.4/lib/active_record/schema_dumper.rb:66:in `tables'/Users/fer/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.4/lib/active_record/schema_dumper.rb:27:in `dump'/Users/fer/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.4/lib/active_record/schema_dumper.rb:21:in `dump'/Users/fer/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.4/lib/active_record/railties/databases.rake:327/Users/fer/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.4/lib/active_record/railties/databases.rake:326:in `open'/Users/fer/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.4/lib/active_record/railties/databases.rake:326/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:636:in `call'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:636:in `execute'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:631:in `each'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:631:in `execute'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:597:in `invoke_with_call_chain'/Users/fer/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/monitor.rb:242:in `synchronize'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:590:in `invoke_with_call_chain'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:583:in `invoke'/Users/fer/.rvm/gems/ruby-1.8.7-p330@whs/gems/activerecord-3.0.4/lib/active_record/railties/databases.rake:143/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:636:in `call'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:636:in `execute'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:631:in `each'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:631:in `execute'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:597:in `invoke_with_call_chain'/Users/fer/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/monitor.rb:242:in `synchronize'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:590:in `invoke_with_call_chain'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:583:in `invoke'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:2051:in `invoke_task'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:2029:in `top_level'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:2029:in `each'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:2029:in `top_level'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:2068:in `standard_exception_handling'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:2023:in `top_level'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:2001:in `run'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:2068:in `standard_exception_handling'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/lib/rake.rb:1998:in `run'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/gems/rake-0.8.7/bin/rake:31/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/bin/rake:19:in `load'/Users/fer/.rvm/gems/ruby-1.8.7-p330@global/bin/rake:19
 
   create_table "images", :force => true do |t|
     t.column "image_mime_type", :string
@@ -132,9 +132,6 @@ ActiveRecord::Schema.define(:version => 20110221144511) do
     t.column "updated_at", :datetime
     t.column "image_uid", :string
     t.column "image_ext", :string
-    t.column "author", :string
-    t.column "author_url", :string
-    t.column "source", :string
   end
 
   create_table "inquiries", :force => true do |t|
@@ -157,6 +154,16 @@ ActiveRecord::Schema.define(:version => 20110221144511) do
     t.column "updated_at", :datetime
   end
 
+  create_table "page_part_translations", :force => true do |t|
+    t.column "page_part_id", :integer
+    t.column "locale", :string
+    t.column "body", :text
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
+
+  add_index "page_part_translations", ["page_part_id"], :name => "index_page_part_translations_on_page_part_id"
+
   create_table "page_parts", :force => true do |t|
     t.column "page_id", :integer
     t.column "title", :string
@@ -168,6 +175,19 @@ ActiveRecord::Schema.define(:version => 20110221144511) do
 
   add_index "page_parts", ["id"], :name => "index_page_parts_on_id"
   add_index "page_parts", ["page_id"], :name => "index_page_parts_on_page_id"
+
+  create_table "page_translations", :force => true do |t|
+    t.column "page_id", :integer
+    t.column "locale", :string
+    t.column "title", :string
+    t.column "meta_keywords", :string
+    t.column "browser_title", :string
+    t.column "meta_description", :text
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
+
+  add_index "page_translations", ["page_id"], :name => "index_page_translations_on_page_id"
 
   create_table "pages", :force => true do |t|
     t.column "title", :string
@@ -190,7 +210,6 @@ ActiveRecord::Schema.define(:version => 20110221144511) do
     t.column "lft", :integer
     t.column "rgt", :integer
     t.column "depth", :integer
-    t.column "cached_slug", :string
   end
 
   add_index "pages", ["depth"], :name => "index_pages_on_depth"
@@ -208,6 +227,7 @@ ActiveRecord::Schema.define(:version => 20110221144511) do
     t.column "scoping", :string
     t.column "restricted", :boolean, :default => false
     t.column "callback_proc_as_string", :string
+    t.column "form_value_type", :string
   end
 
   add_index "refinery_settings", ["name"], :name => "index_refinery_settings_on_name"
@@ -231,6 +251,9 @@ ActiveRecord::Schema.define(:version => 20110221144511) do
     t.column "role_id", :integer
   end
 
+  add_index "roles_users", ["user_id", "role_id"], :name => "index_roles_users_on_role_id_and_user_id"
+  add_index "roles_users", ["user_id", "role_id"], :name => "index_roles_users_on_user_id_and_role_id"
+
   create_table "slugs", :force => true do |t|
     t.column "name", :string
     t.column "sluggable_id", :integer
@@ -238,9 +261,11 @@ ActiveRecord::Schema.define(:version => 20110221144511) do
     t.column "sluggable_type", :string, :limit => 40
     t.column "scope", :string, :limit => 40
     t.column "created_at", :datetime
+    t.column "locale", :string
   end
 
-  add_index "slugs", ["name", "sequence", "sluggable_type", "scope"], :name => "index_slugs_on_name_and_sluggable_type_and_scope_and_sequence", :unique => true
+  add_index "slugs", ["locale"], :name => "index_slugs_on_locale"
+  add_index "slugs", ["name", "sequence", "sluggable_type", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "user_plugins", :force => true do |t|
@@ -253,14 +278,22 @@ ActiveRecord::Schema.define(:version => 20110221144511) do
   add_index "user_plugins", ["name"], :name => "index_user_plugins_on_title"
 
   create_table "users", :force => true do |t|
-    t.column "login", :string, :null => false
+    t.column "username", :string, :null => false
     t.column "email", :string, :null => false
-    t.column "crypted_password", :string, :null => false
+    t.column "encrypted_password", :string, :null => false
     t.column "password_salt", :string, :null => false
     t.column "persistence_token", :string
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
     t.column "perishable_token", :string
+    t.column "current_sign_in_at", :datetime
+    t.column "last_sign_in_at", :datetime
+    t.column "current_sign_in_ip", :string
+    t.column "last_sign_in_ip", :string
+    t.column "sign_in_count", :integer
+    t.column "remember_token", :string
+    t.column "reset_password_token", :string
+    t.column "remember_created_at", :datetime
   end
 
   add_index "users", ["id"], :name => "index_users_on_id"
