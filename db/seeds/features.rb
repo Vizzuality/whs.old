@@ -19,6 +19,6 @@ puts '================'
 puts 'Loading features...'
 
 current_database = ActiveRecord::Base.connection.current_database
-`pg_restore -Upostgres -d #{current_database} -a #{Rails.root.join('db/scripts/features.pg_dump')}`
+`cat #{Rails.root.join('db/scripts/features.sql.gz')} | gunzip | psql -Upostgres #{current_database}`
 
 puts '... done!'
