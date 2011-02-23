@@ -136,7 +136,7 @@ div#filter div.input div.input_center label{display: none; position: absolute; c
 div#filter div.input div.input_center #q{border-style:hidden; border-width: 0px; color:#666666; margin: 0; height: 21px; font-family: Helvetica, Arial; font-size:13px; outline:none; width: 100%;}
 div#filter div.input div.input_right{float:left; background: url(/images/header/input_right.png) no-repeat; height:24px; width:27px;}
 
-div#filter a#all_selector, a#natural_selector, a#cultural_selector{float: left; height: 19px; padding: 5px 0 0 0; text-align: center; font: normal 13px "PT Sans"; text-decoration: none; color: #333333; font: normal 13px "PT Sans Bold"; text-shadow: #FFFFFF 0px 1px; background-position: 0 24px}
+div#filter a#all_selector, a#natural_selector, a#cultural_selector{float: left; height: 19px; padding: 5px 0 0 0; text-align: center; text-decoration: none; color: #333333; font: normal 13px "PT Sans Bold"; text-shadow: #FFFFFF 0px 1px; background-position: 0 24px}
 div#filter a#all_selector{width: 74px; margin: 0 0 0 15px; background-image: url("/images/explore/left_filter.png")}
 div#filter a#natural_selector{width: 78px; background-image: url("/images/explore/center_filter.png")}
 div#filter a#cultural_selector{width: 74px; background-image: url("/images/explore/right_filter.png")}
@@ -158,6 +158,10 @@ div#filter a.selected#mosaic_selector, a.selected#list_selector{background-posit
 /* Mosaico */
 div#explore div.middle div.mosaic {position: relative; margin: 0 8px 0 8px; background: #FFFFFF;}
 div#explore div.middle div.mosaic ul {height: 645px;}
+
+a#pagination { display: block; width: 880px; margin: 0 8px; padding: 15px 0; color: #333333; background: url("/images/explore/grey_gradient.png") repeat-x; font: normal 21px "PT Sans Bold"; text-align: center; text-decoration: none; text-shadow: #FFFFFF 0px 1px; ;}
+a#pagination:hover {color: #111111; background: none; background-color: #FFFFFF;}
+
 
 /* List */
 div#explore div.middle div.list {position: relative; display:none; margin: 0 8px 0 8px; background-color: #FFFFFF; color: #000000;}
