@@ -98,8 +98,10 @@ namespace :whs do
 
     include ActionView::Helpers::DateHelper
 
-    feature_count = destroy_images = features_pg = errors = start_time = counter = radius = bounding_box = photos = progress_so_far = left = elapsed_time = time_to_finish = time_left = photos_pg = nil
-    feature_count = Feature.count
+    features_without_images = feature_count = destroy_images = features_pg = errors = start_time = counter = radius = bounding_box = photos = progress_so_far = left = elapsed_time = time_to_finish = time_left = photos_pg = nil
+
+    features_without_images = Feature.where('id NOT IN (?)', Feature.select('features.id').joins(:gallery => {:gallery_entries => :image}).map{|f| f.id}.uniq)
+    feature_count = features_without_images.count
 
     puts 'Downloading panoramio photos'
     puts '============================'
@@ -125,7 +127,8 @@ namespace :whs do
     start_time = Time.now
     counter    = 1
 
-    Feature.find_each do |feature|
+
+    features_without_images.each do |feature|
       radius = feature.size.blank? || feature.size <= 0 ? 100 : Math.sqrt(feature.size) / 2
 
       bounding_box = Feature.select("ST_Buffer((the_geom)::geography, #{radius}) as the_geom").where(:id => feature.id).first.the_geom.bounding_box
