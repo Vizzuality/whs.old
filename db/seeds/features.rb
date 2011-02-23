@@ -13,3 +13,12 @@ page = Page.create(
 Page.default_parts.each do |default_page_part|
   page.parts.create(:title => default_page_part, :body => nil)
 end
+
+# Loads features from sql file
+puts '================'
+puts 'Loading features...'
+
+current_database = ActiveRecord::Base.connection.current_database
+`pg_restore -Upostgres -d #{current_database} -a #{Rails.root.join('db/scripts/features.pg_dump')}`
+
+puts '... done!'
