@@ -99,10 +99,10 @@ div#zoomControl a#zoomout:hover {background-position: 0 21px;}
 
 /*HOME SPECIFIC  -------------------------------------------- */
 
-div#mosaic h1 {position: absolute; z-index: 5; top: 340px; left: -15px; font: normal 50px "PT Sans Bold"; color: white;}
+div#mosaic h1 {position: absolute; z-index: 5; top: 370px; left: -15px; font: normal 50px "PT Sans Bold"; color: white;}
 div#mosaic h2 {position: absolute; z-index: 6; top: 305px; left: -15px; padding: 10px 20px 0 20px; font: normal 19px "PT Sans"; color: white; background-color: black;}
 div#mosaic h1 span{padding:12px 20px 20px 20px; background-color: black;}
-div#mosaic h1.down {top:402px;}
+div#mosaic h1.down {top:432px;}
 div#mosaic h1.down span{padding:8px 20px 20px 20px;}
 
 div#more_sites div.middle {padding: 1px 0 2px 0;}
