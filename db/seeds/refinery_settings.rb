@@ -5,7 +5,7 @@
   {:name => "preferred_image_view", :value => :grid},
   {:name => "analytics_page_code", :value => "UA-xxxxxx-x"},
   # todo: remove these and use dragonfly better instead.
-  {:name => "image_thumbnails", :value => {
+  {:name => "user_image_sizes", :value => {
     :large => '880x430#',
     :small => '293x214#',
     :tiny  => '234x162#'
