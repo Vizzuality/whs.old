@@ -109,8 +109,7 @@ var
       $("a#mosaic_selector").addClass("selected");
       $("a#list_selector").removeClass("selected");
 
-      $("div#explore div.middle div.list").hide();
-      $("div#explore div.middle div.mosaic").show();
+      $("div#results").addClass('mosaic').removeClass('list');
     });
 
 
@@ -120,8 +119,7 @@ var
       $("a#mosaic_selector").removeClass("selected");
       $("a#list_selector").addClass("selected");
 
-      $("div#explore div.middle div.list").show();
-      $("div#explore div.middle div.mosaic").hide();
+      $("div#results").addClass('list').removeClass('mosaic');
     });
 
 
