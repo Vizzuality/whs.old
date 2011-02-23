@@ -2,8 +2,6 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.1'
 
-gem 'capistrano'
-gem 'capistrano-ext'
 # PostgreSQL
 gem 'pg',                       '0.9.0'
 gem 'nofxx-georuby',                          :require => 'geo_ruby'
@@ -22,7 +20,6 @@ gem 'pg_search'
 gem 'kaminari'
 
 gem 'nokogiri'
-
 
 group :development do
   gem 'capistrano'

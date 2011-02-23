@@ -1,0 +1,15 @@
+---
+javascripts:
+- home:
+  - jquery.min
+  - application
+  - nivo-slider/jquery.nivo.slider.pack
+- explore:
+  - jquery.min
+  - application
+  - whs/features/index
+- feature:
+  - jquery.min
+  - application
+  - nivo-slider/jquery.nivo.slider.pack
+  - whs/features/show

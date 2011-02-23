@@ -158,9 +158,9 @@ namespace :whs do
               image_file_path = Rails.root.join("tmp/panoramio/features/#{feature.whs_site_id}/", "#{photo.photo_id}.jpg")
 
               unless File.exists? image_file_path
-                download_and_save_image photo.photo_file_url, photo.photo_title, photo.photo_id, image_file_path, photo.owner_name, photo.owner_url, feature
+                download_and_save_image photo.photo_file_url, photo.photo_title, photo.photo_id, image_file_path, photo.owner_name, photo.owner_url, feature, 'panoramio'
               else
-                save_image feature, File.open(image_file_path), photo.photo_title, photo.photo_id, photo.owner_name, photo.owner_url
+                save_image feature, File.open(image_file_path), photo.photo_title, photo.photo_id, photo.owner_name, photo.owner_url, 'panoramio'
               end
 
             rescue Exception => e
@@ -246,14 +246,14 @@ namespace :whs do
     end
   end
 
-  def download_and_save_image(photo_url, photo_title, photo_id, file_path, owner_name, owner_url, feature)
+  def download_and_save_image(photo_url, photo_title, photo_id, file_path, owner_name, owner_url, feature, image_source)
     response = Net::HTTP.get_response(URI.parse(photo_url))
     # Photo moved
     if response.code == '302'
       begin
         # Gets the new photo url
         moved_photo_url = response['Location'] || response.body.scan(/<A HREF=\"(.*)\">here<\/A>/).to_s
-        download_and_save_image moved_photo_url, photo_title, photo_id, file_path, owner_name, owner_url, feature
+        download_and_save_image moved_photo_url, photo_title, photo_id, file_path, owner_name, owner_url, feature, image_source
       rescue Exception => e
         puts e
       end
@@ -261,13 +261,13 @@ namespace :whs do
     else
       open(file_path, "w+") do |f|
         f.write(response.body)
-        save_image feature, f, photo_title, photo_id, owner_name, owner_url
+        save_image feature, f, photo_title, photo_id, owner_name, owner_url, image_source
       end
     end
   end
 
-  def save_image(feature, file, photo_title, photo_id, owner_name, owner_url)
-    image = Image.create! :image => file, :author => owner_name, :author_url => owner_url
+  def save_image(feature, file, photo_title, photo_id, owner_name, owner_url, image_source)
+    image = Image.create! :image => file, :author => owner_name, :author_url => owner_url, :source => image_source
     feature.gallery.gallery_entries.create! :name => "Image for gallery #{feature.gallery.name}. #{photo_title} ##{photo_id}", :image_id => image.id
   end
 end
