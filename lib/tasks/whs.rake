@@ -1,8 +1,5 @@
 namespace :whs do
 
-  desc "Setup all data for the site"
-  task :setup => ['db:reset', :import_data, :import_wikipedia_data, :import_panoramio_photos]
-
   desc "Imports initial data from csv files"
   task :import_data => :environment do
 
@@ -159,7 +156,7 @@ namespace :whs do
               image_file_path = Rails.root.join("tmp/panoramio/features/#{feature.whs_site_id}/", "#{photo.photo_id}.jpg")
 
               unless File.exists? image_file_path
-                # download_and_save_image photo.photo_file_url, photo.photo_title, photo.photo_id, image_file_path, photo.owner_name, photo.owner_url, feature, 'panoramio'
+                download_and_save_image photo.photo_file_url, photo.photo_title, photo.photo_id, image_file_path, photo.owner_name, photo.owner_url, feature, 'panoramio'
               else
                 save_image feature, File.open(image_file_path), photo.photo_title, photo.photo_id, photo.owner_name, photo.owner_url, 'panoramio'
               end
@@ -216,7 +213,7 @@ namespace :whs do
         description.css('a[href^="#cite_note"]').remove
 
         feature.description    = description.map(&:text).join("\n\n")
-        feature.external_links = doc.css('#bodyContent ul li a.external.text').map{|a| "[#{a.text}|#{a['href']}]"}.join('#').first(5)
+        feature.external_links = doc.css('#bodyContent ul li a.external.text').map{|a| "[#{a.text}|#{a['href']}]"}.first(5).join('#')
 
         feature.save!
         pg.inc
@@ -270,7 +267,6 @@ namespace :whs do
   def save_image(feature, file, photo_title, photo_id, owner_name, owner_url, image_source)
     image = Image.create! :image => file, :author => owner_name, :author_url => owner_url, :source => image_source
     feature.gallery.gallery_entries.create! :name => "Image for gallery #{feature.gallery.name}. #{photo_title} ##{photo_id}", :image_id => image.id
-    file.flush
     file.close
     file = nil
   end

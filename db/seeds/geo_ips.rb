@@ -30,10 +30,14 @@ end
 
 # Loads ipinfo sql script into current environment database
 puts ''
-puts msg = "Loading geo_ips.pg_dump into #{current_database} database."
+msg = "Loading geo_ips.pg_dump into #{current_database} database..."
 puts msg.chars.map{'#'}.join
+puts msg
 `pg_restore -Upostgres -d #{current_database} -a -F c #{geo_ips_sql}`
+puts '... done!'
 
+puts ''
+puts '#####################################'
 puts 'Creating indexes for geo_ips table...'
 create_indexes_sentence = <<-SQL
   CREATE INDEX index_geo_ips_on_ip_start ON geo_ips USING btree (ip_start);
