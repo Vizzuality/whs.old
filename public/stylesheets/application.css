@@ -193,8 +193,9 @@ div#feature_image img.default_image {position: absolute; width: 880px; height: 4
 
 div#feature_image div#endangered {position: absolute; top: -11px; right: -11px; width: 97px; height: 94px; z-index: 15; background: url("/images/endangered.png");}
 
-div#feature div.middle div.content {position: relative;}
-div#feature div.middle div.content {margin: 0 8px 0 8px; background: #EDEDED;}
+div#feature div.middle div.content {position: relative; margin: 0 8px 0 8px; background: url("/images/feature_content_bg.png") repeat-y;}
+/*div#feature div.middle div.content {margin: 0 8px 0 8px; background: #EDEDED;}*/
+
 div#feature_title {position: absolute; bottom: -30px; left: -15px; z-index: 15;}
 div#feature_title p#country span{padding: 8px 20px 0px 20px; color: #FFFFFF; background-color: #000000; font: normal 15px "PT Sans";}
 div#feature_title p#country span img {margin: 0 8px 0 0;}
@@ -205,13 +206,13 @@ div#feature_title p.distance span#plane {background-position: 20px 7px;}
 div#feature_title p.distance span#car {background-position: 20px -24px;}
 div#feature_title p.distance span#walking {background-position: 20px -60px;}
 
-div#main_area { float: left; width: 535px; min-height: 300px; padding: 60px 25px; color: #333333; background-color: #FFFFFF; font: 15px normal "LiberationSerifRegular";}
+div#main_area { float: left; width: 535px; height: 100%; min-height: 300px; padding: 60px 25px; color: #333333; background-color: #FFFFFF; font: 15px normal "LiberationSerifRegular";}
 div#main_area h3 {margin-top: 25px; margin-bottom: 10px; color: #333333; font: normal 23px "PT Sans Bold";}
 div#main_area p{margin: 15px 0;}
 div#main_area div#wikipedia {position: absolute; bottom: 0; width: 535px; margin: 20px 0 0 0;  padding: 20px 0 20px 0; border-top: 1px solid #CCCCCC; color: #999999; background: url("/images/wikipedia.png") no-repeat right bottom;}
 div#main_area div#wikipedia a {color: #999999; }
 
-div#data_column {float: right; width: 245px; padding: 25px; background-color: #EDEDED;}
+div#data_column {float: right; width: 245px; padding: 25px;}
 div#data_column div.map_container {position: absolute; padding: 5px; top: -25px; width: 235px; height:162px; background-color: #F9F9F9; z-index: 15;}
 div#data_column div.map_container div#map { width: 235px; height:162px; background-color: #F9F9F9; z-index: 15;}
 div#data_column div.map_container div#darken {position:absolute; display: none; top:5px; width: 235px; height:162px; z-index: 25;}
