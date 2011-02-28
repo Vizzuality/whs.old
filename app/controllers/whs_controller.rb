@@ -6,8 +6,11 @@ class WhsController < ApplicationController
   end
 
   def next_feature_images
-
-    result = Feature.next_feature_images
+    result = if params[:feature_id]
+      Feature.by_whs_site_id(params[:feature_id])
+    else
+      Feature.next_feature_images
+    end
 
     render :json => result.to_json
   end
