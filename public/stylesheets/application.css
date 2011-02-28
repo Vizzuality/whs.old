@@ -154,6 +154,8 @@ a#pagination:hover {color: #111111; background: none; background-color: #FFFFFF;
 div.clear {clear: both;}
 
 /* FEATURES SPECIFIC -------------------------------------------- */
+a.import_images {position:absolute; right:-70px; top:-10px; height:30px; width:30px;}
+a.import_images:hover {cursor:default;}
 
 div#feature_image {position:relative; margin: 0 8px -4px 8px; height: 434px;  border-bottom: 1px solid #000000;}
 div#feature_image div#big_map_container {position: relative; width: 880px; height:430px; border-bottom: 1px solid #666666;}
