@@ -137,12 +137,12 @@ div#filter a.selected#mosaic_selector, a.selected#list_selector{background-posit
 
 /* Mosaico */
 div#explore div#results {width:896px; height:645px; overflow:hidden;}
-div#explore div#results div.mosaic {position:absolute; display:block; margin:0 8px 0 8px; background: #FFFFFF; z-index:10;}
+div#explore div#results div.mosaic {position:absolute; display:block; width:880px; height:644px; margin:0 8px 0 8px; background: #FFFFFF; z-index:10; border-bottom:1px solid black;}
 div#explore div#results div.mosaic ul {height: 645px;}
 
 /* List */
 div#explore div#results div.list {position:absolute; top:0; left:0; display:block; height:645px; margin: 0 8px 0 8px; background-color:#FFFFFF; color: #000000; z-index:5;}
-div#explore div#results div.list ul {float:left; background:white;}
+div#explore div#results div.list ul {float:left; height:645px; background:white;}
 div#explore div#results div.list ul li {width:830px; height:31px; padding: 20px 25px 20px 25px; border-bottom: 1px solid #999999; background:white;}
 div#explore div#results div.list ul li h3 a {font: normal 18px "PT Sans Bold"; color: #FF9900; text-decoration: none;}
 div#explore div#results div.list ul li h3 a:hover {color:#FF6600;}
@@ -159,7 +159,7 @@ div#feature_image {position:relative; margin: 0 8px -4px 8px; height: 434px;  bo
 div#feature_image div#big_map_container {position: relative; width: 880px; height:430px; border-bottom: 1px solid #666666;}
 div#feature_image div#big_map_container div#big_map {position: absolute; top: 0px; width: 880px; height:430px; }
 
-div#feature_image #slider {position:absolute; top:0; left:0; width:880px; height:430px; background:url("/images/loading2.gif") no-repeat 50% 50%; z-index:5; border-bottom: 1px solid #666666; z-index:10;}
+div#feature_image #slider {position:absolute!important; display:block; top:0; left:0; width:880px; height:430px; background:url("/images/loading2.gif") no-repeat center center white; z-index:5; border-bottom: 1px solid #666666; z-index:10;}
 div#feature_image #slider img {position:absolute;top:0px;left:0px;display:none;}
 div#feature_image #slider a {border:0;display:block;}
 div#feature_image #slider div.nivo-controlNav {position: absolute; top: 20px; left: -15px; padding: 0 0 0 15px; background: #000000;}
@@ -222,7 +222,7 @@ div#feature_mosaic div.middle div.content h3 {position: absolute; top: 60px; lef
 div.content_box#teleport div.middle div.content{position: relative; width: 830px; height: 20px;  margin: 0px 8px 0px 8px; padding: 25px; background-color: white; font: normal 17px "PT Sans";}
 a.teleport_cultural {position: absolute; top: 13px; right: 13px; margin: 0px 0px 0px 0; padding: 10px 0 0 0; width: 195px; height: 44px; text-align: center; font: bold 17px "PT Sans"; text-decoration: none; color: #333333; background: transparent url("/images/teleport_orange.png") no-repeat;}
 a.teleport_natural {position: absolute; top: 13px; right: 13px; margin: 0px 0px 0px 0; padding: 10px 0 0 0; width: 195px; height: 44px; text-align: center; font: bold 17px "PT Sans"; text-decoration: none; color: #333333; background: transparent url("/images/teleport_green.png") no-repeat;}
-
+a.teleport_mixed {position: absolute; top: 13px; right: 13px; margin: 0px 0px 0px 0; padding: 10px 0 0 0; width: 195px; height: 44px; text-align: center; font: bold 17px "PT Sans"; text-decoration: none; color: #333333; background: transparent url("/images/bean_up_mixed.png") no-repeat;}
 a.teleport:hover,a.teleport_natural:hover,a.teleport_cultural:hover {color: #000000;}
 
 
@@ -277,6 +277,9 @@ div#footer_first ul li.last{margin: 0;}
 div#footer_first ul li#icon1_ {background: url("/images/footer/icon1_blue.png") no-repeat 0 0;}
 div#footer_first ul li#icon2_ {background: url("/images/footer/icon2_blue.png") no-repeat 0 0;}
 div#footer_first ul li#icon3_  {background: url("/images/footer/icon3_blue.png") no-repeat 0 0;}
+div#footer_first ul li#icon1_mixed {background: url("/images/footer/icon1_blue.png") no-repeat 0 0;}
+div#footer_first ul li#icon2_mixed {background: url("/images/footer/icon2_blue.png") no-repeat 0 0;}
+div#footer_first ul li#icon3_mixed  {background: url("/images/footer/icon3_blue.png") no-repeat 0 0;}
 div#footer_first ul li#icon1_cultural {background: url("/images/footer/icon1_cultural.png") no-repeat 0 0;}
 div#footer_first ul li#icon2_cultural {background: url("/images/footer/icon2_cultural.png") no-repeat 0 0;}
 div#footer_first ul li#icon3_cultural {background: url("/images/footer/icon3_cultural.png") no-repeat 0 0;}

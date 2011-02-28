@@ -26,13 +26,7 @@
     <% @features.each do |feature, itinerary|%>
     <li>
       <h3><a href="/features/<%=feature.id%>"><%=truncate(feature.title,:length=>50,:delimiter=>"...") %></a></h3>
-
       <span class="description">A <%=feature.type %> site at <%=feature.country%> (3 hours away from Madrid)</span>
-      <!--
-      <span class="distance">3 hours from Madrid</span>
-      <span class="type"><%=feature.type %></span>
-      <span class="country"><%=feature.country %></span>
-    -->
     </li>
     <% end %>
   </ul>
