@@ -225,6 +225,22 @@ namespace :whs do
     puts "#{scrapped} wikipedia pages scrapped from #{amount_without_description}"
 
   end
+  
+  desc "Imports missing wikipedia pages"
+  task :import_missing_wikipedia => :environment do
+    
+    csv = CsvMapper.import(Rails.root.join("db/import_data/whs-no-wikipedia.csv")) do
+      read_attributes_from_file
+    end
+    
+    csv.each do |row|
+      f = Feature.find(row.id)
+      f.description    = row.description
+      f.save!
+    end
+    
+    
+  end
 
   def errors_report(errors)
     if errors.present?
