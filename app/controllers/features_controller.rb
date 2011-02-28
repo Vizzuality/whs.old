@@ -52,7 +52,7 @@ class FeaturesController < ApplicationController
           info = flickr.photos.getInfo :photo_id => flickr_id
           owner_name = info.owner['realname'] || info.owner['username']
           sizes = flickr.photos.getSizes :photo_id => flickr_id
-          photo_url = sizes.find {|s| s.label == 'Large' || s.label == 'Original'}['source']
+          photo_url = sizes.find {|s| s.label == 'Large' || s.label == 'Original' || s.label == 'Medium'}['source']
           owner_url = info.urls.first['_content'].split('/')[0..-2].join('/')
           response = Net::HTTP.get_response(URI.parse(photo_url))
           image = Image.create! :image => response.body, :author => owner_name, :author_url => owner_url, :source => "flickr"
