@@ -40,3 +40,7 @@ module Whs
     config.filter_parameters += [:password]
   end
 end
+
+# REMOVE ME
+FlickRaw.api_key="cf78ae30c924443c8f402569b013d291"
+FlickRaw.shared_secret="b2a46f9ab3f3d9f6"
