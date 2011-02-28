@@ -55,10 +55,10 @@ div.mosaic div#big_image div.big_label p.distance {float: right; clear: both; z-
 div.mosaic div.middle div.content {margin: 0 7px 0 8px; background: transparent;}
 
 div.mosaic ul {height: 432px;}
-div.mosaic ul li{float:left;  display: inline; width: 293px; height: 214px;}
+div.mosaic ul li{float:left;  display: inline; width: 293px; height: 214px; border-bottom:1px solid black;}
 div.mosaic ul li.middle{width:292px;}
 div.mosaic ul li.separator{position:relative; float:left;  width: 1px; height: 214px; background-color: #000000;}
-div.mosaic ul li.horizontal{float:left;  width: 880px; height: 1px;}
+div.mosaic ul li.horizontal{float:left;  width: 880px; height: 0px!important; border-bottom:0;}
 div.mosaic ul li.invisible{display:none;}
 div.mosaic ul li a {text-decoration: none;}
 div.mosaic ul li div.mosaic_element_div{position:relative; }
@@ -183,7 +183,7 @@ div#feature_title {position: absolute; bottom: -30px; left: -15px; z-index: 15;}
 div#feature_title p#country span{float:left; padding: 8px 20px 5px 20px; color: #FFFFFF; background-color: #000000; font: normal 15px "PT Sans";}
 div#feature_title p#country span img {margin: 0 8px 0 0;}
 div#feature_title h1 {float:left; padding:0 0 0 20px; margin:0; width: 600px; z-index: 15; background:url('/images/h1_fake.jpg') repeat-y 0 0;}
-div#feature_title h1 span {color: #FFFFFF;  font: normal 35px "PT Sans Bold"; margin:5px 0 0 0; padding: 5px 20px 3px 0; background-color: #000000; z-index: 15; white-space:pre-wrap;}
+div#feature_title h1 span {float:left; color: #FFFFFF; line-height:45px; font: normal 35px "PT Sans Bold"; margin:0; padding: 5px 20px 3px 0; background-color: #000000; z-index: 15; white-space:pre-wrap;}
 div#feature_title p.distance span {float:left; padding: 7px 20px 10px 40px; color: #999999; background: url("/images/transport_icons.png") no-repeat 20px 7px; background-color: #000000; font: normal 13px Arial;}
 div#feature_title p.distance span#plane {background-position: 20px 7px;}
 div#feature_title p.distance span#car {background-position: 20px -24px;}
@@ -194,6 +194,7 @@ div#main_area h3 {margin-top: 25px; margin-bottom: 10px; color: #333333; font: n
 div#main_area p{margin: 15px 0;}
 div#main_area div#wikipedia {position: absolute; bottom: 0; width: 535px; margin: 20px 0 0 0;  padding: 20px 0 20px 0; border-top: 1px solid #CCCCCC; color: #999999; background: url("/images/wikipedia.png") no-repeat right bottom;}
 div#main_area div#wikipedia a {color: #999999; }
+div#main_area div#wikipedia a:hover {color:#333333;}
 
 div#data_column {float: right; width: 245px; padding: 25px;}
 div#data_column div.map_container {position: absolute; padding: 5px; top: -25px; width: 235px; height:162px; background-color: #F9F9F9; z-index: 15;}
@@ -210,6 +211,7 @@ div#data_column span.line {margin: 10px 0 10px 0px; }
 div#data_column ul {margin: 3px 0 0 17px; list-style-type: disc;}
 div#data_column ul li {margin:4px 0 0 5px; font: normal 15px "LiberationSerifRegular"; color: #666666;}
 div#data_column ul li a {font: normal 15px "LiberationSerifRegular"; text-decoration: underline; color: #FF6600;}
+div#data_column ul li a:hover {color:#FF3300;}
 div#clear {clear: both;}
 
 /* Mosaico */
@@ -235,8 +237,8 @@ div.content_box#about div.middle {position: relative;}
 div.content_box#about div.middle div.content {margin: 0 8px 0 8px; padding: 25px; width: 830px; background-color: #FFFFFF;}
 
 div.content_box#about div.middle h1 {position: absolute; left: -15px; top: 30px;  font: normal 41px/45px "PT Sans Bold"; color: #FFFFFF; }
-div.content_box#about div.middle h1.down {position: absolute; left: -15px; top: 78px; font: normal 41px/45px "PT Sans Bold"; color:#FFFFFF;}
-div.content_box#about div.middle h1 span{padding: 10px 15px 10px 15px; background-color: #000000;}
+div.content_box#about div.middle h1.down {position: absolute; left: -15px; top: 84px; font: normal 41px/45px "PT Sans Bold"; color:#FFFFFF;}
+div.content_box#about div.middle h1 span{padding: 10px 15px 15px 15px; background-color: #000000;}
 div.content_box#about div.middle h1.down span{padding: 10px 15px 15px 15px; background-color: #000000;}
 div.content_box#about div.middle div.content div#left {float: left; width: 240px;margin: 140px 0 30px 0;}
 div.content_box#about div.middle div.content div#center {float: left; width: 240px; margin: 140px 0 0 55px;}

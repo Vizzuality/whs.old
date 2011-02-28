@@ -1,42 +1,10 @@
 var latlng,map;
 
-function updateCredits() {
-  // Update the photo credits
-  var selectedImageIndex = $("div.nivo-controlNav a.active").attr("rel");
-  var link = $('<a/>', {href: imageInfo[selectedImageIndex]['author_url']}).text(imageInfo[selectedImageIndex]['author']);
-  $("#photo_credits").html('').append("Photo by ").append(link);
-  // In slider mode, show the photo credits
-  if (!$("div#img_thumb").is(":visible")) {
-      $('#photo_credits').fadeIn("fast");
-  }
-}
+$("a#zoomin").hide();
+$("a#zoomout").hide();
 
-$(window).load(function() {
-  $('#slider').nivoSlider({
-    effect: "fade",
-    directionNav: false,
-    controlNav: true,
-    beforeChange: function() {$('#photo_credits').fadeOut("fast")},
-    afterChange: updateCredits,
-    afterLoad: updateCredits
-  });
-});
 
 $(document).ready( function(){
-
-  $("a#zoomin").click(function(ev) {
-      ev.stopPropagation();
-      ev.preventDefault();
-      map.setZoom(map.getZoom()+1);
-  });
-
-  $("a#zoomout").click(function(ev) {
-      ev.stopPropagation();
-      ev.preventDefault();
-      map.setZoom(map.getZoom()-1);
-  });
-
-
   $("div.map_container").mouseover(function() {
     $("div#darken").show();
     $("a#show_link").show();
@@ -52,7 +20,7 @@ $(document).ready( function(){
     ev.preventDefault();
     if ($("div#img_thumb").is(":visible")) {
       // Swap big area to images
-      $("#slider").fadeIn();
+      $("#gallery").fadeIn();
       $('img#default_image').fadeIn();
       $("#photo_credits").fadeIn();
       $("div#img_thumb").hide();
@@ -61,56 +29,74 @@ $(document).ready( function(){
       // Swap big area to map
       map.setCenter(latlng);
       map.setZoom(8);
-      $("#slider").fadeOut();
+      $("#gallery").fadeOut();
       $('img#default_image').fadeOut();
       $("#photo_credits").fadeOut();
       $("div#img_thumb").show();
       $("a#show_link").html("Show images");
     }
   });
+  setTimeout(function(){loadMap()},500);
+});
 
-  // Map customization
-  var myOptions = {
-    zoom: 8,
-    disableDefaultUI: true,
-    center: new google.maps.LatLng(feature['the_geom']['y'], feature['the_geom']['x']),
-    mapTypeId: google.maps.MapTypeId.TERRAIN
-  };
-  map = new google.maps.Map(document.getElementById("big_map"), myOptions);
 
-  // Adding the marker
-  var image = new google.maps.MarkerImage("/images/explore/marker_" + feature['meta']['type'] + ".png",
-        new google.maps.Size(38, 34),
-        new google.maps.Point(0,0),
-        new google.maps.Point(12, 32));
-        
-  latlng = new google.maps.LatLng(feature['the_geom']['y'], feature['the_geom']['x']);
-  var marker = new google.maps.Marker({
-    position: latlng,
-    map: map,
-    title: feature['title'],
-    icon: image
-  });
-  
-
-  
-  $.each(nearest_places, function(index, place){
-    var image = new google.maps.MarkerImage("/images/marker_" + place['feature']['meta']['type'] + "_mini.png",
-          new google.maps.Size(25, 23),
-          new google.maps.Point(0,0),
-          new google.maps.Point(8, 19));
-    marker = new google.maps.Marker({
-      position: new google.maps.LatLng(place['feature']['lat'], place['feature']['lon']),
-      map: map,
-      title: place['feature']['title'],
-      icon: image
+  function loadMap() {
+    $("a#zoomin").fadeIn();
+    $("a#zoomin").click(function(ev) {
+        ev.stopPropagation();
+        ev.preventDefault();
+        map.setZoom(map.getZoom()+1);
+    });
+    $("a#zoomout").fadeIn();
+    $("a#zoomout").click(function(ev) {
+        ev.stopPropagation();
+        ev.preventDefault();
+        map.setZoom(map.getZoom()-1);
     });
     
-    google.maps.event.addListener(marker, "click", function() { window.location = "/features/" + place['feature']['id'];  });
-  });
-  
-  google.setOnLoadCallback(drawGeodesicLine);
-});
+    
+    // Map customization
+    var myOptions = {
+      zoom: 8,
+      disableDefaultUI: true,
+      center: new google.maps.LatLng(feature['the_geom']['y'], feature['the_geom']['x']),
+      mapTypeId: google.maps.MapTypeId.TERRAIN
+    };
+    map = new google.maps.Map(document.getElementById("big_map"), myOptions);
+
+    // Adding the marker
+    var image = new google.maps.MarkerImage("/images/explore/marker_" + feature['meta']['type'] + ".png",
+          new google.maps.Size(38, 34),
+          new google.maps.Point(0,0),
+          new google.maps.Point(12, 32));
+
+    latlng = new google.maps.LatLng(feature['the_geom']['y'], feature['the_geom']['x']);
+    var marker = new google.maps.Marker({
+      position: latlng,
+      map: map,
+      title: feature['title'],
+      icon: image
+    });
+
+
+
+    $.each(nearest_places, function(index, place){
+      var image = new google.maps.MarkerImage("/images/marker_" + place['feature']['meta']['type'] + "_mini.png",
+            new google.maps.Size(25, 23),
+            new google.maps.Point(0,0),
+            new google.maps.Point(8, 19));
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(place['feature']['lat'], place['feature']['lon']),
+        map: map,
+        title: place['feature']['title'],
+        icon: image
+      });
+
+      google.maps.event.addListener(marker, "click", function() { window.location = "/features/" + place['feature']['id'];  });
+    });
+
+    google.setOnLoadCallback(drawGeodesicLine);
+  }
 
 
   function drawGeodesicLine() {

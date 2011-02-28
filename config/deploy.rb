@@ -43,6 +43,7 @@ task :symlinks, :roles => [:app] do
   run <<-CMD
     ln -s #{shared_path}/dragonfly #{release_path}/tmp/;
     ln -nfs #{shared_path}/config/app_config.yml #{release_path}/config/app_config.yml;
+    ln -nfs #{shared_path}/config/amazon_s3.yml #{release_path}/config/amazon_s3.yml;
   CMD
 end
 
@@ -59,6 +60,7 @@ namespace :whs do
   task :upload_yml_files, :roles => :app do
     run "mkdir #{deploy_to}/shared/config ; true"
     upload("config/app_config.yml", "#{deploy_to}/shared/config/app_config.yml")
+    upload("config/amazon_s3.yml", "#{deploy_to}/shared/config/amazon_s3.yml")
   end
 
 end
