@@ -22,7 +22,7 @@ set :user,  'ubuntu'
 
 set :deploy_to, "/home/ubuntu/www/#{application}"
 
-after "deploy:update_code", :run_migrations, :symlinks, :asset_packages
+after "deploy:update_code", :symlinks, :run_migrations, :asset_packages
 after "deploy", "deploy:cleanup"
 
 desc "Restart Application"
@@ -41,7 +41,7 @@ end
 
 task :symlinks, :roles => [:app] do
   run <<-CMD
-    ln -s #{shared_path}/dragonfly #{release_path}/tmp/
+    ln -s #{shared_path}/dragonfly #{release_path}/tmp/;
     ln -nfs #{shared_path}/config/app_config.yml #{release_path}/config/app_config.yml;
   CMD
 end
