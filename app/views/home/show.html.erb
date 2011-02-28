@@ -13,7 +13,7 @@
               <% if @features.first.gallery && @features.first.gallery.gallery_entries.any? %>
                 <%= image_tag @features.first.gallery.gallery_entries.first.image.thumbnail(:large).url, :alt => @features.first.title %>
                 <div class="big_label">
-                  <p class="place"><%=truncate(@features.first.title,:length=>60,:delimiter=>"...")%></p>
+                  <p class="place"><span><%=truncate(@features.first.title,:length=>60,:delimiter=>"...")%></span></p>
                   <p class="distance">4 hours by car from Madrid</p>
                 </div>
 
@@ -28,15 +28,13 @@
           <li class="mosaic_element<%= cycle('',' middle','', :name => 'mosaic') %>">
             <a href="/features/<%=feature.id%>">
             <div class="mosaic_element_div">
-
               <% if feature.gallery && feature.gallery.gallery_entries.any? %>
                 <%= image_tag feature.gallery.gallery_entries.first.image.thumbnail(:small).url, :alt => feature.title %>
               <% else %>
                 <img src="/images/default_mosaic.png">
               <% end %>
-
               <div class="mosaic_label">
-                <p class="place"><%=truncate(feature.title,:length=>60,:delimiter=>"...")%></p>
+                <p class="place"><span><%=truncate(feature.title,:length=>60,:delimiter=>"...")%></span></p>
                 <p class="distance"><%= itinerary_time_and_type(feature.distance_in_time, @user_city) %></p>
               </div>
             </div>

@@ -11,7 +11,7 @@
         <% end %>
 
         <div class="mosaic_label">
-          <p class="place"><%=truncate(feature.title,:length => 60, :delimiter => "...")%></p>
+          <p class="place"><span><%=truncate(feature.title,:length => 60, :delimiter => "...")%></span></p>
           <p class="distance"><%= itinerary_time_and_type(feature.distance_in_time, @user_city) %></p>
         </div>
       </div>
