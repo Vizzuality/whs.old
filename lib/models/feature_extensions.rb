@@ -57,7 +57,7 @@ module FeatureExtensions
     end
 
     # Gets the next feature's images without consolidated images
-    def feature_images(feature_id)
+    def feature_images(feature_id = nil)
       feature = if feature_id
         Feature.with_gallery.by_whs_site_id(feature_id)
       else
@@ -91,8 +91,15 @@ module FeatureExtensions
   module InstanceMethods
     def consolidate_images(pics_ids)
       pics_ids = pics_ids.split(',').map{|id| id.to_i}
+      images = []
+      pics_ids.each do |pic_id|
+        images << [GalleryEntry.find(pic_id).name, GalleryEntry.find(pic_id).image]
+      end
 
-      gallery.gallery_entry_ids = pics_ids
+      gallery.gallery_entry_ids = nil
+      images.each do |image|
+        gallery.gallery_entries.create! :name => image.first, :image_id => image.last.id
+      end
       meta[:images_consolidated] = true
       save!
     end
