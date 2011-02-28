@@ -59,6 +59,8 @@ $(document).ready( function(){
       $("a#show_link").html("Show map");
     } else {
       // Swap big area to map
+      map.setCenter(latlng);
+      map.setZoom(8);
       $("#slider").fadeOut();
       $('img#default_image').fadeOut();
       $("#photo_credits").fadeOut();
@@ -77,10 +79,10 @@ $(document).ready( function(){
   map = new google.maps.Map(document.getElementById("big_map"), myOptions);
 
   // Adding the marker
-  var image = new google.maps.MarkerImage("/images/marker_" + place['feature']['meta']['type'] + "_mini.png",
+  var image = new google.maps.MarkerImage("/images/explore/marker_" + feature['meta']['type'] + ".png",
         new google.maps.Size(38, 34),
         new google.maps.Point(0,0),
-        new google.maps.Point(12, 36));
+        new google.maps.Point(12, 32));
         
   latlng = new google.maps.LatLng(feature['the_geom']['y'], feature['the_geom']['x']);
   var marker = new google.maps.Marker({
@@ -90,19 +92,21 @@ $(document).ready( function(){
     icon: image
   });
   
-  var image = new google.maps.MarkerImage("/images/marker_" + place['feature']['meta']['type'] + "_mini.png",
-        new google.maps.Size(38, 34),
-        new google.maps.Point(0,0),
-        new google.maps.Point(12, 36));
+
   
   $.each(nearest_places, function(index, place){
+    var image = new google.maps.MarkerImage("/images/marker_" + place['feature']['meta']['type'] + "_mini.png",
+          new google.maps.Size(25, 23),
+          new google.maps.Point(0,0),
+          new google.maps.Point(8, 19));
     marker = new google.maps.Marker({
       position: new google.maps.LatLng(place['feature']['lat'], place['feature']['lon']),
       map: map,
       title: place['feature']['title'],
       icon: image
     });
-    google.maps.event.addListener(marker, "click", function() { window.location = "/features/" + place['feature']['id'] + "%>" });
+    
+    google.maps.event.addListener(marker, "click", function() { window.location = "/features/" + place['feature']['id'];  });
   });
   
   google.setOnLoadCallback(drawGeodesicLine);
@@ -124,7 +128,11 @@ $(document).ready( function(){
       }
       geodesic = new google.maps.Polyline(geodesicOptions);
       geodesic.setMap(map);
-    
+      var marker = new google.maps.Marker({
+        position: userLatLng,
+        map: map,
+        title: "You!"
+      });
     }
   }
 

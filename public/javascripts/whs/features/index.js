@@ -48,7 +48,7 @@ var
         var image = new google.maps.MarkerImage("/images/explore/marker_" + feature['type'] + ".png",
               new google.maps.Size(38, 34),
               new google.maps.Point(0,0),
-              new google.maps.Point(12, 36));
+              new google.maps.Point(12, 32));
         
         marker = new google.maps.Marker({
           position: latlng,
