@@ -226,21 +226,40 @@ namespace :whs do
     puts "#{scrapped} wikipedia pages scrapped from #{amount_without_description}"
 
   end
-  
+
   desc "Imports missing wikipedia pages"
   task :import_missing_wikipedia => :environment do
-    
+
     csv = CsvMapper.import(Rails.root.join("db/import_data/whs-no-wikipedia.csv")) do
       read_attributes_from_file
     end
-    
+
     csv.each do |row|
       f = Feature.find(row.id)
       f.description    = row.description
       f.save!
     end
-    
-    
+  end
+
+  desc "Exports current database to a gzipped sql file"
+  task :export_database => :environment do
+    current_database = ActiveRecord::Base.connection.current_database
+    file_path        = Rails.root.join('db/scripts/features.sql')
+
+    puts '############################'
+
+    puts "Exporting #{current_database} database..."
+    `pg_dump -Upostgres -f #{file_path} #{current_database}`
+    puts '... done!'
+
+    puts ''
+    puts 'Compressing...'
+    `gzip #{file_path}`
+    puts '... done!'
+
+    puts ''
+    puts 'Database export complete!'
+    puts '#########################'
   end
 
   def errors_report(errors)

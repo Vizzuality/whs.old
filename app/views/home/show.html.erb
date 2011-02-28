@@ -1,76 +1,72 @@
-<% content_for :head_libraries do %>
-  <%= raw javascript_include_merged :home %>
-<% end %>
-<div class="content_box mosaic">
-  <div class="top"></div>
-  <div class="middle">
-    <div class="content">
-      <h2>RethinkWHS.org</h2>
-        <h1><span>Discovering the most</h1>
-        <h1 class="down"><span>beautiful places in the world</span></h1>
-        <a href="/features/<%=@features.first.id%>">
-        <div id="big_image">
-            <% if @features.first.gallery && @features.first.gallery.gallery_entries.any? %>
-              <%= image_tag @features.first.gallery.gallery_entries.first.image.thumbnail(:large).url, :alt => @features.first.title %>
-              <div class="big_label">
-                <p class="place"><%=truncate(@features.first.title,:length=>60,:delimiter=>"...")%></p>
-                <p class="distance">4 hours by car from Madrid</p>
-              </div>
+  <% content_for :head_libraries do %>
+    <%= raw javascript_include_merged :home %>
+  <% end %>
+  <div class="content_box mosaic">
+    <div class="top"></div>
+    <div class="middle">
+      <div class="content">
+        <h2>RethinkWHS.org</h2>
+          <h1><span>Discovering the most</h1>
+          <h1 class="down"><span>beautiful places in the world</span></h1>
+          <a href="/features/<%=@features.first.id%>">
+          <div id="big_image">
+              <% if @features.first.gallery && @features.first.gallery.gallery_entries.any? %>
+                <%= image_tag @features.first.gallery.gallery_entries.first.image.thumbnail(:large).url, :alt => @features.first.title %>
+                <div class="big_label">
+                  <p class="place"><%=truncate(@features.first.title,:length=>60,:delimiter=>"...")%></p>
+                  <p class="distance">4 hours by car from Madrid</p>
+                </div>
 
-            <% else %>
-              <img src="/images/default_big.png">
-            <% end %>
-        </div>
-        </a>
-
-        <ul id="image_list">
-        <% @features.first(6).each do |feature|%>
-        <li class="mosaic_element<%= cycle('',' middle','', :name => 'mosaic') %>">
-          <a href="/features/<%=feature.id%>">
-          <div class="mosaic_element_div">
-
-            <% if feature.gallery && feature.gallery.gallery_entries.any? %>
-              <%= image_tag feature.gallery.gallery_entries.first.image.thumbnail(:small).url, :alt => feature.title %>
-            <% else %>
-              <img src="/images/default_mosaic.png">
-            <% end %>
-
-            <div class="mosaic_label">
-              <p class="place"><%=truncate(feature.title,:length=>60,:delimiter=>"...")%></p>
-              <p class="distance"><%= itinerary_time_and_type(feature.distance_in_time, @user_city) %></p>
-            </div>
+              <% else %>
+                <img src="/images/default_big.png">
+              <% end %>
           </div>
           </a>
-        </li>
-        <li class="separator<%= cycle('','',' horizontal','','',' invisible', :name => 'separator') %>"></li>
-        <% end %>
+
+          <ul id="image_list">
+          <% @features.first(6).each do |feature|%>
+          <li class="mosaic_element<%= cycle('',' middle','', :name => 'mosaic') %>">
+            <a href="/features/<%=feature.id%>">
+            <div class="mosaic_element_div">
+
+              <% if feature.gallery && feature.gallery.gallery_entries.any? %>
+                <%= image_tag feature.gallery.gallery_entries.first.image.thumbnail(:small).url, :alt => feature.title %>
+              <% else %>
+                <img src="/images/default_mosaic.png">
+              <% end %>
+
+              <div class="mosaic_label">
+                <p class="place"><%=truncate(feature.title,:length=>60,:delimiter=>"...")%></p>
+                <p class="distance"><%= itinerary_time_and_type(feature.distance_in_time, @user_city) %></p>
+              </div>
+            </div>
+            </a>
+          </li>
+          <li class="separator<%= cycle('','',' horizontal','','',' invisible', :name => 'separator') %>"></li>
+          <% end %>
+          </ul>
+        </div>
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="content_box" id="more_sites">
+    <div class="top"></div>
+    <div class="middle">
+      <div class="content">
+      <h2>Browse more sites around you</h2>
+        <ul>
+          <% @closests_features.each do |feature|%>
+          <li <%= cycle('','','class=\'last\'', :name => 'classname') %> >
+            <%= link_to truncate(feature.title,:length => 35, :delimiter => '...'), feature, :title => feature.title %>
+            <p><%= itinerary_time_and_type(feature.distance_in_time, @user_city) %></p>
+          </li>
+          <% end %>
         </ul>
       </div>
-  </div>
-  <div class="bottom"></div>
-
-
-
-</div>
-
-<div class="content_box" id="more_sites">
-  <div class="top"></div>
-  <div class="middle">
-    <div class="content">
-    <h2>Browse more sites around you</h2>
-      <ul>
-        <% @closests_features.each do |feature|%>
-        <li <%= cycle('','','class=\'last\'', :name => 'classname') %> >
-          <%= link_to truncate(feature.title,:length => 35, :delimiter => '...'), feature, :title => feature.title %>
-          <p><%= itinerary_time_and_type(feature.distance_in_time, @user_city) %></p>
-        </li>
-        <% end %>
-      </ul>
+      <div class="footer">
+          <a class="bottom_link" href="/features/">Or explore the world map</a>
+      </div>
     </div>
-
-    <div class="footer">
-        <a class="bottom_link" href="/features/">Or explore the world map</a>
-    </div>
+    <div class="bottom"></div>
   </div>
-  <div class="bottom"></div>
-</div>

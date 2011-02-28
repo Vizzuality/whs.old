@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
         session[:user_location] = {:lat => geo_ip.latitude, :lon => geo_ip.longitude} unless geo_ip.blank?
       end
     else
-      public_ip = (require 'open-uri' ; open("http://myip.dk") { |f| /([0-9]{1,3}\.){3}[0-9]{1,3}/.match(f.read)[0].to_a[0] })
+      public_ip = "87.216.186.246"
       geo_ip = GeoIp.where_ip(public_ip).first
       session[:user_location] = {:lat => geo_ip.latitude, :lon => geo_ip.longitude, :city => geo_ip.city, :country => geo_ip.country_name} unless geo_ip.blank?
     end

@@ -1,3 +1,26 @@
+var styles = [[{
+        url: '/images/explore/cluster_small.png',
+        height: 35,
+        width: 35,
+        opt_anchor: [16, 0],
+        opt_textColor: '#FFFFFF',
+        opt_textSize: 18
+      }, {
+        url: '/images/explore/cluster_med.png',
+        height: 48,
+        width: 48,
+        opt_anchor: [24, 0],
+        opt_textColor: '#FFFFFF',
+        opt_textSize: 18
+      }, {
+        url: '/images/explore/cluster_big.png',
+        height: 57,
+        width: 57,
+        opt_anchor: [28, 29],
+        opt_textColor: '#FFFFFF',
+        opt_textSize: 18
+      }]];
+
 var
     form,
     search_url,
@@ -17,18 +40,23 @@ var
     },
     addMarkers = function(){
       clearMarkers();
+
+            
       $.each(features, function(index, feature){
         latlng = new google.maps.LatLng(feature['lat'], feature['lon']);
-
+        
+        var image = new google.maps.MarkerImage("/images/explore/marker_" + feature['type'] + ".png",
+              new google.maps.Size(38, 34),
+              new google.maps.Point(0,0),
+              new google.maps.Point(12, 36));
+        
         marker = new google.maps.Marker({
           position: latlng,
-          map: map,
           title: feature['title'],
-          icon: "/images/explore/marker_" + feature['type'] + ".png"
+          icon: image
         });
 
         markers.push(marker);
-
         google.maps.event.addListener(marker, "click", function() {window.location = "/features/" + feature['id']});
       });
     },
@@ -106,20 +134,39 @@ var
     $("a#mosaic_selector").click(function(ev) {
       ev.stopPropagation();
       ev.preventDefault();
-      $("a#mosaic_selector").addClass("selected");
-      $("a#list_selector").removeClass("selected");
-
-      $("div#results").addClass('mosaic').removeClass('list');
+      
+      if (!$(this).hasClass('selected')) {
+        $("a#mosaic_selector").addClass("selected");
+        $("a#list_selector").removeClass("selected");
+        
+        $('div#results div.list').fadeOut(function(){
+          $('div#results div.mosaic').css('zIndex',10);
+          $('div#results div.list').appendTo('div#results');
+          var list = $('div#results div.list');
+          list.css('zIndex','5');
+          list.css('display','block');
+        });    
+        $('div#results').height('645px');
+      }
     });
 
 
     $("a#list_selector").click(function(ev) {
       ev.stopPropagation();
       ev.preventDefault();
-      $("a#mosaic_selector").removeClass("selected");
-      $("a#list_selector").addClass("selected");
-
-      $("div#results").addClass('list').removeClass('mosaic');
+      
+      if (!$(this).hasClass('selected')) {
+        $("a#mosaic_selector").removeClass("selected");
+        $("a#list_selector").addClass("selected");
+        $('div#results div.mosaic').fadeOut(function(){
+          $('div#results div.list').css('zIndex',10);
+          $('div#results div.mosaic').appendTo('div#results');
+          var mosaic = $('div#results div.mosaic');
+          mosaic.css('zIndex','5');
+          mosaic.css('display','block');
+        });
+        $('div#results').height('648px');
+      }
     });
 
 
@@ -127,19 +174,32 @@ var
       ev.stopPropagation();
       ev.preventDefault();
       if ($("div#criteria_select ul").is(":visible")) {
-        $("div#criteria_select span").css("backgroundPosition","0px 0");
+        $("div#criteria_select span").css("backgroundPosition","0 0");
       } else {
-        $("div#criteria_select span").css("backgroundPosition","0px -24px");
+        $("div#criteria_select span").css("backgroundPosition","0 -24px");
       }
       $("div#criteria_select ul").toggle();
+      $('body').bind('click',function(ev){
+        if (!$(ev.target).closest('div#criteria_select').length) {
+          $("div#criteria_select span").css("backgroundPosition","0 0");
+          $("div#criteria_select ul").hide();
+          $('body').unbind('click');
+        };
+      });
     });
 
     $("div#criteria_select ul a").click(function(ev) {
       ev.stopPropagation();
       ev.preventDefault();
-      $("div#criteria_select span").css("backgroundPosition","-2px 0");
+      $("div#criteria_select span").css("backgroundPosition","0 0");
       $("div#criteria_select ul").toggle();
-      $("a#criteria_label").text($(this).text());
+      if ($(this).text().length>25) {
+        var text = $(this).text().substr(0,22) + '...';
+      } else {
+        var text = $(this).text();
+      }
+      
+      $("a#criteria_label").text(text);
     });
 
     $('a.criteria').click(function(ev){
@@ -161,13 +221,26 @@ var
       getResults(search_params['page'] + 1);
     });
 
-    $("div#map").mouseover(function() {
-      $("h1").hide();
+    $("div#map,h1").hover(function(ev) {
+      $("h1").stop().fadeTo('200',0,function(){
+        $("h1").css('display','none');
+      });
+    },function(){
+      $("h1").css('display','block').stop().fadeTo('200',1);
     });
+    
+    
+    $('a#zoomin').click(function(ev){
+      ev.preventDefault();
+      map.setZoom(map.getZoom() + 1);
+    });
+    
+    $('a#zoomout').click(function(ev){
+      ev.preventDefault();
+      map.setZoom(map.getZoom() - 1);
+    });
+    
 
-    $("div#map").mouseout(function() {
-      $("h1").show();
-    });
 
     var myOptions = {
       zoom: 2,
@@ -179,6 +252,13 @@ var
     map = new google.maps.Map(document.getElementById("map"), myOptions);
 
     addMarkers();
+    
+    var markerClusterer = new MarkerClusterer(map, markers, {
+      maxZoom: 18,
+      gridSize: 40,
+      styles: styles[0]
+    });
+    
   });
 
 Array.max = function( array ){
