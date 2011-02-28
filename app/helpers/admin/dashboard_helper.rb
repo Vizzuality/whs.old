@@ -15,6 +15,7 @@ module Admin::DashboardHelper
       #                 :kind => record.class.model_name.human,
       #                 :action => t("#{action}.with_article \"#{article}\"")
       #                 ).downcase.capitalize, eval("#{activity.url}(#{activity.nesting("record")}record)")
+      return unless record.send(activity.title)
       name = record.send(activity.title).downcase.capitalize + ' ' + record.class.model_name.human
       date_in_words = time_ago_in_words(record.updated_at) + ' ' + t('admin.dashboard.recent_activity.ago')
       action_name = t('admin.dashboard.recent_activity.was') + ' ' + t("#{action}.with_article \"#{article}\"")
