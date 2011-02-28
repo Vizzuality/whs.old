@@ -23,7 +23,7 @@ module FeatureExtensions
       scope :close_to, lambda{|point| order("ST_Distance(the_geom::geography, GeomFromText('POINT(#{point.x} #{point.y})', 4326))") }
 
       # Orders features randomly
-      scope :random, lambda{ |point| order("RANDOM()") }
+      scope :random, order("RANDOM()")
 
       # Adds the geom to the list of selected fields (removed by default to improve performance)
       scope :with_the_geom, select('the_geom')
