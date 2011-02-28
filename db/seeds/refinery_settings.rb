@@ -1,5 +1,5 @@
 [
-  {:name => "site_name", :value => "RethinkWHS"},
+  {:name => "site_name", :value => "AnotherWHSList"},
   {:name => "new_page_parts", :value => false},
   {:name => "activity_show_limit", :value => 7},
   {:name => "preferred_image_view", :value => :grid},
