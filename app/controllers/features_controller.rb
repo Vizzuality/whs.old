@@ -32,6 +32,42 @@ class FeaturesController < ApplicationController
     present(@page)
   end
 
+  ## REMOVE ME
+
+  def flickr_picker
+    unless params[:id]
+      query = "select features.* from features where gallery_id is null or gallery_id not in (select gallery_id from gallery_entries group by gallery_entries.gallery_id) order by features.id"
+      @features = Feature.find_by_sql(query)
+      return
+    else
+      @feature = Feature.find(params[:id])
+      if @feature.gallery_id.blank?
+        gallery = Gallery.create :name => @feature.title.truncate(255)
+        @feature.update_attribute(:gallery_id, gallery.id)
+      end
+      params[:image_url].each do |flickr_url|
+        next if flickr_url.blank?
+        begin
+          flickr_id = flickr_url.match(/\/(\d+)\//).captures[0]
+          info = flickr.photos.getInfo :photo_id => flickr_id
+          owner_name = info.owner['realname'] || info.owner['username']
+          sizes = flickr.photos.getSizes :photo_id => flickr_id
+          photo_url = sizes.find {|s| s.label == 'Large' || s.label == 'Original'}['source']
+          owner_url = info.urls.first['_content'].split('/')[0..-2].join('/')
+          response = Net::HTTP.get_response(URI.parse(photo_url))
+          image = Image.create! :image => response.body, :author => owner_name, :author_url => owner_url, :source => "flickr"
+          @feature.gallery.gallery_entries.create! :name => "Image for gallery #{@feature.gallery.name} ##{flickr_id}", :image_id => image.id
+        rescue
+          puts "================"
+          puts "Error importing #{flickr_url}"
+          puts "================"
+        end
+        flash[:feature_id] = feature_path(@feature.id)
+      end
+      redirect_to flickr_picker_path
+    end
+  end
+
 protected
 
   def find_all_features

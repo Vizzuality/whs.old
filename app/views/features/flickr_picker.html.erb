@@ -1,0 +1,21 @@
+<h2>Flickr picker - <%= @features.size %> features pending</h2>
+
+<% if flash[:feature_id] %>
+  <p>Feature updated successfully: check it out <%= link_to(flash[:feature_id], flash[:feature_id]) %></p>
+<% end %>
+
+<% @features.each do |feature| %>
+  <div class="feature">
+    <h3><%= feature.name %></h3>
+    <%= link_to('flickr', "http://www.flickr.com/search/?q=#{CGI.escape(feature.name)}&s=int", :target => '_blank') %> <br />
+    <%= form_tag(flickr_picker_path(:id => feature.id)) do %>
+      <input type="text" name="image_url[]" value="" size="50" /> <br />
+      <input type="text" name="image_url[]" value="" size="50" /> <br />
+      <input type="text" name="image_url[]" value="" size="50" /> <br />
+      <input type="text" name="image_url[]" value="" size="50" /> <br />
+      <input type="text" name="image_url[]" value="" size="50" /> <br />
+      <input type="submit" value="Save" />
+    <% end %>
+  </div>
+  <br />
+<% end %>

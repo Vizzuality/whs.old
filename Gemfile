@@ -18,6 +18,7 @@ gem 'alchemist'
 gem 'kaminari'
 
 gem 'nokogiri'
+gem 'flickraw'
 
 group :development do
   gem 'capistrano'

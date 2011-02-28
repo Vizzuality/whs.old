@@ -8,6 +8,8 @@ Whs::Application.routes.draw do
   match 'whs/:action', :to => 'whs#:action'
   match '/search', :to => 'features#index', :as => 'search'
 
+  match '/flickr_picker', :to => 'features#flickr_picker', :as => 'flickr_picker'
+
   scope(:path => 'refinery', :as => 'admin', :module => 'admin') do
     root :to => 'dashboard#index'
   end
