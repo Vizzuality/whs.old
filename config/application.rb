@@ -43,7 +43,7 @@ module Whs
     config.filter_parameters += [:password]
   end
 end
-debugger
+
 # REMOVE ME
 FlickRaw.api_key       = APP_CONFIG[:flickr_key]
 FlickRaw.shared_secret = APP_CONFIG[:flickr_secret]
