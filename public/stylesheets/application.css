@@ -10,6 +10,15 @@ div#page{margin: 0 auto; padding:0; margin:0; }
 
 div#container {margin: 0 auto; width: 896px; padding: 5px 0; }
 
+
+/*FONTS*/
+@font-face{font-family:'PT Sans';src:url('/fonts/regular-webfont.eot');src:local('☺'),url('/fonts/regular-webfont.woff') format('woff'),url('/fonts/regular-webfont.ttf') format('truetype'),url('/fonts/regular-webfont.svg#webfontOmy4YPRL') format('svg');font-weight:normal;font-style:normal;}
+@font-face{font-family:'PT Sans Bold';src:url('/fonts/bold-webfont.eot');src:local('☺'),url('/fonts/bold-webfont.woff') format('woff'),url('/fonts/bold-webfont.ttf') format('truetype'),url('/fonts/bold-webfont.svg#webfontsAYHMuxi') format('svg');font-weight:normal;font-style:normal;}
+@font-face{font-family:'LiberationSerifBold';src:url('/fonts/liberationserif-bold-webfont.eot?') format('eot'),url('/fonts/liberationserif-bold-webfont.woff') format('woff'),url('/fonts/liberationserif-bold-webfont.ttf') format('truetype'),url('/fonts/liberationserif-bold-webfont.svg#webfontIsdw9cG6') format('svg');font-weight:normal;font-style:normal;}
+@font-face{font-family:'LiberationSerifRegular';src:url('/fonts/liberationserif-regular-webfont.eot?') format('eot'),url('/fonts/liberationserif-regular-webfont.woff') format('woff'),url('/fonts/liberationserif-regular-webfont.ttf') format('truetype'),url('/fonts/liberationserif-regular-webfont.svg#webfontrmG0Rq3T') format('svg');font-weight:normal;font-style:normal;}
+
+
+
 /*HEADER STYLES  -------------------------------------------- */
 div#header_content{background: #000000; width:100%; height:56px;}
 div#header_content div#header_constraint{ width:880px; margin:0 auto 0 auto; padding:16px 0; height: 100%; color:#FFFFFF; font-family: Pt Sans, Helvetica;}
@@ -28,40 +37,7 @@ div#header_content div#header_constraint .menu li div.input div.input_center lab
 div#header_content div#header_constraint .menu li div.input div.input_center #searchText{border-style:hidden; border-width: 0px; color:#666666; margin: 0; padding: 1px 0; height: 21px; font-family: Helvetica, Arial; font-size:13px; outline:none; width: 100%;}
 div#header_content div#header_constraint .menu li div.input div.input_right{float:left; background: url(/images/header/input_right.png) no-repeat; height:24px; width:27px;}
 
-/*FOOTER STYLES  -------------------------------------------- */
-div#footer {position: relative; top: -40px; float: left; width: 100%; z-index: -1; background: url("/images/footer/footer_background.png") repeat;}
 
-div#footer_first {margin: 66px auto 0 auto; width: 880px; background: url("/images/footer/footer_background.png") repeat;}
-div#footer_first p#first_claim {float: left; color: white; font: bold 27px "PT Sans";padding: 0 0 18px 0;}
-div#footer_first p#first_claim a {font: bold 27px "PT Sans"; color: #ffffff;}
-div#footer_first ul {float: left; width: 100%; list-style-type: none; padding: 0 0 20px 0; }
-div#footer_first ul li {float: left; width: 203px;font: bold 15px Arial; color: #ffffff; padding: 0 0 0 70px; margin: 0 30px 0 0; height: 70px}
-div#footer_first ul li.last{margin: 0;}
-div#footer_first ul li#icon1_ {background: url("/images/footer/icon1_blue.png") no-repeat 0 0;}
-div#footer_first ul li#icon2_ {background: url("/images/footer/icon2_blue.png") no-repeat 0 0;}
-div#footer_first ul li#icon3_  {background: url("/images/footer/icon3_blue.png") no-repeat 0 0;}
-div#footer_first ul li#icon1_cultural {background: url("/images/footer/icon1_cultural.png") no-repeat 0 0;}
-div#footer_first ul li#icon2_cultural {background: url("/images/footer/icon2_cultural.png") no-repeat 0 0;}
-div#footer_first ul li#icon3_cultural {background: url("/images/footer/icon3_cultural.png") no-repeat 0 0;}
-div#footer_first ul li#icon1_natural {background: url("/images/footer/icon1_natural.png") no-repeat 0 0;}
-div#footer_first ul li#icon2_natural {background: url("/images/footer/icon2_natural.png") no-repeat 0 0;}
-div#footer_first ul li#icon3_natural {background: url("/images/footer/icon3_natural.png") no-repeat 0 0;}
-
-div#footer_second {margin: 0 auto; width: 880px;}
-div#footer_second p#second_claim {float: left;  width: 582px; margin: 30px 0 30px 0; padding: 4px 0; color: #1F3036; font: normal 16px Arial; line-height: 20px;}
-div.natural#footer_second p#second_claim {color: #323928; text-shadow: #9AAF77 0px 1px; }
-div.cultural#footer_second p#second_claim {color: #4D3316; text-shadow: #C78B48 0px 1px; }
-div#footer_second p#second_claim a {color: #1F3036}
-div.natural#footer_second p#second_claim a {color: #323928}
-div.cultural#footer_second p#second_claim a {color: #4D3316}
-div#footer_second a.button {float: right; width: 274px; height: 34px; margin: 30px 0 22px 0; text-align: center; padding: 14px 0 0 0; font: bold 17px "PT Sans"; text-decoration: none; text-shadow: #57767F 0px 1px; color: #1F3036; background: transparent url("/images/footer/button_back.png") no-repeat;}
-div.natural#footer_second a.button {text-shadow: #9AAF77 0px 1px; color: #323928;}
-div.cultural#footer_second a.button {text-shadow: #C78B48 0px 1px; color: #4D3316;}
-div#footer_second a.button:hover {color: #000000;}
-div#subfooter {float: left; clear: both; width: 100%; height:30px; color: #999999; background-color: #000000; font: normal 12px Arial; text-align: right; margin: 0 0 -14px 0;}
-div#subfooter a {color: #FFFFFF;}
-div#subfooter div#inner {height: 22px; margin: 8px auto 0 auto; width: 880px; padding: 0 6px 0 0;}
-span.line {float: left; width: 100%; height: 2px; background: url("/images/footer/line_background.png") repeat-x;}
 
 /*GENERIC STYLES  -------------------------------------------- */
 div.content_box {margin: 0 auto; padding: 36px 0 0 0; width: 896px;}
@@ -91,10 +67,10 @@ div.mosaic ul li div.mosaic_label p {position:absolute; left: 14px; background-c
 div.mosaic ul li div.mosaic_label p.place { z-index:5; bottom: 38px; padding: 4px 10px 2px 10px;  font: bold 17px "PT Sans"; color: #FFFFFF}
 div.mosaic ul li div.mosaic_label p.distance { z-index:4; bottom: 16px; padding: 5px 10px 5px 10px;  font: normal 13px "Arial"; color: #CCCCCC}
 
-div#zoomControl {position: absolute; top: 15px; left: 15px; width: 30px; }
-div#zoomControl a#zoomin {float: left; margin: 0 0 10px 0; width: 21px; height: 21px; background: url("/images/zoom_in.png")}
+div#zoomControl {position: absolute; top: 15px; right: 15px; width: 25px; }
+div#zoomControl a#zoomin {float:left; margin:0; width: 21px; height: 21px; background: url("/images/zoom_in.png")}
 div#zoomControl a#zoomin:hover {background-position: 0 21px;}
-div#zoomControl a#zoomout {float: left; width: 21px; height: 21px; background: url("/images/zoom_out.png")}
+div#zoomControl a#zoomout {float:left; width: 21px; height: 21px; margin:8px 0 0 0; background: url("/images/zoom_out.png")}
 div#zoomControl a#zoomout:hover {background-position: 0 21px;}
 
 /*HOME SPECIFIC  -------------------------------------------- */
@@ -120,9 +96,9 @@ div.content_box div.middle div.footer a{color: #000000; font: normal 16px "Liber
 /*EXPLORE SPECIFIC  -------------------------------------------- */
 div.content_box#explore div.middle {position: relative;}
 div.content_box#explore div.middle h1 {position: absolute; left: -15px; top: 30px;  font: normal 41px/45px "PT Sans Bold"; color: #FFFFFF; z-index: 15;}
-div.content_box#explore div.middle h1.down {position: absolute; left: -15px; top: 78px; font: normal 41px/45px "PT Sans Bold"; color:#FFFFFF;}
-div.content_box#explore div.middle h1 span{padding: 10px 15px 10px 15px; background-color: #000000;}
-div.content_box#explore div.middle h1.down span{padding: 10px 15px 15px 15px; background-color: #000000;}
+div.content_box#explore div.middle h1.down {position: absolute; left: -15px; top: 86px; font: normal 41px/45px "PT Sans Bold"; color:#FFFFFF;}
+div.content_box#explore div.middle h1 span{padding: 10px 15px 5px 15px; background-color: #000000;}
+div.content_box#explore div.middle h1.down span{padding: 5px 15px 10px 15px; background-color: #000000;}
 div.content_box#explore div.middle div#explore_mosaic {margin: 0 8px 0 8px; width: 880px; height: 430px;background-color: #FFCC00;}
 
 div.content_box#explore div.middle div.map_container {}
@@ -145,7 +121,7 @@ div#filter a.selected#all_selector, a.selected#natural_selector, a.selected#cult
 div#filter div#criteria_select {float: left; margin: 0 10px 0 10px; }
 div#filter div#criteria_select span {float: left; width: 216px; height: 24px; background: url("/images/explore/criteria_select.png") no-repeat 0 0; }
 div#filter div#criteria_select span a{display: block; width: 216px; padding: 5px 0 0 15px; color: #333333; font: normal 13px "PT Sans Bold"; text-decoration: none;}
-div#filter div#criteria_select ul{position: absolute; display: none; top: 36px; width: 216px; height: 330px; padding: 10px 0 0 0; z-index: 5; background: url("/images/explore/criteria_select.png") no-repeat 0px -47px;}
+div#filter div#criteria_select ul{position: absolute; display: none; top: 36px; width: 216px; height: 330px; padding: 10px 0 0 0; z-index: 15; background: url("/images/explore/criteria_select.png") no-repeat 0px -47px;}
 div#filter div#criteria_select ul li{padding: 4px 10px 4px 15px; font: normal 13px "Arial";}
 div#filter div#criteria_select ul li a{text-decoration: none; color: #333333;}
 div#filter div#criteria_select ul li a:hover{color: #FF9900;}
@@ -155,18 +131,19 @@ div#filter a#mosaic_selector{margin: 0 0 0 0px; background-image: url("/images/e
 div#filter a#list_selector{background-image: url("/images/explore/list_filter.png")}
 div#filter a.selected#mosaic_selector, a.selected#list_selector{background-position: 0 0;}
 
-div#explore div#results.mosaic div.mosaic{ display: block; }
-div#explore div#results.list div.list{ display: block; }
+
 
 /* Mosaico */
-div#explore div#results div.mosaic {display: none; position: relative; margin: 0 8px 0 8px; background: #FFFFFF;}
+div#explore div#results {width:896px; height:645px; overflow:hidden;}
+div#explore div#results div.mosaic {position:absolute; display:block; margin:0 8px 0 8px; background: #FFFFFF; z-index:10;}
 div#explore div#results div.mosaic ul {height: 645px;}
 
 /* List */
-div#explore div#results div.list {position: relative; display:none; margin: 0 8px 0 8px; background-color: #FFFFFF; color: #000000;}
-div#explore div#results div.list ul {}
-div#explore div#results div.list ul li {height: 31px; padding: 20px 25px 20px 25px; border-bottom: 1px solid #999999;}
+div#explore div#results div.list {position:absolute; top:0; left:0; display:block; height:645px; margin: 0 8px 0 8px; background-color:#FFFFFF; color: #000000; z-index:5;}
+div#explore div#results div.list ul {float:left; background:white;}
+div#explore div#results div.list ul li {width:830px; height:31px; padding: 20px 25px 20px 25px; border-bottom: 1px solid #999999; background:white;}
 div#explore div#results div.list ul li h3 a {font: normal 18px "PT Sans Bold"; color: #FF9900; text-decoration: none;}
+div#explore div#results div.list ul li h3 a:hover {color:#FF6600;}
 div#explore div#results div.list ul li span.description {font: normal 13px "Arial"; color: #666666}
 
 a#pagination { display: block; width: 880px; margin: 0 8px; padding: 15px 0; color: #333333; background: url("/images/explore/grey_gradient.png") repeat-x; font: normal 21px "PT Sans Bold"; text-align: center; text-decoration: none; text-shadow: #FFFFFF 0px 1px; ;}
@@ -176,11 +153,11 @@ div.clear {clear: both;}
 
 /* FEATURES SPECIFIC -------------------------------------------- */
 
-div#feature_image {margin: 0 8px -4px 8px; height: 434px; position: relative; border-bottom: 1px solid #000000;}
-div#feature_image div#big_map_container {position: absolute; visibility:hidden; top: 0px; width: 880px; height:430px; border-bottom: 1px solid #666666}
+div#feature_image {position:relative; margin: 0 8px -4px 8px; height: 434px;  border-bottom: 1px solid #000000;}
+div#feature_image div#big_map_container {position: relative; width: 880px; height:430px; border-bottom: 1px solid #666666;}
 div#feature_image div#big_map_container div#big_map {position: absolute; top: 0px; width: 880px; height:430px; }
 
-div#feature_image #slider {position:relative; width:880px; height:430px; background:url("/images/loading2.gif") no-repeat 50% 50%; z-index:5; border-bottom: 1px solid #666666}
+div#feature_image #slider {position:absolute; top:0; left:0; width:880px; height:430px; background:url("/images/loading2.gif") no-repeat 50% 50%; z-index:5; border-bottom: 1px solid #666666; z-index:10;}
 div#feature_image #slider img {position:absolute;top:0px;left:0px;display:none;}
 div#feature_image #slider a {border:0;display:block;}
 div#feature_image #slider div.nivo-controlNav {position: absolute; top: 20px; left: -15px; padding: 0 0 0 15px; background: #000000;}
@@ -191,7 +168,7 @@ div#feature_image #slider div.nivo-controlNav a.active {background-position: 0px
 div#feature_image #photo_credits {position: absolute; display: none; bottom: 35px; left: 610px; z-index: 6; padding: 5px; font: 10px normal "Arial"; color: #DDDDDD; background: url("/images/transparent.png") repeat}
 div#feature_image #photo_credits a {color: #FFFFFF}
 
-div#feature_image img.default_image {position: absolute; width: 880px; height: 430px;}
+div#feature_image img#default_image {position: absolute; top:0; left:0; width: 880px; height: 430px; z-index:10;}
 
 div#feature_image div#endangered {position: absolute; top: -11px; right: -11px; width: 97px; height: 94px; z-index: 15; background: url("/images/endangered.png");}
 
@@ -219,7 +196,8 @@ div#data_column div.map_container {position: absolute; padding: 5px; top: -25px;
 div#data_column div.map_container div#map { width: 235px; height:162px; background-color: #F9F9F9; z-index: 15;}
 div#data_column div.map_container div#darken {position:absolute; display: none; top:5px; width: 235px; height:162px; z-index: 25;}
 div#data_column div.map_container div#darken a#show_link {position:absolute; top: 120px; left: -10px; z-index: 35; padding: 7px 7px 7px 30px; background: url("/images/expand_icon.png") no-repeat 8px 8px; background-color: #000000; color: #999999; font: normal 13px Arial; text-decoration: none;}
-div#data_column div.map_container div#img_thumb {position: absolute; display:none; top: 5px;  width: 235px; height:162px; z-index: 15;}
+div#data_column div.map_container div#img_thumb {position: absolute; display:none; top: 5px;  width:235px; height:162px; z-index: 15; overflow:hidden;}
+div#data_column div.map_container div#img_thumb img {width:235px;}
 
 div#data_column p.label {margin: 0 0 0 5px; font: normal 13px "PT Sans Bold"; color: #333333;}
 div#data_column p.label#first {margin: 130px 0 0 5px;}
@@ -242,7 +220,9 @@ div#feature_mosaic div.middle div.content h3 {position: absolute; top: 60px; lef
 div.content_box#teleport div.middle div.content{position: relative; width: 830px; height: 20px;  margin: 0px 8px 0px 8px; padding: 25px; background-color: white; font: normal 17px "PT Sans";}
 a.teleport_cultural {position: absolute; top: 13px; right: 13px; margin: 0px 0px 0px 0; padding: 10px 0 0 0; width: 195px; height: 44px; text-align: center; font: bold 17px "PT Sans"; text-decoration: none; color: #333333; background: transparent url("/images/teleport_orange.png") no-repeat;}
 a.teleport_natural {position: absolute; top: 13px; right: 13px; margin: 0px 0px 0px 0; padding: 10px 0 0 0; width: 195px; height: 44px; text-align: center; font: bold 17px "PT Sans"; text-decoration: none; color: #333333; background: transparent url("/images/teleport_green.png") no-repeat;}
-a.teleport:hover {color: #000000;}
+
+a.teleport:hover,a.teleport_natural:hover,a.teleport_cultural:hover {color: #000000;}
+
 
 div.horizontal{float:left;  width: 880px; height: 1px;}
 
@@ -276,14 +256,44 @@ div.content_box#about div.middle div.content div#more_information h3 {position: 
 div.content_box#about div.middle div.content div#more_information ul {padding: 80px 0 0 0; list-style-type: none;}
 div.content_box#about div.middle div.content div#more_information ul li {float: left; width: 240px; height: 109px; margin: 0 55px 0 0}
 div.content_box#about div.middle div.content div#more_information ul li.last {margin: 0 0 0 0}
+div.content_box#about div.middle div.content div#more_information ul li a img.panoramio {width:240px; margin:36px 0 0 0;}
 
 div.clear{clear: both;}
 
 /*MISC STYLES */
 .hidden{display: none;}
 
-/*FONTS*/
-@font-face{font-family:'PT Sans';src:url('/fonts/regular-webfont.eot');src:local('☺'),url('/fonts/regular-webfont.woff') format('woff'),url('/fonts/regular-webfont.ttf') format('truetype'),url('/fonts/regular-webfont.svg#webfontOmy4YPRL') format('svg');font-weight:normal;font-style:normal;}
-@font-face{font-family:'PT Sans Bold';src:url('/fonts/bold-webfont.eot');src:local('☺'),url('/fonts/bold-webfont.woff') format('woff'),url('/fonts/bold-webfont.ttf') format('truetype'),url('/fonts/bold-webfont.svg#webfontsAYHMuxi') format('svg');font-weight:normal;font-style:normal;}
-@font-face{font-family:'LiberationSerifBold';src:url('/fonts/liberationserif-bold-webfont.eot?') format('eot'),url('/fonts/liberationserif-bold-webfont.woff') format('woff'),url('/fonts/liberationserif-bold-webfont.ttf') format('truetype'),url('/fonts/liberationserif-bold-webfont.svg#webfontIsdw9cG6') format('svg');font-weight:normal;font-style:normal;}
-@font-face{font-family:'LiberationSerifRegular';src:url('/fonts/liberationserif-regular-webfont.eot?') format('eot'),url('/fonts/liberationserif-regular-webfont.woff') format('woff'),url('/fonts/liberationserif-regular-webfont.ttf') format('truetype'),url('/fonts/liberationserif-regular-webfont.svg#webfontrmG0Rq3T') format('svg');font-weight:normal;font-style:normal;}
+
+/*FOOTER STYLES  -------------------------------------------- */
+div#footer {position: relative; top: -40px; float: left; width: 100%; z-index: -1; background: url("/images/footer/footer_background.png") repeat;}
+div#footer_first {margin: 66px auto 0 auto; width: 880px; background: url("/images/footer/footer_background.png") repeat;}
+div#footer_first p#first_claim {float: left; color: white; font: bold 27px "PT Sans";padding: 0 0 18px 0;}
+div#footer_first p#first_claim a {font: bold 27px "PT Sans"; color: #ffffff;}
+div#footer_first ul {float: left; width: 100%; list-style-type: none; padding: 0 0 20px 0; }
+div#footer_first ul li {float: left; width: 203px;font: bold 15px Arial; color: #ffffff; padding: 0 0 0 70px; margin: 0 30px 0 0; height: 70px}
+div#footer_first ul li.last{margin: 0;}
+div#footer_first ul li#icon1_ {background: url("/images/footer/icon1_blue.png") no-repeat 0 0;}
+div#footer_first ul li#icon2_ {background: url("/images/footer/icon2_blue.png") no-repeat 0 0;}
+div#footer_first ul li#icon3_  {background: url("/images/footer/icon3_blue.png") no-repeat 0 0;}
+div#footer_first ul li#icon1_cultural {background: url("/images/footer/icon1_cultural.png") no-repeat 0 0;}
+div#footer_first ul li#icon2_cultural {background: url("/images/footer/icon2_cultural.png") no-repeat 0 0;}
+div#footer_first ul li#icon3_cultural {background: url("/images/footer/icon3_cultural.png") no-repeat 0 0;}
+div#footer_first ul li#icon1_natural {background: url("/images/footer/icon1_natural.png") no-repeat 0 0;}
+div#footer_first ul li#icon2_natural {background: url("/images/footer/icon2_natural.png") no-repeat 0 0;}
+div#footer_first ul li#icon3_natural {background: url("/images/footer/icon3_natural.png") no-repeat 0 0;}
+div#footer_second {margin: 0 auto; width: 880px;}
+div#footer_second p#second_claim {float: left;  width: 582px; margin: 30px 0 30px 0; padding: 4px 0; color: #1F3036; font: normal 16px Arial; line-height: 20px;}
+div.natural#footer_second p#second_claim {color: #323928; text-shadow: #9AAF77 0px 1px; }
+div.cultural#footer_second p#second_claim {color: #4D3316; text-shadow: #C78B48 0px 1px; }
+div#footer_second p#second_claim a {color: #1F3036}
+div#footer_second p#second_claim a:hover {color: black}
+div.natural#footer_second p#second_claim a {color: #323928}
+div.cultural#footer_second p#second_claim a {color: #4D3316}
+div#footer_second a.button {float: right; width: 274px; height: 34px; margin: 30px 0 22px 0; text-align: center; padding: 14px 0 0 0; font: bold 17px "PT Sans"; text-decoration: none; text-shadow: #57767F 0px 1px; color: #1F3036; background: transparent url("/images/footer/button_back.png") no-repeat;}
+div.natural#footer_second a.button {text-shadow: #9AAF77 0px 1px; color: #323928;}
+div.cultural#footer_second a.button {text-shadow: #C78B48 0px 1px; color: #4D3316;}
+div#footer_second a.button:hover {color: #000000;}
+div#subfooter {float: left; clear: both; width: 100%; height:30px; color: #999999; background-color: #000000; font: normal 12px Arial; text-align: right; margin: 0 0 -14px 0;}
+div#subfooter a {color: #FFFFFF;}
+div#subfooter div#inner {height: 22px; margin: 8px auto 0 auto; width: 880px; padding: 0 6px 0 0;}
+span.line {float: left; width: 100%; height: 2px; background: url("/images/footer/line_background.png") repeat-x;}
