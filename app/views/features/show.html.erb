@@ -20,7 +20,7 @@
     <div id="feature_image">
 
       <div id="feature_title">
-        <p id="country"><span><img class="flag" src="/images/flags/<%=@feature.iso_code%>.png"/><%= @feature.country %></span></p>
+        <p id="country"><span><%= image_tag "flags/#{@feature.iso_code.downcase}.png", :class => 'flag' if @feature.iso_code %><%= @feature.country %></span></p>
         <h1><span><%= @feature.title %></span></h1>
         <p class="distance"><span id="<%= @itinerary_type %>">Just <%= distance_of_time_in_words_to_now(@itinerary_time) %> away from <%= @user_city %> by <%= @itinerary_type %></span></p>
       </div>
