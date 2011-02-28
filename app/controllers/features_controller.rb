@@ -4,7 +4,7 @@ class FeaturesController < ApplicationController
 
   def index
     @features      = @features.with_distance_to user_latlong if user_geolocated?
-    @features_json = Feature.limit(9).map{|f| {:lat => f.lat, :lon => f.lon, :title => f.title, :id => f.id, :type => f.type} }.to_json.html_safe
+    @features_json = Feature.all.map{|f| {:lat => f.lat, :lon => f.lon, :title => f.title, :id => f.id, :type => f.type} }.to_json.html_safe
     @user_city     = user_city
 
     if request.xhr?
