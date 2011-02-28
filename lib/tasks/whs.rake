@@ -100,7 +100,7 @@ namespace :whs do
 
     features_without_images = feature_count = destroy_images = features_pg = errors = start_time = counter = radius = bounding_box = photos = progress_so_far = left = elapsed_time = time_to_finish = time_left = photos_pg = nil
 
-    
+
     features_without_images = Feature.all
     feature_count = features_without_images.count
 
@@ -260,6 +260,41 @@ namespace :whs do
     puts ''
     puts 'Database export complete!'
     puts '#########################'
+  end
+
+  desc "Upload images to S3"
+  task :upload_images_s3 => :environment do
+    require 'net/http'
+    require 'uri'
+    require 'aws/s3'
+
+    response       = nil
+    all_images     = Image.all
+    staging_server = "localhost:3000"
+
+    # AWS::S3::Base.establish_connection!(
+    #   :access_key_id => APP_CONFIG[:s3_key],
+    #   :secret_access_key => APP_CONFIG[:s3_secret]
+    # )
+
+    FileUtils.mkdir_p("#{ENV['HOME']}/Desktop/whs_images")
+
+    all_images.each do |image|
+      [:large, :small, :tiny].each do |s|
+        response = Net::HTTP.get_response(URI.parse("http://#{staging_server}/#{image.thumbnail(s).url}"))
+
+        File.open("#{ENV['HOME']}/Desktop/whs_images/#{image.id}_#{s}.jpg", 'a+') do |f|
+          f.write(response.body)
+        end
+
+        # AWS::S3::S3Object.store("/images/#{image.id}_#{s}.jpg", response.body, APP_CONFIG[:s3_bucket], {
+        #   :access         => :public_read,
+        #   :content_type   => 'image/jpeg',
+        #   'Cache-Control' => 'max-age=315360000'
+        # })
+      end
+      sleep 2
+    end
   end
 
   def errors_report(errors)
