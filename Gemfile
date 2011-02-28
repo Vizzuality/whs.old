@@ -20,6 +20,8 @@ gem 'kaminari'
 gem 'nokogiri'
 gem 'flickraw'
 
+gem 'aws-s3'
+
 group :development do
   gem 'capistrano'
   gem 'capistrano-ext'

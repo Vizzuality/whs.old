@@ -63,6 +63,10 @@ GEM
     acts_as_indexed (0.7.0)
     alchemist (0.1.2.1)
     arel (2.0.8)
+    aws-s3 (0.6.2)
+      builder
+      mime-types
+      xml-simple
     babosa (0.2.2)
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
@@ -209,12 +213,14 @@ GEM
     warden (1.0.3)
       rack (>= 1.0.0)
     will_paginate (3.0.pre2)
+    xml-simple (1.0.14)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   alchemist
+  aws-s3
   capistrano
   capistrano-ext
   csv-mapper
