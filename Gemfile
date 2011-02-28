@@ -15,7 +15,6 @@ gem 'ppe-panoramio'
 gem 'progressbar'
 gem 'alchemist'
 
-gem 'pg_search'
 gem 'kaminari'
 
 gem 'nokogiri'
