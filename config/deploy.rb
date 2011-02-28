@@ -42,6 +42,7 @@ end
 task :symlinks, :roles => [:app] do
   run <<-CMD
     ln -s #{shared_path}/dragonfly #{release_path}/tmp/
+    ln -nfs #{shared_path}/config/app_config.yml #{release_path}/config/app_config.yml;
   CMD
 end
 
@@ -54,6 +55,12 @@ namespace :whs do
       rake whs:setup
     CMD
   end
+
+  task :upload_yml_files, :roles => :app do
+    run "mkdir #{deploy_to}/shared/config ; true"
+    upload("config/app_config.yml", "#{deploy_to}/shared/config/app_config.yml")
+  end
+
 end
 
 desc 'Create asset packages'
