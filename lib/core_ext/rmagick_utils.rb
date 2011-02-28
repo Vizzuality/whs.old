@@ -44,7 +44,7 @@ module Dragonfly
       tempfile = Tempfile.new('dragonfly')
       tempfile.close
       rmagick_image.write(tempfile.path) do
-        self.quality = 80
+        self.quality = 85
       end
       tempfile
     end

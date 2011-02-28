@@ -6,6 +6,9 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
+raw_config = YAML.load_file(File.join("#{File.dirname(__FILE__)}", "/app_config.yml"))[Rails.env]
+APP_CONFIG = raw_config.to_options! unless raw_config.nil?
+
 module Whs
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -42,5 +45,8 @@ module Whs
 end
 
 # REMOVE ME
-FlickRaw.api_key="cf78ae30c924443c8f402569b013d291"
-FlickRaw.shared_secret="b2a46f9ab3f3d9f6"
+FlickRaw.api_key       = APP_CONFIG[:flickr_key]
+FlickRaw.shared_secret = APP_CONFIG[:flickr_secret]
+ENV['S3_BUCKET']       = APP_CONFIG[:s3_bucket]
+ENV['S3_KEY']          = APP_CONFIG[:s3_key]
+ENV['S3_SECRET']       = APP_CONFIG[:s3_secret]
