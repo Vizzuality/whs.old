@@ -3,7 +3,6 @@ javascripts:
 - home:
   - jquery.min
   - application
-  - nivo-slider/jquery.nivo.slider.pack
 - explore:
   - jquery.min
   - application
@@ -11,5 +10,5 @@ javascripts:
 - feature:
   - jquery.min
   - application
-  - nivo-slider/jquery.nivo.slider.pack
+  - galleria-1.2.2
   - whs/features/show
