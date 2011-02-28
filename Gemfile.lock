@@ -13,6 +13,12 @@ GIT
     refinerycms-events (0.1)
 
 GIT
+  remote: git://github.com/Vizzuality/refinerycms-features.git
+  revision: 9866206bfb8241d71cfbd3b9419ebf27867c5089
+  specs:
+    refinerycms-features (0.2)
+
+GIT
   remote: git://github.com/Vizzuality/refinerycms-galleries.git
   revision: ba04f6c6eb841173a4b0a5b1c5f3d695846f4c5a
   specs:
@@ -158,7 +164,6 @@ GEM
       will_paginate (~> 3.0.pre)
     refinerycms-dashboard (0.9.9.3)
       refinerycms-core (~> 0.9.9.3)
-    refinerycms-features (0.2)
     refinerycms-generators (0.9.9.5)
     refinerycms-i18n (0.9.8.7)
       refinerycms (>= 0.9.8)
@@ -220,7 +225,7 @@ DEPENDENCIES
   refinerycms (= 0.9.9.3)
   refinerycms-blog (~> 1.0.rc12)!
   refinerycms-events (= 0.1)!
-  refinerycms-features (= 0.2)
+  refinerycms-features (= 0.2)!
   refinerycms-galleries (= 0.4)!
   refinerycms-i18n (= 0.9.8.7)
   refinerycms-inquiries (= 0.9.8.4)

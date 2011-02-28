@@ -35,6 +35,6 @@ gem 'refinerycms-blog',         '~> 1.0.rc12',                               :gi
 gem 'refinerycms-i18n',         '= 0.9.8.7'
 gem 'refinerycms-events',       '= 0.1',     :require => 'events',           :git => 'git://github.com/Vizzuality/refinerycms-events.git'
 gem 'refinerycms-galleries',    '= 0.4',     :require => 'galleries',        :git => 'git://github.com/Vizzuality/refinerycms-galleries.git'
-gem 'refinerycms-features',     '= 0.2',     :require => 'features'
+gem 'refinerycms-features',     '= 0.2',     :require => 'features',        :git => 'git://github.com/Vizzuality/refinerycms-features.git'
 
 # END REFINERY CMS ============================================================
