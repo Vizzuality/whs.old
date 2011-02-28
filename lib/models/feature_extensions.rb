@@ -3,17 +3,9 @@ module FeatureExtensions
 
   included  do
     class_eval do
-      include PgSearch
-      pg_search_scope :search, :against => {
-        :title => 'A',
-        :meta => 'B',
-        :description => 'C'
-      }
       paginates_per 9
 
       attr_writer :lat, :lng
-
-      pg_search_scope :search_meta, :against => :meta
 
       # Returns all features without consolidated images
       scope :without_consolidated_images, where('meta not like ?', "%:images_consolidated: true%")
@@ -31,19 +23,22 @@ module FeatureExtensions
       scope :close_to, lambda{|point| order("ST_Distance(the_geom::geography, GeomFromText('POINT(#{point.x} #{point.y})', 4326))") }
 
       # Orders features randomly
-      scope :random, lambda{ |point| order("RANDOM()") }
+      scope :random, order("RANDOM()")
 
       # Adds the geom to the list of selected fields (removed by default to improve performance)
       scope :with_the_geom, select('the_geom')
 
       # Gets all natural features
-      scope :natural, search_meta('type: natural')
+      scope :natural, where('meta like ?', "%:type: natural%")
 
       # Gets all cultural features
-      scope :cultural, search_meta('type: cultural')
+      scope :cultural, where('meta like ?', "%:type: cultural%")
 
       # Filters query by feature criteria
-      scope :by_criteria, lambda{|criteria| search_meta("criteria: #{criteria}")}
+      scope :by_criteria, lambda{|criteria| where('meta like ?', "%#{criteria}%") }
+
+      # Filter query search matches in description or meta fields
+      scope :search, lambda{|q| where('description like ? OR meta like ?', "%#{q}%", "%#{q}%")}
 
     end
   end
@@ -53,8 +48,7 @@ module FeatureExtensions
     # By default, removes 'the_geom' from the default select columns
     def custom_fields
       lat_long       = ['ST_Y(the_geom) as lat', 'ST_X(the_geom) as lon']
-      pg_search_rank = ["(ts_rank((setweight(to_tsvector( coalesce(\"features\".\"meta\", '')), 'B') || setweight(to_tsvector( coalesce(\"features\".\"title\", '')), 'A') || setweight(to_tsvector( coalesce(\"features\".\"description\", '')), 'C')), (to_tsquery( ''' ' || 'Spain' || ' ''')))) AS pg_search_rank"]
-      (columns.map{ |c| c.name } - ['the_geom']).map{ |c| "#{self.table_name}.#{c}" } + lat_long + pg_search_rank
+      (columns.map{ |c| c.name } - ['the_geom']).map{ |c| "#{self.table_name}.#{c}" } + lat_long
     end
 
     # Returns all heritage sites with the specified whs site id (must be only one ALWAYS)

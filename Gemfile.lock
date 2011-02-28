@@ -117,7 +117,6 @@ GEM
       json_pure (>= 1.4.6)
     nokogiri (1.4.4)
     pg (0.9.0)
-    pg_search (0.1.1)
     polyglot (0.3.1)
     ppe-panoramio (0.0.3)
       typhoeus
@@ -223,7 +222,6 @@ DEPENDENCIES
   nofxx-georuby
   nokogiri
   pg (= 0.9.0)
-  pg_search
   ppe-panoramio
   ppe-postgis-adapter!
   progressbar

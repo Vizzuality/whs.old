@@ -135,3 +135,5 @@ capybara-*html
 .rvmrc
 .rvmrc.*
 
+# App Config
+config/app_config.yml
