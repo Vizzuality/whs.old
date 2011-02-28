@@ -8,6 +8,9 @@
   </script>
 <% end %>
 <div class="content_box" id="explore">
+  <span class="loader">
+    <img src="/images/loading.gif" alt="loader" />
+  </span>
   <div class="top"></div>
   <div class="middle">
     <h1><span>More than 900 beautiful</span></h1>
@@ -55,7 +58,9 @@
     <div id="results" class="mosaic">
       <%= render :partial => 'features' %>
     </div>
-    <%= link_to 'More results', '#', :id => 'pagination' %>
+    <% if @features.size==9 %>
+      <%= link_to 'More results', '#more_results', :id => 'pagination' %>
+    <% end %>
   </div>
   <div class="bottom"></div>
 </div>

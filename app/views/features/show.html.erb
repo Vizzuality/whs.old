@@ -134,7 +134,7 @@
       <div class="mosaic">
         <ul id="image_list">
           <% @nearest_places.each do |feature|%>
-          <li class="mosaic_element<%= cycle('',' middle','', :name => 'mosaic') %>">
+          <li class="mosaic_element<%= cycle('',' middle','', :name => 'mosaic') %> no_border">
             <a href="/features/<%=feature.id%>">
             <div class="mosaic_element_div">
 
@@ -151,7 +151,7 @@
             </div>
             </a>
           </li>
-          <%= raw cycle('<li class="separator"></li>','<li class="separator"></li>','', :name => 'separator') %>
+          <%= raw cycle('<li class="separator no_border"></li>','<li class="separator no_border"></li>','', :name => 'separator') %>
           <% end %>
         </ul>
       </div>

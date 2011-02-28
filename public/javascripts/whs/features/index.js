@@ -20,7 +20,7 @@ var styles = [[{
         opt_textColor: '#FFFFFF',
         opt_textSize: 18
       }]];
-
+var markerClusterer;
 var
     form,
     search_url,
@@ -39,9 +39,6 @@ var
       };
     },
     addMarkers = function(){
-      clearMarkers();
-
-            
       $.each(features, function(index, feature){
         latlng = new google.maps.LatLng(feature['lat'], feature['lon']);
         
@@ -60,13 +57,8 @@ var
         google.maps.event.addListener(marker, "click", function() {window.location = "/features/" + feature['id']});
       });
     },
-    clearMarkers = function(){
-      $.each(markers, function(index, marker){
-        marker.setMap(null);
-      });
-      markers = [];
-    },
     getResults = function(next_page){
+      showLoader();
       search_params['page'] = 1;
       if (next_page) {
         search_params['page'] = next_page;
@@ -76,12 +68,27 @@ var
           $('#results').empty();
         };
         $('#results').append(html);
-        addMarkers();
+        $('a#list_selector').removeClass('selected');
+        $('a#mosaic_selector').addClass('selected');
+        if ($('#results div.mosaic ul li').size()==18 && !$('a#pagination').is(':visible')) {
+          $('div#explore div.middle').append('<a href="#more_results" id="pagination">More results</a>');
+        } else {
+          if ($('#results div.mosaic ul li').size()<18) {
+            $('a#pagination').remove();
+          }
+        }
+        hideLoader();
       });
     },
     urlParam = function(url, name){
       var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(url);
       return results[1];
+    },
+    showLoader = function() {
+      $('div.content_box#explore span.loader').fadeIn();
+    },
+    hideLoader = function() {
+      $('div.content_box#explore span.loader').fadeOut();
     };
 
   $(document).ready( function(){
@@ -216,7 +223,7 @@ var
       getResults();
     });
 
-    $('a#pagination').click(function(ev){
+    $('a#pagination').live('click',function(ev){
       ev.preventDefault();
       getResults(search_params['page'] + 1);
     });
@@ -253,7 +260,7 @@ var
 
     addMarkers();
     
-    var markerClusterer = new MarkerClusterer(map, markers, {
+    markerClusterer = new MarkerClusterer(map, markers, {
       maxZoom: 18,
       gridSize: 40,
       styles: styles[0]

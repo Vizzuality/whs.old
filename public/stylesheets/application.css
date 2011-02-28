@@ -3,6 +3,8 @@ body#natural{background: url("/images/green_texture.png") repeat;}
 body#cultural{background: url("/images/orange_texture.png") repeat;}
 
 body div#body {margin: 0; background: url("/images/general_bg.png") no-repeat center 0;}
+body div#body.error {margin: 0; padding:0; background: url("/images/general_bg.png") no-repeat center 0;}
+
 body#natural div#body {background: url("/images/natural_bg.jpg") no-repeat center 0;}
 body#cultural div#body {background: url("/images/cultural_bg.jpg") no-repeat center 0;}
 
@@ -59,6 +61,8 @@ div.mosaic ul li{float:left;  display: inline; width: 293px; height: 214px; bord
 div.mosaic ul li.middle{width:292px;}
 div.mosaic ul li.separator{position:relative; float:left;  width: 1px; height: 214px; background-color: #000000;}
 div.mosaic ul li.horizontal{float:left;  width: 880px; height: 0px!important; border-bottom:0;}
+div.mosaic ul li.no_border {border-bottom:0px; margin:0;}
+div.mosaic ul li.no_border.separator {height:213px;}
 div.mosaic ul li.invisible{display:none;}
 div.mosaic ul li a {text-decoration: none;}
 div.mosaic ul li div.mosaic_element_div{position:relative; }
@@ -67,6 +71,8 @@ div.mosaic ul li div.mosaic_label p {position:absolute; left: 14px; background:u
 div.mosaic ul li div.mosaic_label p.place {float:left; bottom: 38px; z-index:5;  padding: 4px 10px 4px 10px; background:url('/images/h1_fake.jpg') repeat-y 0 0;}
 div.mosaic ul li div.mosaic_label p.place span {float:none!important; width:auto!important; padding:5px 7px 5px 0; font: bold 17px "PT Sans"; color:#FFFFFF; white-space:pre-wrap;  background-color: black;}
 div.mosaic ul li div.mosaic_label p.distance { z-index:4; bottom: 16px; padding: 5px 10px 5px 10px;  font: normal 13px "Arial"; color: #CCCCCC; background:black;}
+
+
 
 div#zoomControl {position: absolute; top: 15px; right: 15px; width: 25px; }
 div#zoomControl a#zoomin {float:left; margin:0; width: 21px; height: 21px; background: url("/images/zoom_in.png")}
@@ -96,6 +102,14 @@ div.content_box div.middle div.footer a{color: #000000; font: normal 16px "Liber
 div.content_box div.middle div.footer a.bottom_link {text-align:right;}
 
 /*EXPLORE SPECIFIC  -------------------------------------------- */
+
+div.content_box#explore {position:relative;}
+div.content_box#explore span.loader {position:absolute; display:none; top:850px; left:50%; margin:-33px 0 0 -33px; z-index:100;}
+
+/*<span class="loader">
+  <img src="/images/loading.gif" alt="loader" />
+</span>
+*/
 div.content_box#explore div.middle {position: relative;}
 div.content_box#explore div.middle h1 {position: absolute; left: -15px; top: 30px;  font: normal 41px/45px "PT Sans Bold"; color: #FFFFFF; z-index: 15;}
 div.content_box#explore div.middle h1.down {position: absolute; left: -15px; top: 86px; font: normal 41px/45px "PT Sans Bold"; color:#FFFFFF;}
@@ -141,12 +155,18 @@ div#explore div#results div.mosaic {position:absolute; display:block; width:880p
 div#explore div#results div.mosaic ul {height: 645px;}
 
 /* List */
-div#explore div#results div.list {position:absolute; top:0; left:0; display:block; height:645px; margin: 0 8px 0 8px; background-color:#FFFFFF; color: #000000; z-index:5;}
+div#explore div#results div.list {position:absolute; top:0; left:0; display:block; width:880px; height:645px; margin: 0 8px 0 8px; background-color:#FFFFFF; color: #000000; z-index:5;}
 div#explore div#results div.list ul {float:left; height:645px; background:white;}
 div#explore div#results div.list ul li {width:830px; height:31px; padding: 20px 25px 20px 25px; border-bottom: 1px solid #999999; background:white;}
 div#explore div#results div.list ul li h3 a {font: normal 18px "PT Sans Bold"; color: #FF9900; text-decoration: none;}
 div#explore div#results div.list ul li h3 a:hover {color:#FF6600;}
 div#explore div#results div.list ul li span.description {font: normal 13px "Arial"; color: #666666}
+
+div#results div.empty_list  {position:absolute; top:300px; left:50%; width:330px; height:300px; padding:20px 0 0 170px; margin:-100px 0 0 -250px; background:url('/images/no_results.jpg') no-repeat 0 0 ;}
+div#results div.empty_list p {font:bold 30px Arial; color:#666666; letter-spacing:-2px;}
+div#results div.empty_list p a {font-weight:bold; color:#333333;}
+div#results div.empty_list p a:hover {text-decoration:underline;}
+
 
 a#pagination { display: block; width: 880px; margin: 0 8px; padding: 15px 0; color: #333333; background: url("/images/explore/grey_gradient.png") repeat-x; font: normal 21px "PT Sans Bold"; text-align: center; text-decoration: none; text-shadow: #FFFFFF 0px 1px; ;}
 a#pagination:hover {color: #111111; background: none; background-color: #FFFFFF;}
@@ -168,14 +188,10 @@ div#feature_image #slider div.nivo-controlNav {position: absolute; top: 20px; le
 div#feature_image #slider div.nivo-controlNav a {float: left; width: 13px; height: 26px; padding:0px 0px 0px 0px; background: url("/images/image_selector.png") no-repeat 0px -25px; background-color: #000000; text-indent: -9000px; cursor:hand;}
 div#feature_image #slider div.nivo-controlNav a:hover {background-position: 0px 9px;}
 div#feature_image #slider div.nivo-controlNav a.active {background-position: 0px 9px;}
-
 div#feature_image #photo_credits {position: absolute; display: none; bottom: 35px; left: 610px; z-index: 6; padding: 5px; font: 10px normal "Arial"; color: #DDDDDD; background: url("/images/transparent.png") repeat}
 div#feature_image #photo_credits a {color: #FFFFFF}
-
 div#feature_image img#default_image {position: absolute; top:0; left:0; width: 880px; height: 430px; z-index:10;}
-
 div#feature_image div#endangered {position: absolute; top: -11px; right: -11px; width: 97px; height: 94px; z-index: 15; background: url("/images/endangered.png");}
-
 div#feature div.middle div.content {position: relative; margin: 0 8px 0 8px; background: url("/images/feature_content_bg.png") repeat-y;}
 /*div#feature div.middle div.content {margin: 0 8px 0 8px; background: #EDEDED;}*/
 
@@ -183,7 +199,7 @@ div#feature_title {position: absolute; bottom: -30px; left: -15px; z-index: 15;}
 div#feature_title p#country span{float:left; padding: 8px 20px 5px 20px; color: #FFFFFF; background-color: #000000; font: normal 15px "PT Sans";}
 div#feature_title p#country span img {margin: 0 8px 0 0;}
 div#feature_title h1 {float:left; padding:0 0 0 20px; margin:0; width: 600px; z-index: 15; background:url('/images/h1_fake.jpg') repeat-y 0 0;}
-div#feature_title h1 span {float:left; color: #FFFFFF; line-height:45px; font: normal 35px "PT Sans Bold"; margin:0; padding: 5px 20px 3px 0; background-color: #000000; z-index: 15; white-space:pre-wrap;}
+div#feature_title h1 span { color: #FFFFFF; line-height:45px; font: normal 35px "PT Sans Bold"; margin:0; padding: 5px 20px 3px 0; background-color: #000000; z-index: 15; white-space:pre-wrap;}
 div#feature_title p.distance span {float:left; padding: 7px 20px 10px 40px; color: #999999; background: url("/images/transport_icons.png") no-repeat 20px 7px; background-color: #000000; font: normal 13px Arial;}
 div#feature_title p.distance span#plane {background-position: 20px 7px;}
 div#feature_title p.distance span#car {background-position: 20px -24px;}
@@ -270,8 +286,22 @@ div.clear{clear: both;}
 .hidden{display: none;}
 
 
+/*ERROR PAGES*/
+
+div.middle.error {height:350px;}
+div.middle.error div.full {width:640px; height:240px; margin:0 8px; padding:110px 0 0 240px; background:url('/images/no_results.jpg') no-repeat 72px 80px white;}
+div.middle.error div.full h2 {font:bold 25px "Helvetica"; color:#333333;}
+div.middle.error div.full h3 {font:bold 25px "Helvetica"; color:#666666; letter-spacing:-1px;}
+div.middle.error div.full p {margin:10px 0 0 0; font:normal 17px "Helvetica"; color:#333333;}
+div.middle.error div.full p a {color:#FF6600; text-decoration:underline;}
+div.middle.error div.full p a:hover {color:#FF3300;}
+div.content_box div.bottom.error {height: 9px; margin: 0 0 0 0; background: url("/images/content_bottom_background.png"); clear:both;}
+
+
+
 /*FOOTER STYLES  -------------------------------------------- */
 div#footer {position: relative; top: -40px; float: left; width: 100%; z-index: -1; background: url("/images/footer/footer_background.png") repeat;}
+div#footer.error {top:0;}
 div#footer_first {margin: 66px auto 0 auto; width: 880px; background: url("/images/footer/footer_background.png") repeat;}
 div#footer_first p#first_claim {float: left; color: white; font: bold 27px "PT Sans";padding: 0 0 18px 0;}
 div#footer_first p#first_claim a {font: bold 27px "PT Sans"; color: #ffffff;}
