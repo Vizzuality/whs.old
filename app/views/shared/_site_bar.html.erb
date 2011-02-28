@@ -9,13 +9,13 @@
     <% content_for :head, yield(:site_bar_assets) if (head ||= false) %>
     <%= yield(:site_bar_assets) unless head %>
   <% end -%>
-  
+
   <div id='site_bar'>
     <div id='site_bar_content' class='clearfix'>
       <h2>POWERED BY GEOPORTAL</h2>
       <h1><a href="/admin">methanehydrates<sup>administrator</sup></a></h1>
       <% unless login? %>
-          <span><a href="/refinery/settings">settings</a> | <%= link_to ('close session'), logout_url(:only_path => true),:id => 'logout' %></span>
+          <span><a href="/refinery/settings">settings</a> | <%= link_to ('close session'), destroy_user_session_path,:id => 'logout' %></span>
       <% end %>
     </div>
   </div>
