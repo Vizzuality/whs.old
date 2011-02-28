@@ -57,8 +57,14 @@ module FeatureExtensions
     end
 
     # Gets the next feature's images without consolidated images
-    def next_feature_images
-      feature = self.with_gallery.without_consolidated_images.sample
+    def feature_images(feature_id)
+      feature = if feature_id
+        Feature.with_gallery.by_whs_site_id(feature_id)
+      else
+        self.with_gallery.without_consolidated_images.sample
+      end
+
+      return nil if feature.nil?
 
       result = nil
       if feature
