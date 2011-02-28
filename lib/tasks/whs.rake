@@ -100,7 +100,8 @@ namespace :whs do
 
     features_without_images = feature_count = destroy_images = features_pg = errors = start_time = counter = radius = bounding_box = photos = progress_so_far = left = elapsed_time = time_to_finish = time_left = photos_pg = nil
 
-    features_without_images = Feature.where('id NOT IN (?)', Feature.select('features.id').joins(:gallery => {:gallery_entries => :image}).map{|f| f.id}.uniq)
+    
+    features_without_images = Feature.all
     feature_count = features_without_images.count
 
     puts 'Downloading panoramio photos'
